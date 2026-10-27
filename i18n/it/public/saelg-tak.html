@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Offerta ricevuta | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section">
+      <div class="wrap">
+        <div class="panel form-done">
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h1>Grazie, la tua offerta è stata salvata</h1>
+          <p>Il tuo numero è <strong>{{REF}}</strong>. Abbiamo inviato l'offerta alla tua e-mail.</p>
+          <ol class="done-steps">
+            <li>Disattiva <strong>Trova il mio iPhone</strong> o l'account Google e rimuovi la SIM.</li>
+            <li>Se spedisci per posta, ti mandiamo via e-mail un'etichetta di spedizione gratuita entro 1 giorno lavorativo. Se preferisci consegnare di persona, chiama prima il {{PHONE}}.</li>
+            <li>Controlliamo il dispositivo e paghiamo subito, se corrisponde a quanto hai descritto.</li>
+          </ol>
+          <p><a class="btn" href="/saelg/sag?ref={{REF}}">Segui la tua vendita</a> <a class="btn btn-ghost" href="/saelg">Vendine un altro</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

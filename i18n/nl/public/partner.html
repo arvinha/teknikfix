@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Word reparateur bij TeknikFix: klussen in jouw buurt</title>
+  <meta name="description" content="Repareer je telefoons, tablets of computers? Word partner bij TeknikFix en krijg klussen met een vaste prijs in jouw regio. Wij regelen boeking, betaling en klanten.">
+  <link rel="canonical" href="{{ORIGIN}}/partner">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Word reparateur bij TeknikFix">
+  <meta property="og:description" content="Krijg reparatieklussen in jouw regio. Wij regelen boeking, betaling en klanten.">
+  <meta property="og:url" content="{{ORIGIN}}/partner">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a><span aria-hidden="true">/</span><span>Word partner</span></nav>
+        <h1>Word reparateur bij TeknikFix</h1>
+        <p class="lead">Jij kunt goed repareren. Wij zorgen voor de klanten, bepalen de prijs en regelen de betaling. Je ziet de klus voordat je ja zegt.</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <div class="ways">
+          <div class="way"><span class="way-num">01</span><h3>Klussen voor jou</h3><p>Klanten in jouw buurt boeken via teknikfix.dk. Past de klus bij je, dan is hij voor jou.</p></div>
+          <div class="way"><span class="way-num">02</span><h3>Geen gedoe over de prijs</h3><p>De klant heeft de vaste prijs al gezien voordat hij boekt. Jij ziet je vergoeding voordat je ja zegt.</p></div>
+          <div class="way"><span class="way-num">03</span><h3>Onderdelen en betaling geregeld</h3><p>Wij bestellen het onderdeel voor de klus en de klant betaalt via het platform. Jij hoeft alleen te repareren.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap split">
+        <form class="panel" id="partner-form" novalidate>
+          <h2>Meld je aan</h2>
+          <div class="field-pair">
+            <label class="field"><span>Naam</span><input name="name" required maxlength="80" autocomplete="name"></label>
+            <label class="field"><span>Bedrijf <small class="muted">(optioneel)</small></span><input name="company" maxlength="120" autocomplete="organization"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Telefoon</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+            <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Plaats of postcode</span><input name="city" required maxlength="80" autocomplete="address-level2"></label>
+            <label class="field"><span>Land</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Hoe ver reis je? (km)</span><input name="radiusKm" type="number" min="0" max="500" value="20" inputmode="numeric"></label>
+            <label class="field"><span>Bedrijfs- of btw-nummer <small class="muted">(als je er een hebt)</small></span><input name="cvr" maxlength="20"></label>
+          </div>
+          <p class="field-title">Wat repareer je?</p>
+          <div class="fault-grid">
+            <label class="check"><input type="checkbox" name="skills" value="telefon"> <span>Telefoons</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="tablet"> <span>Tablets</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="computer"> <span>Computers</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="mikrolodning"> <span>Microsolderen</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="data"> <span>Gegevensherstel</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="konsol"> <span>Spelcomputers</span></label>
+          </div>
+          <label class="field"><span>Ervaring</span><select name="experience"><option value="under 1 år">Minder dan 1 jaar</option><option value="1-3 år" selected>1–3 jaar</option><option value="3-5 år">3–5 jaar</option><option value="over 5 år">Meer dan 5 jaar</option></select></label>
+          <label class="check"><input type="checkbox" name="workshop" value="ja"> <span>Ik heb een eigen werkplaats waar klanten langs kunnen komen</span></label>
+          <label class="field"><span>Vertel kort iets over jezelf <small class="muted">(optioneel)</small></span><textarea name="message" maxlength="2000"></textarea></label>
+          <label class="check"><input type="checkbox" name="consent" value="ja"> <span>TeknikFix mag mijn gegevens bewaren en contact met mij opnemen over klussen.</span></label>
+          <p class="form-error" id="partner-error" hidden role="alert"></p>
+          <button class="btn btn-copper" type="submit" id="partner-send">Aanmelding versturen</button>
+        </form>
+        <div class="panel form-done" id="partner-done" hidden>
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h2>Bedankt voor je aanmelding</h2>
+          <p>We bellen je binnen een paar dagen. Je nummer is <strong id="partner-ref"></strong>.</p>
+        </div>
+        <div>
+          <h2 class="section-title">Zo werkt het</h2>
+          <ol class="steps steps-stack">
+            <li><span>1</span><h3>Meld je aan</h3><p>Vertel wat je repareert en waar je zit.</p></li>
+            <li><span>2</span><h3>Wij bellen je</h3><p>Een kort gesprek over kwaliteit, garantie en prijzen. Daarna ben je klaar om te starten.</p></li>
+            <li><span>3</span><h3>Ontvang klussen</h3><p>Je krijgt bericht als een klant in jouw buurt boekt. Zeg je ja, dan is de klus van jou.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var form = document.querySelector("#partner-form");
+      var error = document.querySelector("#partner-error");
+      var button = document.querySelector("#partner-send");
+      var home = document.documentElement.getAttribute("data-country");
+      if (home && form.querySelector("select[name=country] option[value=" + home + "]")) form.elements.country.value = home;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.hidden = true;
+        button.disabled = true;
+        var f = form.elements;
+        var skills = Array.prototype.slice.call(form.querySelectorAll("input[name=skills]:checked")).map(function (i) { return i.value; });
+        var payload = {
+          name: f.name.value, company: f.company.value, phone: f.phone.value, email: f.email.value, city: f.city.value, country: f.country.value,
+          radiusKm: f.radiusKm.value, cvr: f.cvr.value, skills: skills, experience: f.experience.value,
+          workshop: f.workshop.checked ? "ja" : "", message: f.message.value, consent: f.consent.checked ? "ja" : ""
+        };
+        fetch("/api/partner", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.message || "De aanmelding is niet verzonden.");
+            document.querySelector("#partner-ref").textContent = res.body.ref;
+            form.hidden = true;
+            document.querySelector("#partner-done").hidden = false;
+          })
+          .catch(function (err) { error.hidden = false; error.textContent = err.message; button.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

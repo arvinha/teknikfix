@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paiement : {{PAY_LIST}} | TeknikFix Aalborg</title>
+  <meta name="description" content="Chez TeknikFix, vous payez avec {{PAY_LIST}}. Vous payez quand la réparation fonctionne. Si elle n'est pas possible, cela coûte 0 DKK.">
+  <link rel="canonical" href="{{ORIGIN}}/betaling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Paiement | TeknikFix">
+  <meta property="og:description" content="{{PAY_LIST_CAP}}. Payez quand ça fonctionne.">
+  <meta property="og:url" content="{{ORIGIN}}/betaling">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span>Paiement</span></nav>
+        <h1>Vous payez quand ça fonctionne</h1>
+        <p class="lead">Vous voyez le prix avant de réserver. Une fois le résultat constaté, vous payez avec {{PAY_LIST}}.<!--IF_CARD--> Si vous préférez payer tout de suite, vous pouvez le choisir au moment de la réservation.<!--END_IF_CARD--></p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="promise-grid">
+          <article class="panel"><h2>1</h2><p>Vous voyez le prix et le délai au moment de la réservation.</p></article>
+          <article class="panel"><h2>2</h2><p>Nous réparons. Vous vérifiez que le problème a disparu.</p></article>
+          <article class="panel"><h2>3</h2><p>Votre dossier passe à « prêt à payer », avec le montant.</p></article>
+          <article class="panel"><h2>4</h2><p>Vous payez. Vous recevez un reçu et votre dossier est mis à jour.</p></article>
+        </div>
+        <!--IF_CARD-->
+        <article class="pay-card">
+          <h2>Carte, MobilePay ou Klarna</h2>
+          <p>Le moyen le plus rapide. Cliquez sur « Payer » dans votre dossier et choisissez comment vous souhaitez payer. Le paiement passe par Stripe, et nous ne voyons jamais vos données de carte.</p>
+          <ul class="pay-methods" aria-label="Moyens de paiement"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <p>Avec Klarna, vous pouvez payer plus tard ou répartir le montant en plusieurs fois.</p>
+          <p><a class="btn" href="/sag">Accéder à votre dossier pour payer</a></p>
+        </article>
+        <!--END_IF_CARD-->
+        <div class="pay-grid">
+          <article class="pay-card">
+            <h2>PayPal</h2>
+            <p>Le montant est indiqué en couronnes danoises et il est renseigné dans votre dossier quand la réparation est prête.</p>
+            <p>Le paiement est à envoyer à <strong>{{PAYPAL}}</strong>. Indiquez votre numéro de dossier pour que nous sachions de quel dossier il s'agit.</p>
+            <p><a href="/sag">Accéder à votre dossier pour payer</a></p>
+          </article>
+          <article class="pay-card" id="bank">
+            <h2>Virement bancaire</h2>
+            <dl class="bank-dl">
+              <dt>Bénéficiaire</dt><dd>{{HOLDER}}</dd>
+              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
+              <dt>BIC</dt><dd>{{BIC}}</dd>
+              <dt>Banque</dt><dd>{{BANK}}</dd>
+              <dt>Référence</dt><dd>Votre numéro de dossier, par ex. AX-7K2M</dd>
+            </dl>
+            <div class="copy-row">
+              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">Copier l'IBAN</button>
+              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">Copier le BIC</button>
+            </div>
+            <p>Le compte est en couronnes suédoises. Votre banque effectue la conversion depuis les couronnes danoises, et des frais de change peuvent s'appliquer.</p>
+          </article>
+        </div>
+        <div class="panel">
+          <h2>Si la réparation n'est pas possible</h2>
+          <p>Dans ce cas, vous ne payez rien. Les pièces ne sont commandées qu'après votre accord sur le prix.<!--IF_CARD--> Si vous avez payé à l'avance, vous êtes remboursé de la totalité.<!--END_IF_CARD--> Si la même panne revient dans les 30 jours, nous la réglons sans nouveau paiement.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

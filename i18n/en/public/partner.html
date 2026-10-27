@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Become a repairer with TeknikFix: get jobs in your area</title>
+  <meta name="description" content="Do you repair phones, tablets or computers? Become a TeknikFix partner and get fixed-price jobs in your area. We handle booking, payment and customers.">
+  <link rel="canonical" href="{{ORIGIN}}/partner">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Become a repairer with TeknikFix">
+  <meta property="og:description" content="Get repair jobs in your area. We handle booking, payment and customers.">
+  <meta property="og:url" content="{{ORIGIN}}/partner">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Become a partner</span></nav>
+        <h1>Become a repairer with TeknikFix</h1>
+        <p class="lead">You're good at repairing things. We find the customers, set the price and take the payment. You see the job before you say yes.</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <div class="ways">
+          <div class="way"><span class="way-num">01</span><h3>Jobs come to you</h3><p>Customers in your area book through teknikfix.dk. If the job suits you, it's yours.</p></div>
+          <div class="way"><span class="way-num">02</span><h3>No haggling over price</h3><p>The customer has seen the fixed price before booking. You see your payment before you say yes.</p></div>
+          <div class="way"><span class="way-num">03</span><h3>Parts and payment sorted</h3><p>We order the part for the job, and the customer pays through the platform. All you have to do is repair.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap split">
+        <form class="panel" id="partner-form" novalidate>
+          <h2>Sign up</h2>
+          <div class="field-pair">
+            <label class="field"><span>Name</span><input name="name" required maxlength="80" autocomplete="name"></label>
+            <label class="field"><span>Company <small class="muted">(optional)</small></span><input name="company" maxlength="120" autocomplete="organization"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Phone</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+            <label class="field"><span>Email</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Town or postcode</span><input name="city" required maxlength="80" autocomplete="address-level2"></label>
+            <label class="field"><span>Country</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>How far will you travel? (km)</span><input name="radiusKm" type="number" min="0" max="500" value="20" inputmode="numeric"></label>
+            <label class="field"><span>Company or VAT number <small class="muted">(if you have one)</small></span><input name="cvr" maxlength="20"></label>
+          </div>
+          <p class="field-title">What do you repair?</p>
+          <div class="fault-grid">
+            <label class="check"><input type="checkbox" name="skills" value="telefon"> <span>Phones</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="tablet"> <span>Tablets</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="computer"> <span>Computers</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="mikrolodning"> <span>Micro-soldering</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="data"> <span>Data recovery</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="konsol"> <span>Consoles</span></label>
+          </div>
+          <label class="field"><span>Experience</span><select name="experience"><option value="under 1 år">Under 1 year</option><option value="1-3 år" selected>1–3 years</option><option value="3-5 år">3–5 years</option><option value="over 5 år">Over 5 years</option></select></label>
+          <label class="check"><input type="checkbox" name="workshop" value="ja"> <span>I have my own workshop where customers can come</span></label>
+          <label class="field"><span>Tell us a little about yourself <small class="muted">(optional)</small></span><textarea name="message" maxlength="2000"></textarea></label>
+          <label class="check"><input type="checkbox" name="consent" value="ja"> <span>TeknikFix may store my details and contact me about jobs.</span></label>
+          <p class="form-error" id="partner-error" hidden role="alert"></p>
+          <button class="btn btn-copper" type="submit" id="partner-send">Send sign-up</button>
+        </form>
+        <div class="panel form-done" id="partner-done" hidden>
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h2>Thanks for signing up</h2>
+          <p>We'll call you within a few days. Your reference number is <strong id="partner-ref"></strong>.</p>
+        </div>
+        <div>
+          <h2 class="section-title">How it works</h2>
+          <ol class="steps steps-stack">
+            <li><span>1</span><h3>Sign up</h3><p>Tell us what you repair and where you're based.</p></li>
+            <li><span>2</span><h3>We call you</h3><p>A short chat about quality, warranty and prices. Then you're ready to go.</p></li>
+            <li><span>3</span><h3>Get jobs</h3><p>We let you know when a customer in your area books. If you say yes, the job is yours.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var form = document.querySelector("#partner-form");
+      var error = document.querySelector("#partner-error");
+      var button = document.querySelector("#partner-send");
+      var home = document.documentElement.getAttribute("data-country");
+      if (home && form.querySelector("select[name=country] option[value=" + home + "]")) form.elements.country.value = home;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.hidden = true;
+        button.disabled = true;
+        var f = form.elements;
+        var skills = Array.prototype.slice.call(form.querySelectorAll("input[name=skills]:checked")).map(function (i) { return i.value; });
+        var payload = {
+          name: f.name.value, company: f.company.value, phone: f.phone.value, email: f.email.value, city: f.city.value, country: f.country.value,
+          radiusKm: f.radiusKm.value, cvr: f.cvr.value, skills: skills, experience: f.experience.value,
+          workshop: f.workshop.checked ? "ja" : "", message: f.message.value, consent: f.consent.checked ? "ja" : ""
+        };
+        fetch("/api/partner", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.message || "Your sign-up wasn't sent.");
+            document.querySelector("#partner-ref").textContent = res.body.ref;
+            form.hidden = true;
+            document.querySelector("#partner-done").hidden = false;
+          })
+          .catch(function (err) { error.hidden = false; error.textContent = err.message; button.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

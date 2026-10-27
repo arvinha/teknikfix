@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batteriskift i Aalborg · iPhone, Samsung, iPad og bærbar | TeknikFix</title>
+  <meta name="description" content="Nyt batteri i Aalborg på ca. 30 min. iPhone fra {{FRA_IPHONE_BATTERI}}, Samsung fra {{FRA_SAMSUNG_BATTERI}}, iPad fra {{FRA_IPAD_BATTERI}} og bærbar fra {{FRA_COMPUTER_BATTERI}}. Fast pris, betaling når den virker. Book døgnet rundt.">
+  <link rel="canonical" href="{{ORIGIN}}/batteriskift-aalborg">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Batteriskift i Aalborg | TeknikFix">
+  <meta property="og:description" content="Nyt batteri på ca. 30 min. Fast pris på din model.">
+  <meta property="og:url" content="{{ORIGIN}}/batteriskift-aalborg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Batteriskift i Aalborg",
+        "serviceType": "Udskiftning af batteri",
+        "provider": { "@id": "{{ORIGIN}}/#business" },
+        "areaServed": { "@type": "City", "name": "Aalborg" },
+        "url": "{{ORIGIN}}/batteriskift-aalborg",
+        "offers": [
+          { "@type": "Offer", "name": "iPhone batteriskift", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPHONE_BATTERI}}, "maxPrice": {{MAX_IPHONE_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Samsung batteriskift", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_SAMSUNG_BATTERI}}, "maxPrice": {{MAX_SAMSUNG_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "iPad batteriskift", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPAD_BATTERI}}, "maxPrice": {{MAX_IPAD_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Batteri til bærbar", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_COMPUTER_BATTERI}}, "priceCurrency": "DKK" } }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Forside", "item": "{{ORIGIN}}/" },
+          { "@type": "ListItem", "position": 2, "name": "Batteriskift i Aalborg", "item": "{{ORIGIN}}/batteriskift-aalborg" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Hvornår skal batteriet skiftes?", "acceptedAnswer": { "@type": "Answer", "text": "Når telefonen slukker ved 20–30 %, bliver varm, eller batteritilstanden er under 80 %. På iPhone ser du det under Indstillinger, Batteri, Batteritilstand." } },
+          { "@type": "Question", "name": "Hvor lang tid tager et batteriskift?", "acceptedAnswer": { "@type": "Answer", "text": "Ca. 30 minutter på en telefon, når batteriet er på lager. På iPad 2–3 timer og på en bærbar typisk 1–2 dage." } },
+          { "@type": "Question", "name": "Mister jeg mine data?", "acceptedAnswer": { "@type": "Answer", "text": "Nej. Et batteriskift rører ikke billeder, beskeder eller apps." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><span>Batteriskift</span></nav>
+        <h1>Batteriskift i Aalborg</h1>
+        <p class="lead">Slukker telefonen ved 30 %, eller holder den ikke en dag? Et nyt batteri tager ca. 30 minutter, og du kan vente, mens det bliver gjort. Fast pris på din model.</p>
+        <div class="actions">
+          <a class="btn btn-copper" href="/book">Se prisen og book</a>
+          <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Ring {{PHONE}}</a>
+        </div>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap split">
+        <div class="stack">
+          <div class="table-wrap">
+            <table class="price-table">
+              <caption class="visually-hidden">Priser på batteriskift</caption>
+              <thead><tr><th>Apparat</th><th>Pris</th><th>Tid</th></tr></thead>
+              <tbody>
+                <tr><td>iPhone</td><td>{{RANGE_IPHONE_BATTERI}}</td><td>ca. 30 min</td></tr>
+                <tr><td>Samsung Galaxy</td><td>{{RANGE_SAMSUNG_BATTERI}}</td><td>ca. 30 min</td></tr>
+                <tr><td>iPad</td><td>{{RANGE_IPAD_BATTERI}}</td><td>2–3 timer</td></tr>
+                <tr><td>Bærbar computer og MacBook</td><td>fra {{FRA_COMPUTER_BATTERI}}</td><td>1–2 dage</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><a class="btn btn-ghost" href="/priser">Se prisen på din model</a></p>
+          <div>
+            <h2>Tegn på et slidt batteri</h2>
+            <p>Telefonen slukker, selvom der står strøm tilbage. Den bliver varm, når du lader. Den bliver langsom, fordi den skruer ned for at spare på batteriet. Eller batteriet er begyndt at bule, så skærmen eller bagsiden løfter sig. Det sidste skal skiftes med det samme.</p>
+            <h2>Hvilket batteri bruger vi?</h2>
+            <p>Nye batterier i høj kvalitet med fuld kapacitet. Vi tester opladning og kapacitet, før du får telefonen igen.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Sådan foregår det</h2>
+          <p><strong>1.</strong> Book og vælg din model. Du ser prisen med det samme.</p>
+          <p><strong>2.</strong> Vi bekræfter tiden. Du afleverer den i Aalborg Øst, eller vi kommer til dig.</p>
+          <p><strong>3.</strong> Vi skifter batteriet. På en telefon tager det ca. 30 minutter.</p>
+          <p><strong>4.</strong> Du betaler med {{PAY_LIST}}, når den virker.</p>
+          <p>Samme fejl inden for 30 dage retter vi uden ny betaling.</p>
+          <p><a href="/iphone-reparation-aalborg">iPhone</a> · <a href="/samsung-reparation-aalborg">Samsung</a> · <a href="/ipad-reparation-aalborg">iPad</a> · <a href="/macbook-reparation-aalborg">MacBook</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Spørgsmål om batteriskift</h2>
+        <details class="faq-item" open><summary>Hvornår skal batteriet skiftes?</summary><p>Når telefonen slukker ved 20–30 %, bliver varm, eller batteritilstanden er under 80 %. På iPhone ser du det under Indstillinger, Batteri, Batteritilstand.</p></details>
+        <details class="faq-item"><summary>Hvor lang tid tager et batteriskift?</summary><p>Ca. 30 minutter på en telefon, når batteriet er på lager. På iPad 2–3 timer og på en bærbar typisk 1–2 dage.</p></details>
+        <details class="faq-item"><summary>Mister jeg mine data?</summary><p>Nej. Et batteriskift rører ikke billeder, beskeder eller apps.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

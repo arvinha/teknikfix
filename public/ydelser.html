@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Priser på reparation af telefon, computer og tablet | TeknikFix Aalborg</title>
+  <meta name="description" content="Vejledende priser for reparation af telefon, computer og tablet hos TeknikFix i Aalborg. Gratis gennemgang. Du får den endelige pris, før vi starter.">
+  <link rel="canonical" href="{{ORIGIN}}/ydelser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Priser på reparation | TeknikFix Aalborg">
+  <meta property="og:description" content="Vejledende priser. Gratis gennemgang, og du betaler først når den virker.">
+  <meta property="og:url" content="{{ORIGIN}}/ydelser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><span>Ydelser</span></nav>
+        <h1>Ydelser og priser</h1>
+        <p class="lead">Her er spændet for hver slags reparation. Den faste pris på netop din model finder du under <a href="/priser">priser</a>, eller når du booker. Gennemgang er 0 kr.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="table-wrap" id="telefon">
+          <table class="price-table">
+            <caption class="visually-hidden">Telefon</caption>
+            <thead><tr><th>Telefon</th><th>Pris</th><th>Tid</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Telefon</td></tr>
+              <tr><td>Batteri</td><td>{{RANGE_TELEFON_BATTERI}}</td><td>ca. 30 min</td></tr>
+              <tr><td>Skærm</td><td>{{RANGE_TELEFON_SKAERM}}</td><td>ca. 45 min</td></tr>
+              <tr><td>Ladeport</td><td>{{RANGE_TELEFON_LADEPORT}}</td><td>ca. 45 min</td></tr>
+              <tr><td>Kamera</td><td>{{RANGE_TELEFON_KAMERA}}</td><td>ca. 45 min</td></tr>
+              <tr><td>Bagglas</td><td>{{RANGE_TELEFON_BAGGLAS}}</td><td>1–2 timer</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="computer">
+          <table class="price-table">
+            <caption class="visually-hidden">Computer</caption>
+            <thead><tr><th>Computer</th><th>Pris</th><th>Tid</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Computer</td></tr>
+              <tr><td>Langsom computer, rens og optimering</td><td>{{RANGE_COMPUTER_RENS}}</td><td>1–2 timer</td></tr>
+              <tr><td>Virus og pop-ups</td><td>{{RANGE_COMPUTER_VIRUS}}</td><td>1–3 timer</td></tr>
+              <tr><td>Geninstallation af Windows eller macOS</td><td>{{RANGE_COMPUTER_GENINSTALLATION}}</td><td>2–3 timer</td></tr>
+              <tr><td>Ny SSD, 1 TB</td><td>fra {{FRA_COMPUTER_SSD}}</td><td>2–3 timer</td></tr>
+              <tr><td>Skærm på bærbar</td><td>fra {{FRA_COMPUTER_SKAERM}}</td><td>1–3 dage</td></tr>
+              <tr><td>Batteri på bærbar</td><td>fra {{FRA_COMPUTER_BATTERI}}</td><td>1–2 dage</td></tr>
+              <tr><td>Redning af filer</td><td>fra {{FRA_COMPUTER_DATA}}</td><td>1–3 dage</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="tablet">
+          <table class="price-table">
+            <caption class="visually-hidden">Tablet</caption>
+            <thead><tr><th>Tablet</th><th>Pris</th><th>Tid</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Tablet</td></tr>
+              <tr><td>Skærm eller glas</td><td>{{RANGE_TABLET_SKAERM}}</td><td>Samme dag</td></tr>
+              <tr><td>Batteri</td><td>{{RANGE_TABLET_BATTERI}}</td><td>2–3 timer</td></tr>
+              <tr><td>Ladeport</td><td>{{RANGE_TABLET_LADEPORT}}</td><td>ca. 1 time</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Altid 0 kr</h2>
+          <p>Gennemgang, uanset om du kommer til os eller vi kommer til dig. Kørsel i Aalborg er også 0 kr. Du betaler kun for en reparation, du har sagt ja til, og kun når den virker.</p>
+          <p>Vandskade og meget gamle apparater kan vi ofte ikke redde. Så siger vi det med det samme.</p>
+          <div class="actions"><a class="btn" href="/book">Book og se prisen</a><a class="btn btn-ghost" href="/priser">Priser på alle modeller</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

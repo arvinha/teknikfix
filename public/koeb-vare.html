@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ITEM_TITLE}}</title>
+  <meta name="description" content="{{ITEM_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{ITEM_PATH}}">
+  <meta name="robots" content="{{ITEM_ROBOTS}}">
+  <meta property="og:title" content="{{ITEM_TITLE}}">
+  <meta property="og:description" content="{{ITEM_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{ITEM_PATH}}">
+  <meta property="og:image" content="{{ITEM_IMAGE}}">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="shop-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><a href="/koeb">Køb brugt</a><span aria-hidden="true">/</span><span>{{ITEM_H1}}</span></nav>
+        <div class="shop-item">
+          {{ITEM_GALLERY}}
+          <div class="shop-info">
+            <h1>{{ITEM_H1}}</h1>
+            <p class="shop-item-price">{{ITEM_PRICE}}</p>
+            {{ITEM_ERROR}}
+            <div class="shop-buy-box">{{ITEM_BUY}}</div>
+            <ul class="shop-perks">
+              <li>Gratis fragt i Danmark. Sendes inden for 1 hverdag.</li>
+              <li>24 måneders reklamationsret</li>
+              <li>14 dages fortrydelsesret</li>
+              <li>Kort, MobilePay, Apple Pay og Google Pay</li>
+            </ul>
+            <dl class="shop-specs">{{ITEM_SPECS}}</dl>
+            <p class="shop-grade-text">{{ITEM_GRADE}}</p>
+            {{ITEM_TEXT}}
+            <p class="field-note">Sælges efter brugtmomsordningen. Momsen kan ikke trækkes fra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Det får du</h2>
+        <div class="promise-grid">
+          <article><h3>Testet af os</h3><p>Skærm, batteri, kamera, knapper, opladning og forbindelse er tjekket.</p></article>
+          <article><h3>Nulstillet og logget ud</h3><p>Den er slettet og klar til dig. Ingen konto eller lås fra den tidligere ejer.</p></article>
+          <article><h3>Dækket i 2 år</h3><p>Går den i stykker af sig selv, reparerer vi den, bytter den eller giver dig pengene tilbage.</p></article>
+          <article><h3>Godt for miljøet</h3><p>En brugt enhed sparer det CO₂ og de råstoffer, en ny koster at lave.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  {{ITEM_LD}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

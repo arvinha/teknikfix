@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verkoop je iPhone, telefoon of computer, ook als hij kapot is | TeknikFix</title>
+  <meta name="description" content="Krijg meteen een prijs voor je gebruikte of kapotte telefoon, tablet of computer. Kies het model, typ het IMEI-nummer in of maak een foto. Wij kopen uit heel de EU en betalen snel uit via MobilePay of bank.">
+  <link rel="canonical" href="{{ORIGIN}}/saelg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Verkoop je telefoon of computer | TeknikFix">
+  <meta property="og:description" content="Meteen een prijs. Ook als hij gebarsten is. Gratis verzending en uitbetaling via MobilePay.">
+  <meta property="og:url" content="{{ORIGIN}}/saelg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Kopen jullie ook telefoons die kapot zijn?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Gebarsten scherm, slechte batterij of een toestel dat helemaal niet aangaat. Wij trekken af wat het ons kost om het te repareren, en je ziet de prijs meteen." } },
+      { "@type": "Question", "name": "Hoe krijg ik mijn geld?", "acceptedAnswer": { "@type": "Answer", "text": "Via MobilePay of bankoverschrijving, meestal binnen 1 werkdag nadat we het toestel hebben gecontroleerd. Woon je buiten Denemarken, dan maken we het geld over naar je IBAN." } },
+      { "@type": "Question", "name": "Kan ik verkopen vanuit een ander EU-land?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Kies je land en stuur het toestel op met het verzendlabel dat wij je mailen. De verzendkosten worden van het bedrag afgetrokken en je krijgt het geld op je IBAN." } },
+      { "@type": "Question", "name": "Wat als het toestel niet overeenkomt met de beschrijving?", "acceptedAnswer": { "@type": "Answer", "text": "Dan krijg je een nieuw bod. Zeg je nee, dan sturen we het gratis terug." } },
+      { "@type": "Question", "name": "Kopen jullie ook van bedrijven?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Kies Bedrijf en vul het aantal per model in. Heb je een lange lijst, mail die dan naar ons." } }
+    ]
+  }
+  </script>
+</head>
+<body class="book-page sell-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a><span aria-hidden="true">/</span><span>Verkopen</span></nav>
+        <h1>Verkoop je toestel</h1>
+        <p class="lead">Binnen een minuut een vaste prijs. Ook als het kapot is.</p>
+        <ul class="sell-promises">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h11v9H3zM14 10.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>Gratis verzending in Denemarken</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h3"/></svg>Je geld binnen 1 werkdag</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Je gegevens worden gewist</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section book-section">
+      <div class="wrap">
+        <div class="panel book-flow" id="sell">
+          <div id="device-step">
+            <div class="sell-top" id="sell-top" hidden>
+              <p class="flow-count" id="step-count"></p>
+              <div class="steps-bar" id="sell-bar" aria-hidden="true"></div>
+              <div class="sell-chosen" id="sell-chosen" hidden>
+                <span class="sell-chosen-name"><strong id="chosen-name"></strong><span id="chosen-spec"></span></span>
+                <span class="sell-upto" id="upto" hidden></span>
+                <button class="link-button" id="change-model" type="button">Wijzigen</button>
+              </div>
+            </div>
+            <p id="step-live" class="visually-hidden" aria-live="polite"></p>
+
+            <div class="sell-step" data-sell="find">
+              <h2 id="device-title">Wat wil je verkopen?</h2>
+              <div class="sell-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+                <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Model of IMEI-nummer" aria-label="Typ het model of het IMEI-nummer" aria-controls="search-hits">
+              </div>
+              <ul class="search-hits" id="search-hits" role="listbox" aria-label="Modellen" hidden></ul>
+              <p class="photo-status" id="photo-status" aria-live="polite" hidden></p>
+              <div class="quick-picks" id="quick-picks"></div>
+              <p class="other-ways-title">Weet je niet welk model het is?</p>
+              <div class="other-ways">
+                <label class="way-btn" id="photo-way" data-vision="{{VISION_ENABLED}}">
+                  <input type="file" id="photo" accept="image/*">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.6-2.5h6.8L17 8.5h3v10H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
+                  <span><strong>Maak een foto</strong><small>Van Instellingen → Algemeen → Info, of van het label op de achterkant</small></span>
+                </label>
+                <button class="way-btn" id="imei-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M9.5 8h5M9.5 11h5M9.5 14h3"/></svg>
+                  <span><strong>Gebruik het IMEI-nummer</strong><small>Toets *#06# in op de telefoon</small></span>
+                </button>
+                <button class="way-btn" id="list-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                  <span><strong>Kies uit de lijst</strong><small>Alle merken en modellen</small></span>
+                </button>
+              </div>
+              <label class="field field-gap" id="list-wrap" hidden><span>Model</span><select id="model"><option value="">Kies een model</option></select></label>
+            </div>
+
+            <div class="sell-step" data-sell="spec" hidden>
+              <h2 id="spec-title">Hoeveel opslagruimte heeft het?</h2>
+              <div id="variant-block" hidden>
+                <p class="field-title" id="variant-title">Chip</p>
+                <div class="choice-grid tile-grid" id="variant-tiles"></div>
+              </div>
+              <div id="storage-block" hidden>
+                <p class="field-title" id="storage-title" hidden>Opslagruimte</p>
+                <div class="choice-grid tile-grid" id="storage-tiles"></div>
+              </div>
+              <div id="conn-block" hidden>
+                <p class="field-title">Kan er een simkaart in?</p>
+                <div class="choice-grid tile-grid" id="conn-tiles"></div>
+              </div>
+              <p class="field-note field-gap" id="spec-help">Je vindt het onder Instellingen → Algemeen → Info.</p>
+            </div>
+
+            <div class="sell-step" data-sell="look" hidden>
+              <h2>Hoe ziet het eruit?</h2>
+              <div class="look-grid" id="look-tiles"></div>
+              <div id="crack-block" hidden>
+                <p class="field-title field-gap">Wat is er gebarsten?</p>
+                <div class="choice-grid tile-grid" id="crack-tiles"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="works" hidden>
+              <h2>Werkt alles zoals het hoort?</h2>
+              <div class="look-grid" id="works-tiles"></div>
+              <div id="fault-block" hidden>
+                <p class="field-title field-gap">Wat werkt er niet? <span class="repair-hint">Vink aan wat van toepassing is</span></p>
+                <div class="fault-grid" id="fault-list"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="price" hidden>
+              <div class="estimate sell-offer" id="offer" aria-live="polite"></div>
+              <div class="review sell-summary" id="summary"></div>
+              <details class="sell-more" id="more">
+                <summary>Wil je het helemaal precies? Pas alle details aan</summary>
+                <div id="questions"></div>
+                <div class="field-pair">
+                  <label class="field"><span>IMEI- of serienummer <small class="muted">(optioneel)</small></span><input id="imei" inputmode="text" maxlength="24" autocomplete="off" placeholder="Toets *#06# in op de telefoon"></label>
+                  <label class="field"><span>Aantal gelijke toestellen</span><input id="qty" type="number" min="1" max="500" value="1" inputmode="numeric"></label>
+                </div>
+                <p class="form-error" id="imei-error" hidden></p>
+              </details>
+              <p class="field-title field-gap">Zo gaat het verder</p>
+              <ol class="next-steps">
+                <li><strong>Vul in waar het geld naartoe moet</strong><span>Naam, adres en MobilePay of rekening. Dat duurt 1 minuut.</span></li>
+                <li><strong>Stuur het gratis op</strong><span>Wij mailen je een verzendlabel. Of kom langs in Aalborg.</span></li>
+                <li><strong>Ontvang je geld</strong><span>Wij controleren het toestel en betalen binnen 1 werkdag uit.</span></li>
+              </ol>
+            </div>
+
+            <div class="form-nav sell-nav">
+              <button class="btn btn-ghost" id="back" type="button" hidden>Terug</button>
+              <button class="btn btn-ghost" id="cancel-edit" type="button" hidden>Annuleren</button>
+              <button class="btn btn-copper" id="next" type="button" hidden>Bekijk de prijs</button>
+              <button class="btn btn-copper" id="add" type="button" hidden>Verkoop het</button>
+            </div>
+          </div>
+
+          <form id="seller-step" hidden novalidate>
+            <h2>Jouw verkoop</h2>
+            <div class="review sell-list" id="sell-list"></div>
+            <button class="link-button" id="add-more" type="button">+ Nog een toestel toevoegen</button>
+
+            <p class="field-title field-gap">Je verkoopt als</p>
+            <div class="segmented">
+              <label><input type="radio" name="sellerType" value="privat" checked><span>Particulier</span></label>
+              <label><input type="radio" name="sellerType" value="firma"><span>Bedrijf</span></label>
+            </div>
+            <div class="field-pair field-gap" id="company-row" hidden>
+              <label class="field"><span>Bedrijfsnaam</span><input name="company" maxlength="120" autocomplete="organization"></label>
+              <label class="field"><span id="cvr-label">Bedrijfs- of btw-nummer</span><input name="cvr" maxlength="20" autocomplete="off"></label>
+            </div>
+
+            <label class="field field-gap"><span>Naam</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Telefoon</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+              <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="field-pair">
+              <label class="field"><span>Adres</span><input name="address" required maxlength="200" autocomplete="street-address" placeholder="Straat, huisnummer, postcode en plaats"></label>
+              <label class="field"><span>Land</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+            </div>
+
+            <p class="field-title">Hoe krijgen wij het toestel?</p>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="delivery" value="post" checked><strong>Opsturen per post</strong><small id="post-home">Gratis. Wij mailen je een verzendlabel</small><small id="post-abroad" hidden>Wij mailen je een verzendlabel. De verzendkosten vanuit het buitenland ({{SELL_EU_SHIP}} DKK) worden van het bedrag afgetrokken</small></label>
+              <label class="choice" id="dropoff"><input type="radio" name="delivery" value="aflever"><strong>Afgeven in Aalborg</strong><small>{{STREET}}, op afspraak</small></label>
+            </div>
+
+            <p class="field-title field-gap">Hoe wil je je geld ontvangen?</p>
+            <div class="segmented" id="payout-choice">
+              <label id="mp-choice"><input type="radio" name="payoutMethod" value="mobilepay" checked><span>MobilePay</span></label>
+              <label><input type="radio" name="payoutMethod" value="bank"><span>Bankoverschrijving</span></label>
+            </div>
+            <label class="field field-gap" id="mp-row"><span>MobilePay-nummer</span><input name="mobilepay" maxlength="20" inputmode="tel" placeholder="Hetzelfde als je telefoon, als je niets invult"></label>
+            <div class="field-pair field-gap" id="bank-row" hidden>
+              <label class="field"><span>Banknummer</span><input name="reg" maxlength="4" inputmode="numeric"></label>
+              <label class="field"><span>Rekeningnummer</span><input name="konto" maxlength="14" inputmode="numeric"></label>
+            </div>
+            <label class="field field-gap" id="iban-row" hidden><span>IBAN</span><input name="iban" maxlength="42" autocomplete="off" placeholder="Bijv. DE89 3704 0044 0532 0130 00"></label>
+
+            <button class="link-button" id="note-open" type="button">+ Schrijf ons een bericht (optioneel)</button>
+            <label class="field" id="note-wrap" hidden><span>Bericht aan ons <small class="muted">(optioneel)</small></span><textarea name="note" maxlength="2000" placeholder="Bijv. kleur, accessoires of een lijst met toestellen"></textarea></label>
+            <label class="check"><input type="checkbox" name="consent" value="ja"> <span>Ik ben de eigenaar van het toestel, het is niet gestolen en ik ben 18 jaar of ouder. Ik schakel Zoek mijn iPhone en andere vergrendelingen uit voordat ik het opstuur.</span></label>
+            <p class="form-error" id="send-error" hidden role="alert"></p>
+            <div class="form-nav">
+              <button class="btn btn-copper" id="send" type="submit">Verstuur en ontvang het bod per mail</button>
+            </div>
+          </form>
+        </div>
+
+        <p class="book-trust">
+          <span>Wij kopen uit heel de EU · Gratis verzending in Denemarken · Uitbetaling via MobilePay of bank · Je gegevens worden gewist · Zeg je nee, dan krijg je het gratis terug</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Zo verkoop je</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Ontvang de prijs</h3><p>Zoek je model en beantwoord twee korte vragen. De prijs staat er meteen.</p></li>
+          <li><span>2</span><h3>Stuur het op</h3><p>Wij mailen een verzendlabel. Gratis in Denemarken, en vanuit de rest van de EU trekken we alleen de verzendkosten af. Woon je in Aalborg, dan kun je het afgeven.</p></li>
+          <li><span>3</span><h3>Ontvang je geld</h3><p>Wij controleren het toestel en betalen uit via MobilePay of bank, meestal binnen 1 werkdag.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2 class="section-title">Bedrijf met veel toestellen?</h2>
+          <p>Kies <strong>Bedrijf</strong> en vul het aantal per model in. De prijs wordt op dezelfde eenvoudige manier berekend, of het nu om één telefoon gaat of om een hele doos.</p>
+          <p>Heb je een lange lijst, mail die dan naar <a href="mailto:{{EMAIL}}?subject=Opk%C3%B8b%20af%20enheder">{{EMAIL}}</a> of bel {{PHONE}}. Grotere partijen halen wij op in Nordjylland.</p>
+        </div>
+        <div class="narrow">
+          <details class="faq-item"><summary>Kopen jullie ook telefoons die kapot zijn?</summary><p>Ja. Gebarsten scherm, slechte batterij of een toestel dat helemaal niet aangaat. Wij trekken af wat het ons kost om het te repareren, en je ziet de prijs meteen.</p></details>
+          <details class="faq-item"><summary>Hoe krijg ik mijn geld?</summary><p>Via MobilePay of bankoverschrijving, meestal binnen 1 werkdag nadat we het toestel hebben gecontroleerd. Woon je buiten Denemarken, dan maken we het geld over naar je IBAN.</p></details>
+          <details class="faq-item"><summary>Kan ik verkopen vanuit een ander EU-land?</summary><p>Ja. Kies je land en stuur het toestel op met het verzendlabel dat wij je mailen. De verzendkosten van {{SELL_EU_SHIP}} DKK worden van het bedrag afgetrokken en je krijgt het geld op je IBAN.</p></details>
+          <details class="faq-item"><summary>Wat als het toestel niet overeenkomt met de beschrijving?</summary><p>Dan krijg je een nieuw bod. Zeg je nee, dan sturen we het gratis terug.</p></details>
+          <details class="faq-item"><summary>Hoe zit het met mijn gegevens?</summary><p>Maak een back-up en zet het toestel gerust terug naar de fabrieksinstellingen. Wij wissen alles voordat het wordt gerepareerd en opnieuw verkocht.</p></details>
+          <details class="faq-item"><summary>Waarom moet ik Zoek mijn iPhone uitschakelen?</summary><p>Een vergrendeld toestel kan niemand gebruiken. Dan kunnen wij het niet kopen. Ga naar Instellingen → je naam → Zoek mijn → Zoek mijn iPhone en zet het uit.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="sell-data">{{SELL_JSON}}</script>
+  <script src="/js/site.js"></script>
+  <script src="/js/saelg.js"></script>
+</body>
+</html>

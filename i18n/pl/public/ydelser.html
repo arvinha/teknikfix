@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cennik napraw telefonów, komputerów i tabletów | TeknikFix Aalborg</title>
+  <meta name="description" content="Orientacyjne ceny napraw telefonów, komputerów i tabletów w TeknikFix w Aalborg. Bezpłatna diagnoza. Ostateczną cenę poznasz, zanim zaczniemy.">
+  <link rel="canonical" href="{{ORIGIN}}/ydelser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Cennik napraw | TeknikFix Aalborg">
+  <meta property="og:description" content="Ceny orientacyjne. Diagnoza jest bezpłatna, a płacisz dopiero, gdy urządzenie działa.">
+  <meta property="og:url" content="{{ORIGIN}}/ydelser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span>Usługi</span></nav>
+        <h1>Usługi i ceny</h1>
+        <p class="lead">Tu znajdziesz widełki cenowe dla każdego rodzaju naprawy. Stałą cenę dla Twojego modelu zobaczysz w <a href="/priser">cenniku</a> albo przy rezerwacji. Diagnoza kosztuje 0 DKK.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="table-wrap" id="telefon">
+          <table class="price-table">
+            <caption class="visually-hidden">Telefon</caption>
+            <thead><tr><th>Telefon</th><th>Cena</th><th>Czas</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Telefon</td></tr>
+              <tr><td>Bateria</td><td>{{RANGE_TELEFON_BATTERI}}</td><td>ok. 30 min</td></tr>
+              <tr><td>Ekran</td><td>{{RANGE_TELEFON_SKAERM}}</td><td>ok. 45 min</td></tr>
+              <tr><td>Port ładowania</td><td>{{RANGE_TELEFON_LADEPORT}}</td><td>ok. 45 min</td></tr>
+              <tr><td>Aparat</td><td>{{RANGE_TELEFON_KAMERA}}</td><td>ok. 45 min</td></tr>
+              <tr><td>Tylna szybka</td><td>{{RANGE_TELEFON_BAGGLAS}}</td><td>1–2 godz.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="computer">
+          <table class="price-table">
+            <caption class="visually-hidden">Komputer</caption>
+            <thead><tr><th>Komputer</th><th>Cena</th><th>Czas</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Komputer</td></tr>
+              <tr><td>Wolny komputer, czyszczenie i optymalizacja</td><td>{{RANGE_COMPUTER_RENS}}</td><td>1–2 godz.</td></tr>
+              <tr><td>Wirusy i wyskakujące okna</td><td>{{RANGE_COMPUTER_VIRUS}}</td><td>1–3 godz.</td></tr>
+              <tr><td>Ponowna instalacja Windows lub macOS</td><td>{{RANGE_COMPUTER_GENINSTALLATION}}</td><td>2–3 godz.</td></tr>
+              <tr><td>Nowy dysk SSD, 1 TB</td><td>od {{FRA_COMPUTER_SSD}}</td><td>2–3 godz.</td></tr>
+              <tr><td>Ekran w laptopie</td><td>od {{FRA_COMPUTER_SKAERM}}</td><td>1–3 dni</td></tr>
+              <tr><td>Bateria w laptopie</td><td>od {{FRA_COMPUTER_BATTERI}}</td><td>1–2 dni</td></tr>
+              <tr><td>Odzyskiwanie plików</td><td>od {{FRA_COMPUTER_DATA}}</td><td>1–3 dni</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="tablet">
+          <table class="price-table">
+            <caption class="visually-hidden">Tablet</caption>
+            <thead><tr><th>Tablet</th><th>Cena</th><th>Czas</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Tablet</td></tr>
+              <tr><td>Ekran lub szybka</td><td>{{RANGE_TABLET_SKAERM}}</td><td>Tego samego dnia</td></tr>
+              <tr><td>Bateria</td><td>{{RANGE_TABLET_BATTERI}}</td><td>2–3 godz.</td></tr>
+              <tr><td>Port ładowania</td><td>{{RANGE_TABLET_LADEPORT}}</td><td>ok. 1 godz.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Zawsze 0 DKK</h2>
+          <p>Diagnoza, niezależnie od tego, czy przyjdziesz do nas, czy my przyjedziemy do Ciebie. Dojazd w Aalborg też kosztuje 0 DKK. Płacisz tylko za naprawę, na którą się zgodziłeś, i tylko wtedy, gdy urządzenie działa.</p>
+          <p>Urządzeń zalanych wodą i bardzo starych często nie da się uratować. Powiemy Ci o tym od razu.</p>
+          <div class="actions"><a class="btn" href="/book">Zarezerwuj i zobacz cenę</a><a class="btn btn-ghost" href="/priser">Ceny dla wszystkich modeli</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

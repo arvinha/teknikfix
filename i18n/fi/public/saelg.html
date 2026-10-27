@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Myy iPhonesi, puhelimesi tai tietokoneesi, vaikka se olisi rikki | TeknikFix</title>
+  <meta name="description" content="Saat hinnan käytetylle tai rikkinäiselle puhelimellesi, tabletillesi tai tietokoneellesi heti. Valitse malli, syötä IMEI-koodi tai ota kuva. Ostamme koko EU:n alueelta ja maksamme nopeasti MobilePayllä tai pankkiin.">
+  <link rel="canonical" href="{{ORIGIN}}/saelg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Myy puhelimesi tai tietokoneesi | TeknikFix">
+  <meta property="og:description" content="Hinta heti. Vaikka laite olisi rikki. Ilmainen lähetys ja maksu MobilePayllä.">
+  <meta property="og:url" content="{{ORIGIN}}/saelg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Ostatteko myös rikkinäisiä puhelimia?", "acceptedAnswer": { "@type": "Answer", "text": "Kyllä. Rikkinäinen näyttö, huono akku tai laite, joka ei käynnisty lainkaan. Vähennämme hinnasta sen, mitä korjaus meille maksaa, ja näet hinnan heti." } },
+      { "@type": "Question", "name": "Miten saan rahat?", "acceptedAnswer": { "@type": "Answer", "text": "MobilePayllä tai pankkisiirrolla, yleensä 1 arkipäivän kuluessa siitä, kun olemme tarkistaneet laitteen. Jos asut Tanskan ulkopuolella, lähetämme rahat IBAN-tilillesi." } },
+      { "@type": "Question", "name": "Voinko myydä toisesta EU-maasta?", "acceptedAnswer": { "@type": "Answer", "text": "Kyllä. Valitse maasi ja lähetä laite postitse meiltä sähköpostitse saamallasi rahtitarralla. Rahti vähennetään summasta, ja saat rahat IBAN-tilillesi." } },
+      { "@type": "Question", "name": "Mitä jos laite ei vastaa kuvausta?", "acceptedAnswer": { "@type": "Answer", "text": "Silloin saat uuden tarjouksen. Jos kieltäydyt, lähetämme laitteen ilmaiseksi takaisin." } },
+      { "@type": "Question", "name": "Ostatteko yrityksiltä?", "acceptedAnswer": { "@type": "Answer", "text": "Kyllä. Valitse Yritys ja kirjoita laitteiden määrä mallia kohden. Jos sinulla on pitkä lista, lähetä se meille sähköpostilla." } }
+    ]
+  }
+  </script>
+</head>
+<body class="book-page sell-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Leipäpolku"><a href="/">Etusivu</a><span aria-hidden="true">/</span><span>Myy</span></nav>
+        <h1>Myy laitteesi</h1>
+        <p class="lead">Saat kiinteän hinnan alle minuutissa. Vaikka laite olisi rikki.</p>
+        <ul class="sell-promises">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h11v9H3zM14 10.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>Ilmainen lähetys Tanskassa</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h3"/></svg>Rahat 1 arkipäivän kuluessa</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Tietosi poistetaan</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section book-section">
+      <div class="wrap">
+        <div class="panel book-flow" id="sell">
+          <div id="device-step">
+            <div class="sell-top" id="sell-top" hidden>
+              <p class="flow-count" id="step-count"></p>
+              <div class="steps-bar" id="sell-bar" aria-hidden="true"></div>
+              <div class="sell-chosen" id="sell-chosen" hidden>
+                <span class="sell-chosen-name"><strong id="chosen-name"></strong><span id="chosen-spec"></span></span>
+                <span class="sell-upto" id="upto" hidden></span>
+                <button class="link-button" id="change-model" type="button">Vaihda</button>
+              </div>
+            </div>
+            <p id="step-live" class="visually-hidden" aria-live="polite"></p>
+
+            <div class="sell-step" data-sell="find">
+              <h2 id="device-title">Mitä haluat myydä?</h2>
+              <div class="sell-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+                <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Malli tai IMEI-numero" aria-label="Kirjoita malli tai IMEI-numero" aria-controls="search-hits">
+              </div>
+              <ul class="search-hits" id="search-hits" role="listbox" aria-label="Mallit" hidden></ul>
+              <p class="photo-status" id="photo-status" aria-live="polite" hidden></p>
+              <div class="quick-picks" id="quick-picks"></div>
+              <p class="other-ways-title">Etkö tiedä, mikä malli se on?</p>
+              <div class="other-ways">
+                <label class="way-btn" id="photo-way" data-vision="{{VISION_ENABLED}}">
+                  <input type="file" id="photo" accept="image/*">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.6-2.5h6.8L17 8.5h3v10H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
+                  <span><strong>Ota kuva</strong><small>Asetukset → Tietoja -näkymästä tai takana olevasta tarrasta</small></span>
+                </label>
+                <button class="way-btn" id="imei-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M9.5 8h5M9.5 11h5M9.5 14h3"/></svg>
+                  <span><strong>Käytä IMEI-numeroa</strong><small>Näppäile puhelimella *#06#</small></span>
+                </button>
+                <button class="way-btn" id="list-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                  <span><strong>Valitse listasta</strong><small>Kaikki merkit ja mallit</small></span>
+                </button>
+              </div>
+              <label class="field field-gap" id="list-wrap" hidden><span>Malli</span><select id="model"><option value="">Valitse malli</option></select></label>
+            </div>
+
+            <div class="sell-step" data-sell="spec" hidden>
+              <h2 id="spec-title">Kuinka paljon tallennustilaa siinä on?</h2>
+              <div id="variant-block" hidden>
+                <p class="field-title" id="variant-title">Siru</p>
+                <div class="choice-grid tile-grid" id="variant-tiles"></div>
+              </div>
+              <div id="storage-block" hidden>
+                <p class="field-title" id="storage-title" hidden>Tallennustila</p>
+                <div class="choice-grid tile-grid" id="storage-tiles"></div>
+              </div>
+              <div id="conn-block" hidden>
+                <p class="field-title">Voiko siinä olla SIM-kortti?</p>
+                <div class="choice-grid tile-grid" id="conn-tiles"></div>
+              </div>
+              <p class="field-note field-gap" id="spec-help">Löydät tiedon kohdasta Asetukset → Yleiset → Tietoja.</p>
+            </div>
+
+            <div class="sell-step" data-sell="look" hidden>
+              <h2>Miltä se näyttää?</h2>
+              <div class="look-grid" id="look-tiles"></div>
+              <div id="crack-block" hidden>
+                <p class="field-title field-gap">Mikä on haljennut?</p>
+                <div class="choice-grid tile-grid" id="crack-tiles"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="works" hidden>
+              <h2>Toimiiko kaikki kuten pitää?</h2>
+              <div class="look-grid" id="works-tiles"></div>
+              <div id="fault-block" hidden>
+                <p class="field-title field-gap">Mikä ei toimi? <span class="repair-hint">Rastita se, mikä pitää paikkansa</span></p>
+                <div class="fault-grid" id="fault-list"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="price" hidden>
+              <div class="estimate sell-offer" id="offer" aria-live="polite"></div>
+              <div class="review sell-summary" id="summary"></div>
+              <details class="sell-more" id="more">
+                <summary>Haluatko olla aivan tarkka? Muokkaa kaikkia tietoja</summary>
+                <div id="questions"></div>
+                <div class="field-pair">
+                  <label class="field"><span>IMEI- tai sarjanumero <small class="muted">(vapaaehtoinen)</small></span><input id="imei" inputmode="text" maxlength="24" autocomplete="off" placeholder="Näppäile puhelimella *#06#"></label>
+                  <label class="field"><span>Samanlaisten laitteiden määrä</span><input id="qty" type="number" min="1" max="500" value="1" inputmode="numeric"></label>
+                </div>
+                <p class="form-error" id="imei-error" hidden></p>
+              </details>
+              <p class="field-title field-gap">Näin pääset eteenpäin</p>
+              <ol class="next-steps">
+                <li><strong>Kerro, minne rahat maksetaan</strong><span>Nimi, osoite sekä MobilePay tai tili. Siihen menee 1 minuutti.</span></li>
+                <li><strong>Lähetä laite ilmaiseksi</strong><span>Lähetämme sinulle sähköpostitse rahtitarran. Tai tuo laite meille Aalborgiin.</span></li>
+                <li><strong>Saat rahat</strong><span>Tarkistamme laitteen ja maksamme 1 arkipäivän kuluessa.</span></li>
+              </ol>
+            </div>
+
+            <div class="form-nav sell-nav">
+              <button class="btn btn-ghost" id="back" type="button" hidden>Takaisin</button>
+              <button class="btn btn-ghost" id="cancel-edit" type="button" hidden>Peruuta</button>
+              <button class="btn btn-copper" id="next" type="button" hidden>Näytä hinta</button>
+              <button class="btn btn-copper" id="add" type="button" hidden>Myy se</button>
+            </div>
+          </div>
+
+          <form id="seller-step" hidden novalidate>
+            <h2>Myyntisi</h2>
+            <div class="review sell-list" id="sell-list"></div>
+            <button class="link-button" id="add-more" type="button">+ Lisää toinen laite</button>
+
+            <p class="field-title field-gap">Myyt henkilönä, joka on</p>
+            <div class="segmented">
+              <label><input type="radio" name="sellerType" value="privat" checked><span>Yksityishenkilö</span></label>
+              <label><input type="radio" name="sellerType" value="firma"><span>Yritys</span></label>
+            </div>
+            <div class="field-pair field-gap" id="company-row" hidden>
+              <label class="field"><span>Yrityksen nimi</span><input name="company" maxlength="120" autocomplete="organization"></label>
+              <label class="field"><span id="cvr-label">Y-tunnus tai ALV-tunnus</span><input name="cvr" maxlength="20" autocomplete="off"></label>
+            </div>
+
+            <label class="field field-gap"><span>Nimi</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Puhelin</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+              <label class="field"><span>Sähköposti</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="field-pair">
+              <label class="field"><span>Osoite</span><input name="address" required maxlength="200" autocomplete="street-address" placeholder="Katu, numero, postinumero ja kaupunki"></label>
+              <label class="field"><span>Maa</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+            </div>
+
+            <p class="field-title">Miten saamme laitteen?</p>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="delivery" value="post" checked><strong>Lähetä postitse</strong><small id="post-home">Ilmainen. Lähetämme sinulle sähköpostitse rahtitarran</small><small id="post-abroad" hidden>Lähetämme sinulle sähköpostitse rahtitarran. Ulkomailta lähetettävän paketin rahti ({{SELL_EU_SHIP}} DKK) vähennetään summasta</small></label>
+              <label class="choice" id="dropoff"><input type="radio" name="delivery" value="aflever"><strong>Tuo meille Aalborgiin</strong><small>{{STREET}}, sopimuksen mukaan</small></label>
+            </div>
+
+            <p class="field-title field-gap">Miten haluat rahat?</p>
+            <div class="segmented" id="payout-choice">
+              <label id="mp-choice"><input type="radio" name="payoutMethod" value="mobilepay" checked><span>MobilePay</span></label>
+              <label><input type="radio" name="payoutMethod" value="bank"><span>Pankkisiirto</span></label>
+            </div>
+            <label class="field field-gap" id="mp-row"><span>MobilePay-numero</span><input name="mobilepay" maxlength="20" inputmode="tel" placeholder="Sama kuin puhelinnumero, jos tyhjä"></label>
+            <div class="field-pair field-gap" id="bank-row" hidden>
+              <label class="field"><span>Reg.nr.</span><input name="reg" maxlength="4" inputmode="numeric"></label>
+              <label class="field"><span>Tilinumero</span><input name="konto" maxlength="14" inputmode="numeric"></label>
+            </div>
+            <label class="field field-gap" id="iban-row" hidden><span>IBAN</span><input name="iban" maxlength="42" autocomplete="off" placeholder="Esim. DE89 3704 0044 0532 0130 00"></label>
+
+            <button class="link-button" id="note-open" type="button">+ Kirjoita meille viesti (vapaaehtoinen)</button>
+            <label class="field" id="note-wrap" hidden><span>Viesti meille <small class="muted">(vapaaehtoinen)</small></span><textarea name="note" maxlength="2000" placeholder="Esim. väri, tarvikkeet tai luettelo laitteista"></textarea></label>
+            <label class="check"><input type="checkbox" name="consent" value="ja"> <span>Omistan laitteen, se ei ole varastettu ja olen täyttänyt 18 vuotta. Poistan Find My iPhonen ja muut lukitukset käytöstä ennen lähettämistä.</span></label>
+            <p class="form-error" id="send-error" hidden role="alert"></p>
+            <div class="form-nav">
+              <button class="btn btn-copper" id="send" type="submit">Lähetä ja saat tarjouksen sähköpostiin</button>
+            </div>
+          </form>
+        </div>
+
+        <p class="book-trust">
+          <span>Ostamme koko EU:n alueelta · Ilmainen lähetys Tanskassa · Maksu MobilePayllä tai pankkiin · Tietosi poistetaan · Jos kieltäydyt tarjouksesta, saat laitteen ilmaiseksi takaisin</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Näin myyt</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Saat hinnan</h3><p>Hae mallisi ja vastaa kahteen lyhyeen kysymykseen. Hinta näkyy heti.</p></li>
+          <li><span>2</span><h3>Lähetä laite</h3><p>Lähetämme sinulle rahtitarran sähköpostitse. Tanskassa se on ilmainen, ja muualta EU:sta vähennämme vain rahdin. Jos asut Aalborgissa, voit tuoda laitteen itse.</p></li>
+          <li><span>3</span><h3>Saat rahat</h3><p>Tarkistamme laitteen ja maksamme MobilePayllä tai pankkiin, yleensä 1 arkipäivän kuluessa.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2 class="section-title">Yritys, jolla on paljon laitteita?</h2>
+          <p>Valitse <strong>Yritys</strong> ja kirjoita laitteiden määrä mallia kohden. Hinta lasketaan samalla yksinkertaisella tavalla, olipa kyse yhdestä puhelimesta tai kokonaisesta laatikosta.</p>
+          <p>Jos sinulla on pitkä lista, lähetä se osoitteeseen <a href="mailto:{{EMAIL}}?subject=Opk%C3%B8b%20af%20enheder">{{EMAIL}}</a> tai soita numeroon {{PHONE}}. Noudamme isommat erät Nordjyllandissa.</p>
+        </div>
+        <div class="narrow">
+          <details class="faq-item"><summary>Ostatteko myös rikkinäisiä puhelimia?</summary><p>Kyllä. Rikkinäinen näyttö, huono akku tai laite, joka ei käynnisty lainkaan. Vähennämme hinnasta sen, mitä korjaus meille maksaa, ja näet hinnan heti.</p></details>
+          <details class="faq-item"><summary>Miten saan rahat?</summary><p>MobilePayllä tai pankkisiirrolla, yleensä 1 arkipäivän kuluessa siitä, kun olemme tarkistaneet laitteen. Jos asut Tanskan ulkopuolella, lähetämme rahat IBAN-tilillesi.</p></details>
+          <details class="faq-item"><summary>Voinko myydä toisesta EU-maasta?</summary><p>Kyllä. Valitse maasi ja lähetä laite postitse meiltä sähköpostitse saamallasi rahtitarralla. Rahti, {{SELL_EU_SHIP}} DKK, vähennetään summasta, ja saat rahat IBAN-tilillesi.</p></details>
+          <details class="faq-item"><summary>Mitä jos laite ei vastaa kuvausta?</summary><p>Silloin saat uuden tarjouksen. Jos kieltäydyt, lähetämme laitteen ilmaiseksi takaisin.</p></details>
+          <details class="faq-item"><summary>Entä tietoni?</summary><p>Ota varmuuskopio ja palauta laite mielellään tehdasasetuksiin. Poistamme kaiken ennen kuin laite korjataan ja myydään uudelleen.</p></details>
+          <details class="faq-item"><summary>Miksi minun pitää poistaa Find My iPhone käytöstä?</summary><p>Lukittua laitetta ei voi kukaan käyttää, joten emme voi ostaa sitä. Mene kohtaan Asetukset → oma nimesi → Find My → Find My iPhone ja kytke se pois päältä.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="sell-data">{{SELL_JSON}}</script>
+  <script src="/js/site.js"></script>
+  <script src="/js/saelg.js"></script>
+</body>
+</html>

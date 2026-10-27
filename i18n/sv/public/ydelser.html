@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Priser för reparation av telefon, dator och surfplatta | TeknikFix Aalborg</title>
+  <meta name="description" content="Riktpriser för reparation av telefon, dator och surfplatta hos TeknikFix i Aalborg. Kostnadsfri genomgång. Du får det slutliga priset innan vi sätter igång.">
+  <link rel="canonical" href="{{ORIGIN}}/ydelser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Priser för reparation | TeknikFix Aalborg">
+  <meta property="og:description" content="Riktpriser. Kostnadsfri genomgång, och du betalar först när den fungerar.">
+  <meta property="og:url" content="{{ORIGIN}}/ydelser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Sökväg"><a href="/">Startsida</a><span aria-hidden="true">/</span><span>Tjänster</span></nav>
+        <h1>Tjänster och priser</h1>
+        <p class="lead">Här ser du prisspannet för varje typ av reparation. Fastpriset för just din modell hittar du under <a href="/priser">priser</a>, eller när du bokar. Genomgången kostar 0 DKK.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="table-wrap" id="telefon">
+          <table class="price-table">
+            <caption class="visually-hidden">Telefon</caption>
+            <thead><tr><th>Telefon</th><th>Pris</th><th>Tid</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Telefon</td></tr>
+              <tr><td>Batteri</td><td>{{RANGE_TELEFON_BATTERI}}</td><td>ca 30 min</td></tr>
+              <tr><td>Skärm</td><td>{{RANGE_TELEFON_SKAERM}}</td><td>ca 45 min</td></tr>
+              <tr><td>Laddport</td><td>{{RANGE_TELEFON_LADEPORT}}</td><td>ca 45 min</td></tr>
+              <tr><td>Kamera</td><td>{{RANGE_TELEFON_KAMERA}}</td><td>ca 45 min</td></tr>
+              <tr><td>Baksidesglas</td><td>{{RANGE_TELEFON_BAGGLAS}}</td><td>1–2 timmar</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="computer">
+          <table class="price-table">
+            <caption class="visually-hidden">Dator</caption>
+            <thead><tr><th>Dator</th><th>Pris</th><th>Tid</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Dator</td></tr>
+              <tr><td>Långsam dator, rensning och optimering</td><td>{{RANGE_COMPUTER_RENS}}</td><td>1–2 timmar</td></tr>
+              <tr><td>Virus och popup-fönster</td><td>{{RANGE_COMPUTER_VIRUS}}</td><td>1–3 timmar</td></tr>
+              <tr><td>Ominstallation av Windows eller macOS</td><td>{{RANGE_COMPUTER_GENINSTALLATION}}</td><td>2–3 timmar</td></tr>
+              <tr><td>Ny SSD, 1 TB</td><td>från {{FRA_COMPUTER_SSD}}</td><td>2–3 timmar</td></tr>
+              <tr><td>Skärm på bärbar dator</td><td>från {{FRA_COMPUTER_SKAERM}}</td><td>1–3 dagar</td></tr>
+              <tr><td>Batteri på bärbar dator</td><td>från {{FRA_COMPUTER_BATTERI}}</td><td>1–2 dagar</td></tr>
+              <tr><td>Räddning av filer</td><td>från {{FRA_COMPUTER_DATA}}</td><td>1–3 dagar</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="tablet">
+          <table class="price-table">
+            <caption class="visually-hidden">Surfplatta</caption>
+            <thead><tr><th>Surfplatta</th><th>Pris</th><th>Tid</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Surfplatta</td></tr>
+              <tr><td>Skärm eller glas</td><td>{{RANGE_TABLET_SKAERM}}</td><td>Samma dag</td></tr>
+              <tr><td>Batteri</td><td>{{RANGE_TABLET_BATTERI}}</td><td>2–3 timmar</td></tr>
+              <tr><td>Laddport</td><td>{{RANGE_TABLET_LADEPORT}}</td><td>ca 1 timme</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Alltid 0 DKK</h2>
+          <p>Genomgången, oavsett om du kommer till oss eller vi kommer till dig. Utkörning i Aalborg kostar också 0 DKK. Du betalar bara för en reparation du har sagt ja till, och bara när den fungerar.</p>
+          <p>Vattenskador och mycket gamla apparater kan vi ofta inte rädda. Då säger vi det direkt.</p>
+          <div class="actions"><a class="btn" href="/book">Boka och se priset</a><a class="btn btn-ghost" href="/priser">Priser för alla modeller</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

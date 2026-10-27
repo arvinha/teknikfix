@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tak for din ordre | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section">
+      <div class="wrap">
+        <div class="panel form-done" id="order-done">
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h1>Tak for din ordre</h1>
+          <p id="order-text">Vi tjekker betalingen…</p>
+          <div class="review" id="order-lines" hidden></div>
+          <p><a class="btn btn-ghost" href="/reservedele">Tilbage til reservedele</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var text = document.querySelector("#order-text");
+      var box = document.querySelector("#order-lines");
+      var kr = new Intl.NumberFormat("da-DK");
+      function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+      var tries = 0;
+      function check() {
+        fetch("/api/dele/bekraeft?" + new URLSearchParams({ ordre: params.get("ordre") || "", session_id: params.get("session_id") || "" }))
+          .then(function (r) { return r.json().then(function (b) { return { status: r.status, body: b }; }); })
+          .then(function (res) {
+            if (res.status === 202 && tries < 5) { tries += 1; setTimeout(check, 2000); return; }
+            if (res.status !== 200) { text.textContent = res.body.message || "Vi kunne ikke finde ordren. Du får en mail, når betalingen er registreret."; return; }
+            var o = res.body;
+            try { localStorage.removeItem("teknikfix.cart.v1"); } catch (e) {}
+            text.innerHTML = "Ordrenummer <strong>" + esc(o.ref) + "</strong><br>" + "Kvitteringen er sendt til " + esc(o.email) + ", og du får et sporingsnummer på mail, så snart pakken er sendt.";
+            box.hidden = false;
+            box.innerHTML = "<ul>" + o.items.map(function (i) { return "<li><span class=\"review-label\">" + i.qty + " ×</span><span class=\"review-value\">" + esc(i.title) + "</span><strong>" + kr.format(i.priceDkk * i.qty) + " kr</strong></li>"; }).join("") +
+              "<li><span class=\"review-label\"></span><span class=\"review-value\">Fragt</span><strong>" + kr.format(o.shippingDkk) + " kr</strong></li></ul>" +
+              "<div class=\"review-price\"><span>Betalt</span><strong>" + kr.format(o.paidDkk) + " kr</strong></div>";
+          })
+          .catch(function () { text.textContent = "Vi kunne ikke tjekke betalingen lige nu. Du får en mail, når den er registreret."; });
+      }
+      check();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Priser på reparation i Aalborg · iPhone, Samsung, Pixel, iPad och dator | TeknikFix</title>
+  <meta name="description" content="Se priset på din reparation direkt. iPhone-skärm från {{FRA_IPHONE_SKAERM}}, Samsung-skärm från {{FRA_SAMSUNG_SKAERM}}, Google Pixel, OnePlus, Xiaomi och alla andra märken. Gratis felsökning i Aalborg, och du betalar när den fungerar.">
+  <link rel="canonical" href="{{ORIGIN}}/priser">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Priser på reparation i Aalborg | TeknikFix">
+  <meta property="og:description" content="Fast pris på skärm, batteri, laddport och mycket mer. Hitta din modell.">
+  <meta property="og:url" content="{{ORIGIN}}/priser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">{{PRICE_LD}}</script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Sökväg"><a href="/">Startsida</a><span aria-hidden="true">/</span><span>Priser</span></nav>
+        <h1>Priser på reparation i Aalborg</h1>
+        <p class="lead">Hitta din modell och se priset och hur lång tid det tar. Klicka på ett pris för att boka. Genomgången är alltid gratis, och du betalar först när den fungerar.</p>
+        <div class="page-trust">
+          <a class="pay-logos" href="/betaling" aria-label="Betalsätt: {{PAY_ACCEPTED}}">
+            {{PAY_LOGOS}}
+          </a>
+          <a class="tp-link" href="{{TRUSTPILOT_URL}}" rel="noopener" target="_blank">
+            <img src="/img/trustpilot.svg" alt="Trustpilot" width="104" height="26">
+          </a>
+        </div>
+        <nav class="jump-links" aria-label="Hoppa till">
+          <a href="#iphone">iPhone</a>
+          <a href="#samsung">Samsung</a>
+          <a href="#pixel">Google Pixel</a>
+          <a href="#oneplus">OnePlus</a>
+          <a href="#xiaomi">Xiaomi</a>
+          <a href="#motorola">Motorola</a>
+          <a href="#huawei">Huawei/Honor</a>
+          <a href="#andentelefon">Andra telefoner</a>
+          <a href="#ipad">iPad</a>
+          <a href="#galaxytab">Galaxy Tab</a>
+          <a href="#andentablet">Andra surfplattor</a>
+          <a href="#pc">Dator och Mac</a>
+          <a href="#alle-modeller">Gratis felsökning</a>
+        </nav>
+      </div>
+    </header>
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap stack price-page">
+        <p class="price-note">Vi jämför regelbundet med andra verkstäder i Aalborg med omnejd, och våra fasta priser ligger under vad de flesta tar. Priserna kontrollerades senast {{PRICE_UPDATED}}. Tiden gäller när delen finns i lager. Måste den beställas hem tar det vanligtvis 1–3 vardagar. Vid «från» får du det exakta priset efter den gratis genomgången.</p>
+        {{PRICE_TABLES}}
+        <div class="panel">
+          <h2>Hittar du inte din modell, eller vet du inte vad som är fel?</h2>
+          <p>Inga problem. Vi reparerar nästan alla märken: Nothing, Oppo, Sony, Nokia, Lenovo, HP, Asus, Acer, Dell och många fler. Välj «Min modell finns inte på listan» eller «Vet inte – gratis felsökning» när du bokar. Vi tittar på den gratis, och du får ett fast pris innan vi gör något.</p>
+          <div class="actions">
+            <a class="btn btn-copper" href="/book">Få en gratis bedömning</a>
+            <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Ring {{PHONE}}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Frågor om priser</h2>
+        <details class="faq-item" open><summary>Är priset fast?</summary><p>Ja, när det står ett pris utan «från». Det är det pris du betalar. Upptäcker vi något annat fel säger vi det innan vi gör något, och du bestämmer själv.</p></details>
+        <details class="faq-item"><summary>Vad händer om den inte går att reparera?</summary><p>Då kostar det 0 DKK.<!--IF_CARD--> Har du betalat i förväg får du alla pengar tillbaka.<!--END_IF_CARD--></p></details>
+        <details class="faq-item"><summary>Hur kan jag betala?</summary><p>Med {{PAY_LIST}}. Du betalar när reparationen är klar och fungerar.</p></details>
+        <details class="faq-item"><summary>Finns det garanti?</summary><p>Ja. Kommer samma fel tillbaka inom 30 dagar åtgärdar vi det utan ny betalning.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

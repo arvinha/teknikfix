@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PARTS_TITLE}}</title>
+  <meta name="description" content="{{PARTS_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{PARTS_TITLE}}">
+  <meta property="og:description" content="{{PARTS_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="parts-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Percorso di navigazione"><a href="/">Home</a><span aria-hidden="true">/</span>{{PARTS_CRUMB}}</nav>
+        <h1>{{PARTS_H1}}</h1>
+        <p class="lead">{{PARTS_LEAD}}</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap parts-layout">
+        <div>
+          <div class="panel">
+            <label class="field"><span>Trova il tuo modello</span><select id="part-model"><option value="">Scegli il modello</option></select></label>
+            <p class="field-note">Non è nell'elenco? Chiama il {{PHONE}} e troviamo noi il ricambio.</p>
+          </div>
+          <p class="form-error" id="cancelled" hidden>Il pagamento è stato annullato. Il carrello è salvato, così puoi riprovare.</p>
+          <div class="part-grid" id="part-grid"></div>
+        </div>
+
+        <aside class="panel cart" id="cart" aria-label="Carrello">
+          <h2>Carrello</h2>
+          <div id="cart-lines"><p class="muted">Il carrello è vuoto.</p></div>
+          <label class="field cart-country"><span>Spedisci a</span><select id="ship-country" autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          <p class="form-error" id="cart-error" hidden></p>
+          <button class="btn btn-copper cart-pay" id="pay" type="button" disabled>Vai al pagamento</button>
+          <p class="cart-note">Carta, MobilePay, Apple Pay e Klarna. Spediamo in tutta l'UE con tracciabilità. 14 giorni per il recesso.</p>
+        </aside>
+      </div>
+    </section>
+
+    {{PARTS_SEO}}
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Da sapere</h2>
+        <div class="promise-grid">
+          <article><h3>Adatto al tuo modello</h3><p>Ti mostriamo solo ricambi fatti proprio per il modello che scegli.</p></article>
+          <article><h3>Ricambi compatibili di qualità</h3><p>I ricambi non sono originali Apple o Samsung, ma sono fatti per adattarsi e funzionare come quelli.</p></article>
+          <article><h3>Direttamente a casa tua</h3><p>Il ricambio parte direttamente dal magazzino. Ricevi il numero di tracciabilità via e-mail.</p></article>
+          <article><h3>Preferisci che ci pensiamo noi?</h3><p>Sostituiamo il ricambio per te ad Aalborg. <a href="/book" style="color: #efc2a8">Guarda il prezzo e prenota</a>.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="parts-data">{{PARTS_JSON}}</script>
+  <div id="parts-config" hidden data-card="{{CARD_ENABLED}}" data-model="{{PARTS_MODEL}}"></div>
+  {{PARTS_LD}}
+  <script src="/js/site.js"></script>
+  <script src="/js/reservedele.js"></script>
+</body>
+</html>

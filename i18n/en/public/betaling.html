@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment: {{PAY_LIST}} | TeknikFix Aalborg</title>
+  <meta name="description" content="At TeknikFix you can pay with {{PAY_LIST}}. You pay once the repair works. If it can't be repaired, it costs 0 DKK.">
+  <link rel="canonical" href="{{ORIGIN}}/betaling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Payment | TeknikFix">
+  <meta property="og:description" content="{{PAY_LIST_CAP}}. Pay once it works.">
+  <meta property="og:url" content="{{ORIGIN}}/betaling">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Payment</span></nav>
+        <h1>You pay once it works</h1>
+        <p class="lead">You see the price before you book. Once you've seen the result, you pay with {{PAY_LIST}}.<!--IF_CARD--> If you'd rather pay straight away, you can choose that when you book.<!--END_IF_CARD--></p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="promise-grid">
+          <article class="panel"><h2>1</h2><p>You see the price and the time when you book.</p></article>
+          <article class="panel"><h2>2</h2><p>We repair it. You check that the fault is gone.</p></article>
+          <article class="panel"><h2>3</h2><p>Your case shows as ready for payment, with the amount.</p></article>
+          <article class="panel"><h2>4</h2><p>You pay. You get a receipt, and your case is updated.</p></article>
+        </div>
+        <!--IF_CARD-->
+        <article class="pay-card">
+          <h2>Card, MobilePay or Klarna</h2>
+          <p>The quickest way. Press "Pay" on your case and choose how you'd like to pay. The payment goes through Stripe, and we never see your card details.</p>
+          <ul class="pay-methods" aria-label="Payment methods"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <p>With Klarna you can pay later or split the amount into instalments.</p>
+          <p><a class="btn" href="/sag">Go to your case to pay</a></p>
+        </article>
+        <!--END_IF_CARD-->
+        <div class="pay-grid">
+          <article class="pay-card">
+            <h2>PayPal</h2>
+            <p>The amount is in Danish kroner, and it's filled in on your case once the repair is ready.</p>
+            <p>The payment goes to <strong>{{PAYPAL}}</strong>. Include your case number so we can see it's your case.</p>
+            <p><a href="/sag">Go to your case to pay</a></p>
+          </article>
+          <article class="pay-card" id="bank">
+            <h2>Bank transfer</h2>
+            <dl class="bank-dl">
+              <dt>Recipient</dt><dd>{{HOLDER}}</dd>
+              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
+              <dt>BIC</dt><dd>{{BIC}}</dd>
+              <dt>Bank</dt><dd>{{BANK}}</dd>
+              <dt>Reference</dt><dd>Your case number, e.g. AX-7K2M</dd>
+            </dl>
+            <div class="copy-row">
+              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">Copy IBAN</button>
+              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">Copy BIC</button>
+            </div>
+            <p>The account is held in Swedish kronor. Your bank converts from Danish kroner, and there may be a currency conversion fee.</p>
+          </article>
+        </div>
+        <div class="panel">
+          <h2>If it can't be repaired</h2>
+          <p>Then you don't pay. We only order parts once you've said yes to the price.<!--IF_CARD--> If you've paid in advance, you get all your money back.<!--END_IF_CARD--> If the same fault comes back within 30 days, we fix it again at no extra charge.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

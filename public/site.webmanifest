@@ -1,0 +1,17 @@
+{
+  "name": "TeknikFix Reparation Aalborg",
+  "short_name": "TeknikFix",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f0e7",
+  "theme_color": "#1c4033",
+  "lang": "da",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

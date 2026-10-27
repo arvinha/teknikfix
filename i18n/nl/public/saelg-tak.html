@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aanbod ontvangen | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section">
+      <div class="wrap">
+        <div class="panel form-done">
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h1>Bedankt, je aanbod is opgeslagen</h1>
+          <p>Je nummer is <strong>{{REF}}</strong>. We hebben het aanbod naar je e-mailadres gestuurd.</p>
+          <ol class="done-steps">
+            <li>Zet <strong>Zoek mijn iPhone</strong> of het Google-account uit en haal de simkaart eruit.</li>
+            <li>Stuur je het per post, dan mailen we je binnen 1 werkdag een gratis verzendlabel. Kom je het zelf brengen, bel dan eerst naar {{PHONE}}.</li>
+            <li>We controleren het apparaat en betalen meteen uit als het klopt met wat je hebt opgegeven.</li>
+          </ol>
+          <p><a class="btn" href="/saelg/sag?ref={{REF}}">Volg je verkoop</a> <a class="btn btn-ghost" href="/saelg">Nog een apparaat verkopen</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

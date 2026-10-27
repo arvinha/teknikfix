@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ryhdy TeknikFixin korjaajaksi: saat töitä omalta alueeltasi</title>
+  <meta name="description" content="Korjaatko puhelimia, tabletteja tai tietokoneita? Ryhdy TeknikFixin kumppaniksi ja saat kiinteähintaisia töitä omalta alueeltasi. Hoidamme varaukset, maksut ja asiakkaat.">
+  <link rel="canonical" href="{{ORIGIN}}/partner">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Ryhdy TeknikFixin korjaajaksi">
+  <meta property="og:description" content="Saat korjaustöitä omalta alueeltasi. Hoidamme varaukset, maksut ja asiakkaat.">
+  <meta property="og:url" content="{{ORIGIN}}/partner">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Leipäpolku"><a href="/">Etusivu</a><span aria-hidden="true">/</span><span>Ryhdy kumppaniksi</span></nav>
+        <h1>Ryhdy TeknikFixin korjaajaksi</h1>
+        <p class="lead">Osaat korjata. Me hankimme asiakkaat, päätämme hinnan ja hoidamme maksun. Näet työn ennen kuin sanot kyllä.</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <div class="ways">
+          <div class="way"><span class="way-num">01</span><h3>Töitä sinulle</h3><p>Alueesi asiakkaat varaavat korjauksen teknikfix.dk-sivuston kautta. Jos työ sopii sinulle, saat sen.</p></div>
+          <div class="way"><span class="way-num">02</span><h3>Ei hintaneuvotteluja</h3><p>Asiakas on nähnyt kiinteän hinnan jo varatessaan. Näet oman korvauksesi ennen kuin sanot kyllä.</p></div>
+          <div class="way"><span class="way-num">03</span><h3>Osat ja maksu hoidettu</h3><p>Tilaamme työhön tarvittavan osan, ja asiakas maksaa alustan kautta. Sinun tarvitsee vain korjata.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap split">
+        <form class="panel" id="partner-form" novalidate>
+          <h2>Ilmoittaudu</h2>
+          <div class="field-pair">
+            <label class="field"><span>Nimi</span><input name="name" required maxlength="80" autocomplete="name"></label>
+            <label class="field"><span>Yritys <small class="muted">(valinnainen)</small></span><input name="company" maxlength="120" autocomplete="organization"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Puhelin</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+            <label class="field"><span>Sähköposti</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Paikkakunta tai postinumero</span><input name="city" required maxlength="80" autocomplete="address-level2"></label>
+            <label class="field"><span>Maa</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Kuinka kauas ajat? (km)</span><input name="radiusKm" type="number" min="0" max="500" value="20" inputmode="numeric"></label>
+            <label class="field"><span>Y-tunnus tai ALV-tunnus <small class="muted">(jos sinulla on)</small></span><input name="cvr" maxlength="20"></label>
+          </div>
+          <p class="field-title">Mitä korjaat?</p>
+          <div class="fault-grid">
+            <label class="check"><input type="checkbox" name="skills" value="telefon"> <span>Puhelimet</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="tablet"> <span>Tabletit</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="computer"> <span>Tietokoneet</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="mikrolodning"> <span>Mikrojuottaminen</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="data"> <span>Tietojen palautus</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="konsol"> <span>Pelikonsolit</span></label>
+          </div>
+          <label class="field"><span>Kokemus</span><select name="experience"><option value="under 1 år">Alle 1 vuosi</option><option value="1-3 år" selected>1–3 vuotta</option><option value="3-5 år">3–5 vuotta</option><option value="over 5 år">Yli 5 vuotta</option></select></label>
+          <label class="check"><input type="checkbox" name="workshop" value="ja"> <span>Minulla on oma korjaamo, johon asiakkaat voivat tulla</span></label>
+          <label class="field"><span>Kerro vähän itsestäsi <small class="muted">(valinnainen)</small></span><textarea name="message" maxlength="2000"></textarea></label>
+          <label class="check"><input type="checkbox" name="consent" value="ja"> <span>TeknikFix saa tallentaa tietoni ja ottaa minuun yhteyttä töihin liittyen.</span></label>
+          <p class="form-error" id="partner-error" hidden role="alert"></p>
+          <button class="btn btn-copper" type="submit" id="partner-send">Lähetä ilmoittautuminen</button>
+        </form>
+        <div class="panel form-done" id="partner-done" hidden>
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h2>Kiitos ilmoittautumisestasi</h2>
+          <p>Soitamme sinulle muutaman päivän sisällä. Viitenumerosi on <strong id="partner-ref"></strong>.</p>
+        </div>
+        <div>
+          <h2 class="section-title">Näin se toimii</h2>
+          <ol class="steps steps-stack">
+            <li><span>1</span><h3>Ilmoittaudu</h3><p>Kerro, mitä korjaat ja missä toimit.</p></li>
+            <li><span>2</span><h3>Soitamme sinulle</h3><p>Lyhyt keskustelu laadusta, takuusta ja hinnoista. Sen jälkeen olet valmis aloittamaan.</p></li>
+            <li><span>3</span><h3>Saat töitä</h3><p>Saat ilmoituksen, kun alueesi asiakas tekee varauksen. Jos sanot kyllä, työ on sinun.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var form = document.querySelector("#partner-form");
+      var error = document.querySelector("#partner-error");
+      var button = document.querySelector("#partner-send");
+      var home = document.documentElement.getAttribute("data-country");
+      if (home && form.querySelector("select[name=country] option[value=" + home + "]")) form.elements.country.value = home;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.hidden = true;
+        button.disabled = true;
+        var f = form.elements;
+        var skills = Array.prototype.slice.call(form.querySelectorAll("input[name=skills]:checked")).map(function (i) { return i.value; });
+        var payload = {
+          name: f.name.value, company: f.company.value, phone: f.phone.value, email: f.email.value, city: f.city.value, country: f.country.value,
+          radiusKm: f.radiusKm.value, cvr: f.cvr.value, skills: skills, experience: f.experience.value,
+          workshop: f.workshop.checked ? "ja" : "", message: f.message.value, consent: f.consent.checked ? "ja" : ""
+        };
+        fetch("/api/partner", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.message || "Ilmoittautumista ei lähetetty.");
+            document.querySelector("#partner-ref").textContent = res.body.ref;
+            form.hidden = true;
+            document.querySelector("#partner-done").hidden = false;
+          })
+          .catch(function (err) { error.hidden = false; error.textContent = err.message; button.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

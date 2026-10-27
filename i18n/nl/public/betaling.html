@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Betalen: {{PAY_LIST}} | TeknikFix Aalborg</title>
+  <meta name="description" content="Bij TeknikFix betaal je met {{PAY_LIST}}. Je betaalt pas als de reparatie werkt. Kan het niet gerepareerd worden, dan kost het 0 DKK.">
+  <link rel="canonical" href="{{ORIGIN}}/betaling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Betalen | TeknikFix">
+  <meta property="og:description" content="{{PAY_LIST_CAP}}. Betaal als het werkt.">
+  <meta property="og:url" content="{{ORIGIN}}/betaling">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a><span aria-hidden="true">/</span><span>Betalen</span></nav>
+        <h1>Je betaalt pas als het werkt</h1>
+        <p class="lead">Je ziet de prijs voordat je boekt. Als je het resultaat hebt gezien, betaal je met {{PAY_LIST}}.<!--IF_CARD--> Betaal je liever meteen? Dan kun je dat kiezen bij het boeken.<!--END_IF_CARD--></p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="promise-grid">
+          <article class="panel"><h2>1</h2><p>Je ziet de prijs en de tijd bij het boeken.</p></article>
+          <article class="panel"><h2>2</h2><p>Wij repareren. Jij controleert of de storing weg is.</p></article>
+          <article class="panel"><h2>3</h2><p>Je dossier staat klaar voor betaling, met het bedrag.</p></article>
+          <article class="panel"><h2>4</h2><p>Je betaalt. Je krijgt een bon en het dossier wordt bijgewerkt.</p></article>
+        </div>
+        <!--IF_CARD-->
+        <article class="pay-card">
+          <h2>Kaart, MobilePay of Klarna</h2>
+          <p>De snelste manier. Klik op «Betalen» in je dossier en kies hoe je wilt betalen. De betaling loopt via Stripe en wij zien je kaartgegevens nooit.</p>
+          <ul class="pay-methods" aria-label="Betaalmethoden"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <p>Met Klarna kun je later betalen of het bedrag in delen betalen.</p>
+          <p><a class="btn" href="/sag">Ga naar je dossier om te betalen</a></p>
+        </article>
+        <!--END_IF_CARD-->
+        <div class="pay-grid">
+          <article class="pay-card">
+            <h2>PayPal</h2>
+            <p>Het bedrag staat in Deense kroner en is ingevuld in je dossier zodra de reparatie klaar is.</p>
+            <p>De betaling gaat naar <strong>{{PAYPAL}}</strong>. Vermeld het dossiernummer, dan zien wij dat het om jouw dossier gaat.</p>
+            <p><a href="/sag">Ga naar je dossier om te betalen</a></p>
+          </article>
+          <article class="pay-card" id="bank">
+            <h2>Bankoverschrijving</h2>
+            <dl class="bank-dl">
+              <dt>Ontvanger</dt><dd>{{HOLDER}}</dd>
+              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
+              <dt>BIC</dt><dd>{{BIC}}</dd>
+              <dt>Bank</dt><dd>{{BANK}}</dd>
+              <dt>Omschrijving</dt><dd>Je dossiernummer, bijv. AX-7K2M</dd>
+            </dl>
+            <div class="copy-row">
+              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">IBAN kopiëren</button>
+              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">BIC kopiëren</button>
+            </div>
+            <p>De rekening staat in Zweedse kronen. Je bank rekent om vanuit Deense kroner en er kunnen wisselkosten zijn.</p>
+          </article>
+        </div>
+        <div class="panel">
+          <h2>Als het niet te repareren is</h2>
+          <p>Dan betaal je niets. Onderdelen bestellen we pas nadat je akkoord bent gegaan met de prijs.<!--IF_CARD--> Heb je vooraf betaald, dan krijg je het hele bedrag terug.<!--END_IF_CARD--> Komt dezelfde storing binnen 30 dagen terug, dan verhelpen we die zonder nieuwe betaling.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

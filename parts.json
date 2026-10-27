@@ -1,0 +1,158 @@
+{
+  "note": "Se toppen af parts.js for prismodellen. types.*.market er typisk dansk butikspris som andel af din reparationspris, pr. mærke (målt okt 2026 hos sparepart.dk, mobilpart.dk, phone-parts.dk m.fl.). Pr. del under items: marketDkk (egen markedspris), costDkk (indkøb uden moms), priceDkk (lås prisen), cjVid, supplierUrl, off. cj og cjSuggest skrives af natjobbet.",
+  "strategy": {
+    "undercut": 0.85,
+    "minProfitDkk": 50,
+    "assumedCostShare": 0.55,
+    "minPrice": 99,
+    "shippingDkk": 49,
+    "shippingEuDkk": 99,
+    "deliveryText": "7–14 hverdage",
+    "vat": 0.25,
+    "paymentPct": 0.025,
+    "paymentFixedDkk": 2,
+    "fxBuffer": 0.03,
+    "usdDkkFallback": 6.9
+  },
+  "groups": [
+    "iphone",
+    "samsung",
+    "pixel",
+    "ipad"
+  ],
+  "exclude": [
+    "iphone-x-xs-xr",
+    "iphone-se",
+    "galaxy-z-fold",
+    "galaxy-z-flip",
+    "pixel-10-pro",
+    "pixel-9-pro",
+    "pixel-7",
+    "pixel-6",
+    "ipad-pro-13",
+    "ipad-air-m",
+    "ipad-mini",
+    "ipad-9"
+  ],
+  "types": {
+    "skaerm": {
+      "label": "Skærm",
+      "note": "Skærm i høj kvalitet med touch, samme teknologi som originalen (OLED eller LCD), klar til montering",
+      "search": "screen replacement",
+      "match": "lcd|oled|display|screen|digitizer",
+      "market": {
+        "default": 0.42,
+        "samsung": 0.6,
+        "pixel": 0.5
+      }
+    },
+    "batteri": {
+      "label": "Batteri",
+      "note": "Nyt batteri med klæbestrimler",
+      "search": "battery replacement",
+      "match": "battery|batteri",
+      "market": {
+        "default": 0.2,
+        "samsung": 0.33,
+        "pixel": 0.3
+      }
+    },
+    "bagglas": {
+      "label": "Bagglas",
+      "note": "Bagglas i præcis din telefons farve",
+      "search": "back glass replacement",
+      "colors": true,
+      "match": "back glass|rear glass|back cover|battery cover|back housing|back panel",
+      "market": {
+        "default": 0.23,
+        "samsung": 0.15,
+        "pixel": 0.2
+      }
+    },
+    "ladeport": {
+      "label": "Ladeport",
+      "note": "Ladeport med flexkabel",
+      "search": "charging port flex",
+      "match": "charg(e|ing) (port|flex|connector|board)|dock connector|usb (port|board)",
+      "market": {
+        "default": 0.18
+      }
+    },
+    "kamera": {
+      "label": "Bagkamera",
+      "note": "Bagkamera-modul",
+      "search": "rear camera replacement",
+      "match": "(rear|back|main) camera",
+      "market": {
+        "default": 0.3
+      }
+    }
+  },
+  "colors": {
+    "iphone-17-pro-max": ["Kosmisk orange", "Dybblå", "Sølv"],
+    "iphone-17-pro": ["Kosmisk orange", "Dybblå", "Sølv"],
+    "iphone-air": ["Rumsort", "Skyhvid", "Lys guld", "Himmelblå"],
+    "iphone-17": ["Sort", "Hvid", "Tågeblå", "Salvie", "Lavendel"],
+    "iphone-16-pro-max": ["Sort titanium", "Hvid titanium", "Natur titanium", "Ørken titanium"],
+    "iphone-16-pro": ["Sort titanium", "Hvid titanium", "Natur titanium", "Ørken titanium"],
+    "iphone-16-plus": ["Sort", "Hvid", "Pink", "Blågrøn", "Ultramarin"],
+    "iphone-16": ["Sort", "Hvid", "Pink", "Blågrøn", "Ultramarin"],
+    "iphone-16e": ["Sort", "Hvid"],
+    "iphone-15-pro-max": ["Sort titanium", "Hvid titanium", "Blå titanium", "Natur titanium"],
+    "iphone-15-pro": ["Sort titanium", "Hvid titanium", "Blå titanium", "Natur titanium"],
+    "iphone-15-plus": ["Sort", "Blå", "Grøn", "Gul", "Pink"],
+    "iphone-15": ["Sort", "Blå", "Grøn", "Gul", "Pink"],
+    "iphone-14-pro-max": ["Rumsort", "Sølv", "Guld", "Dyb lilla"],
+    "iphone-14-pro": ["Rumsort", "Sølv", "Guld", "Dyb lilla"],
+    "iphone-14-plus": ["Midnat", "Stjernelys", "Blå", "Lilla", "Gul", "Rød"],
+    "iphone-14": ["Midnat", "Stjernelys", "Blå", "Lilla", "Gul", "Rød"],
+    "iphone-13-pro-max": ["Grafit", "Guld", "Sølv", "Sierrablå", "Alpegrøn"],
+    "iphone-13-pro": ["Grafit", "Guld", "Sølv", "Sierrablå", "Alpegrøn"],
+    "iphone-13": ["Midnat", "Stjernelys", "Blå", "Pink", "Grøn", "Rød"],
+    "iphone-13-mini": ["Midnat", "Stjernelys", "Blå", "Pink", "Grøn", "Rød"],
+    "iphone-12-pro-max": ["Grafit", "Sølv", "Guld", "Stillehavsblå"],
+    "iphone-12-pro": ["Grafit", "Sølv", "Guld", "Stillehavsblå"],
+    "iphone-12": ["Sort", "Hvid", "Blå", "Grøn", "Rød", "Lilla"],
+    "iphone-12-mini": ["Sort", "Hvid", "Blå", "Grøn", "Rød", "Lilla"],
+    "iphone-11-pro-max": ["Space grå", "Sølv", "Guld", "Midnatsgrøn"],
+    "iphone-11-pro": ["Space grå", "Sølv", "Guld", "Midnatsgrøn"],
+    "iphone-11": ["Sort", "Hvid", "Grøn", "Gul", "Lilla", "Rød"],
+    "galaxy-s25-ultra": ["Titanium sølvblå", "Titanium sort", "Titanium grå", "Titanium hvidsølv", "Titanium jadegrøn", "Titanium jetsort", "Titanium rosaguld"],
+    "galaxy-s25-plus": ["Marineblå", "Isblå", "Mint", "Sølvskygge", "Blåsort", "Koralrød", "Rosaguld"],
+    "galaxy-s25": ["Marineblå", "Isblå", "Mint", "Sølvskygge", "Blåsort", "Koralrød", "Rosaguld"],
+    "galaxy-s24-ultra": ["Titanium sort", "Titanium grå", "Titanium violet", "Titanium gul", "Titanium blå", "Titanium grøn", "Titanium orange"],
+    "galaxy-s24-plus": ["Onyx sort", "Marmorgrå", "Koboltviolet", "Ravgul", "Jadegrøn", "Safirblå", "Sandstensorange"],
+    "galaxy-s24": ["Onyx sort", "Marmorgrå", "Koboltviolet", "Ravgul", "Jadegrøn", "Safirblå", "Sandstensorange"],
+    "galaxy-s24-fe": ["Blå", "Grafit", "Grå", "Mint", "Gul"],
+    "galaxy-s23-ultra": ["Phantom sort", "Creme", "Grøn", "Lavendel", "Grafit", "Lime", "Himmelblå", "Rød"],
+    "galaxy-s23-plus": ["Phantom sort", "Creme", "Grøn", "Lavendel", "Grafit", "Lime"],
+    "galaxy-s23": ["Phantom sort", "Creme", "Grøn", "Lavendel", "Grafit", "Lime"],
+    "galaxy-s23-fe": ["Mint", "Creme", "Grafit", "Lilla", "Indigo", "Mandarin"],
+    "galaxy-s22": ["Phantom sort", "Phantom hvid", "Grøn", "Rosaguld", "Grafit", "Creme", "Himmelblå", "Violet", "Bora lilla"],
+    "galaxy-s21": ["Phantom grå", "Phantom hvid", "Phantom violet", "Phantom pink"],
+    "galaxy-a56": ["Grafit", "Lysegrå", "Oliven", "Pink"],
+    "galaxy-a55": ["Isblå", "Lilla", "Marineblå", "Citron"],
+    "galaxy-a54": ["Grafit", "Hvid", "Violet", "Lime"],
+    "galaxy-a36": ["Sort", "Hvid", "Lavendel", "Lime"],
+    "galaxy-a35": ["Isblå", "Lilla", "Marineblå", "Citron"],
+    "galaxy-a25": ["Blåsort", "Blå", "Lyseblå", "Gul"],
+    "galaxy-a16": ["Sort", "Grå", "Lysegrøn"],
+    "galaxy-a15": ["Blåsort", "Blå", "Lyseblå", "Gul"],
+    "pixel-10": ["Obsidian", "Frost", "Indigo", "Citrongræs"],
+    "pixel-9": ["Obsidian", "Porcelæn", "Vintergrøn", "Pæon"],
+    "pixel-9a": ["Obsidian", "Porcelæn", "Iris", "Pæon"],
+    "pixel-8-pro": ["Obsidian", "Porcelæn", "Bay", "Mint"],
+    "pixel-8": ["Obsidian", "Hazel", "Rosa", "Mint"],
+    "pixel-8a": ["Obsidian", "Porcelæn", "Bay", "Aloe"],
+    "pixel-7-pro": ["Obsidian", "Sne", "Hazel"]
+  },
+  "items": {},
+  "sync": {
+    "fx": 6.681,
+    "synced": 0,
+    "suggested": 0,
+    "errors": 0,
+    "started": "2026-10-27T04:44:48.491Z",
+    "finished": "2026-10-27T04:44:48.614Z"
+  }
+}

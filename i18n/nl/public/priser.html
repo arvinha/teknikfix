@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reparatieprijzen in Aalborg · iPhone, Samsung, Pixel, iPad en computer | TeknikFix</title>
+  <meta name="description" content="Zie meteen wat je reparatie kost. iPhone-scherm vanaf {{FRA_IPHONE_SKAERM}}, Samsung-scherm vanaf {{FRA_SAMSUNG_SKAERM}}, Google Pixel, OnePlus, Xiaomi en alle andere merken. Gratis diagnose in Aalborg, en je betaalt pas als het werkt.">
+  <link rel="canonical" href="{{ORIGIN}}/priser">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Reparatieprijzen in Aalborg | TeknikFix">
+  <meta property="og:description" content="Vaste prijs voor scherm, batterij, oplaadpoort en nog veel meer. Zoek jouw model op.">
+  <meta property="og:url" content="{{ORIGIN}}/priser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">{{PRICE_LD}}</script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a><span aria-hidden="true">/</span><span>Prijzen</span></nav>
+        <h1>Reparatieprijzen in Aalborg</h1>
+        <p class="lead">Zoek jouw model op en zie de prijs en hoe lang het duurt. Klik op een prijs om meteen te boeken. De check vooraf is altijd gratis, en je betaalt pas als het werkt.</p>
+        <div class="page-trust">
+          <a class="pay-logos" href="/betaling" aria-label="Betaalmethoden: {{PAY_ACCEPTED}}">
+            {{PAY_LOGOS}}
+          </a>
+          <a class="tp-link" href="{{TRUSTPILOT_URL}}" rel="noopener" target="_blank">
+            <img src="/img/trustpilot.svg" alt="Trustpilot" width="104" height="26">
+          </a>
+        </div>
+        <nav class="jump-links" aria-label="Ga naar">
+          <a href="#iphone">iPhone</a>
+          <a href="#samsung">Samsung</a>
+          <a href="#pixel">Google Pixel</a>
+          <a href="#oneplus">OnePlus</a>
+          <a href="#xiaomi">Xiaomi</a>
+          <a href="#motorola">Motorola</a>
+          <a href="#huawei">Huawei/Honor</a>
+          <a href="#andentelefon">Andere telefoons</a>
+          <a href="#ipad">iPad</a>
+          <a href="#galaxytab">Galaxy Tab</a>
+          <a href="#andentablet">Andere tablets</a>
+          <a href="#pc">Computer en Mac</a>
+          <a href="#alle-modeller">Gratis diagnose</a>
+        </nav>
+      </div>
+    </header>
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap stack price-page">
+        <p class="price-note">We vergelijken regelmatig met andere werkplaatsen in Aalborg en omgeving, en onze vaste prijzen liggen lager dan wat de meeste anderen rekenen. De prijzen zijn voor het laatst gecontroleerd op {{PRICE_UPDATED}}. De tijd geldt als het onderdeel op voorraad is. Moet het besteld worden, dan duurt het meestal 1–3 werkdagen. Bij «vanaf» hoor je de exacte prijs na de gratis check.</p>
+        {{PRICE_TABLES}}
+        <div class="panel">
+          <h2>Staat jouw model er niet bij, of weet je niet wat er mis is?</h2>
+          <p>Geen probleem. We repareren bijna alle merken: Nothing, Oppo, Sony, Nokia, Lenovo, HP, Asus, Acer, Dell en nog veel meer. Kies bij het boeken «Mijn model staat niet in de lijst» of «Weet ik niet – gratis diagnose». Wij kijken er gratis naar, en je krijgt een vaste prijs voordat we iets doen.</p>
+          <div class="actions">
+            <a class="btn btn-copper" href="/book">Vraag een gratis inschatting aan</a>
+            <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Bel {{PHONE}}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Vragen over prijzen</h2>
+        <details class="faq-item" open><summary>Is de prijs vast?</summary><p>Ja, als er een prijs staat zonder «vanaf». Dat is de prijs die je betaalt. Vinden we nog een andere storing, dan zeggen we dat voordat we iets doen, en jij beslist zelf.</p></details>
+        <details class="faq-item"><summary>Wat als het niet te repareren is?</summary><p>Dan kost het 0 DKK.<!--IF_CARD--> Heb je vooraf betaald, dan krijg je het volledige bedrag terug.<!--END_IF_CARD--></p></details>
+        <details class="faq-item"><summary>Hoe kan ik betalen?</summary><p>Met {{PAY_LIST}}. Je betaalt als de reparatie klaar is en het werkt.</p></details>
+        <details class="faq-item"><summary>Is er garantie?</summary><p>Ja. Komt dezelfde storing binnen 30 dagen terug, dan verhelpen we die zonder extra kosten.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

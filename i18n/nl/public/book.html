@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reparatie boeken en meteen de prijs zien | TeknikFix Aalborg</title>
+  <meta name="description" content="Kies je model en storing en zie meteen prijs en tijd. Reparatie van telefoon, computer en tablet in Aalborg. Betaal met {{PAY_LIST}} zodra het werkt.">
+  <link rel="canonical" href="{{ORIGIN}}/book">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Boek een gratis check | TeknikFix">
+  <meta property="og:description" content="Boek een afspraak, dag en nacht. Gratis check, prijs vooraf.">
+  <meta property="og:url" content="{{ORIGIN}}/book">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a><span aria-hidden="true">/</span><span>Boeken</span></nav>
+        <h1>Reparatie boeken</h1>
+        <p class="lead">Zie meteen de prijs. Daarna bevestigen we de afspraak.</p>
+      </div>
+    </header>
+    <section class="section book-section">
+      <div class="wrap">
+        <form class="panel book-flow" id="book-form" method="post" action="/api/bookings">
+          <p class="flow-count" id="step-count" hidden>Stap 1 van 4</p>
+          <div class="steps-bar" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span></div>
+          <p id="step-live" class="visually-hidden" aria-live="polite">Stap 1 van 4</p>
+          {{BOOK_ERROR}}
+          <p id="form-error" class="form-error" hidden></p>
+
+          <div data-step class="is-active">
+            <h2>Waar mogen we naar kijken?</h2>
+            <div class="choice-grid device-choices">
+              <label class="choice choice-icon"><input type="radio" name="device" value="telefon" required><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><strong>Telefoon</strong><small>iPhone, Samsung, Pixel en alle andere</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="computer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4.5" width="16" height="11" rx="1.5"/><path d="M2 19.5h20"/></svg><strong>Computer</strong><small>Laptop of desktop</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="tablet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><strong>Tablet</strong><small>iPad en andere</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="andet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17h.01"/></svg><strong>Anders</strong><small>Console, horloge, koptelefoon – laat weten wat het is</small></label>
+            </div>
+          </div>
+
+          <div data-step>
+            <h2>Wat is er aan de hand?</h2>
+            <div id="pick-wrap" hidden>
+              <label class="field"><span>Model</span><select name="modelId" id="model-select"></select></label>
+              <p class="field-note">Staat jouw model er niet bij? Kies onderaan «Mijn model staat er niet bij». We repareren bijna alle merken en de beoordeling is gratis.</p>
+              <div id="repair-wrap" hidden>
+                <p class="field-title">Wat moet er gebeuren? <span class="repair-hint">Kies gerust meerdere dingen</span></p>
+                <div class="repair-grid" id="repair-grid"></div>
+              </div>
+              <div class="estimate" id="estimate" hidden aria-live="polite"></div>
+            </div>
+            <label class="field" id="model-text"><span>Merk en model, als je dat weet</span><input name="model" maxlength="80" placeholder="Bijv. Nothing Phone 2 of Lenovo ThinkPad"></label>
+            <button class="link-button" id="problem-open" type="button" hidden>+ Schrijf ons een bericht (optioneel)</button>
+            <label class="field" id="problem-wrap"><span id="problem-label">De storing</span><textarea name="problem" required minlength="8" maxlength="2000" placeholder="Bijv. het scherm is kapot of de computer start niet op"></textarea></label>
+          </div>
+
+          <div data-step>
+            <h2>Waar en wanneer?</h2>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="visit" value="vaerksted" required><strong>Ik kom het brengen</strong><small>Aalborg Øst, op afspraak</small></label>
+              <label class="choice"><input type="radio" name="visit" value="hjemme"><strong>Komen jullie langs?</strong><small>Gratis rit in Aalborg</small></label>
+              <label class="choice"><input type="radio" name="visit" value="post"><strong>Ik stuur het op</strong><small>Per post vanuit heel de EU</small></label>
+            </div>
+            <div id="address-wrap">
+              <label class="field field-gap"><span>Je adres</span><input name="address" maxlength="200" autocomplete="street-address" placeholder="Straat, huisnummer, postcode, plaats en land"></label>
+              <p class="field-note" id="post-note" hidden>We mailen je hoe je het apparaat verpakt en opstuurt. Als het gerepareerd is, sturen we het terug naar je adres. De verzending naar ons betaal je zelf, en de terugverzending nemen wij mee in de prijs.</p>
+            </div>
+            <p class="field-title field-gap">Wanneer?</p>
+            <div class="segmented">
+              <label><input type="radio" name="when" value="hurtigst" checked><span>Zo snel mogelijk</span></label>
+              <label><input type="radio" name="when" value="tidspunkt"><span>Kies dag en tijd</span></label>
+            </div>
+            <div id="time-wrap" class="time-row">
+              <label class="field"><span>Dag</span><input type="date" name="timeDate" id="time-date"></label>
+              <label class="field"><span>Tijd</span><select name="timeSlot" id="time-slot"><option value="formiddag">Ochtend 9–12</option><option value="eftermiddag" selected>Middag 12–17</option><option value="aften">Avond 17–22</option></select></label>
+            </div>
+            <div id="time-pick" class="time-pick" hidden>
+              <div class="day-chips" id="day-chips" role="radiogroup" aria-label="Dag"></div>
+              <div class="slot-chips" id="slot-chips" role="radiogroup" aria-label="Tijd"></div>
+            </div>
+            <p class="form-hint">We bevestigen de tijd per sms of e-mail. Kom pas langs als je die bevestiging hebt.</p>
+          </div>
+
+          <div data-step>
+            <h2>Je gegevens</h2>
+            <label class="field"><span>Naam</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Telefoon</span><input name="phone" required minlength="8" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="Je mobiele nummer"></label>
+              <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="review" id="review" hidden></div>
+            <div id="pay-choice" hidden>
+              <p class="field-title">Wanneer wil je betalen?</p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="payWhen" value="efter" checked><strong>Als het werkt</strong><small>{{PAY_LIST_CAP}}</small></label>
+                <label class="choice"><input type="radio" name="payWhen" value="nu"><strong>Nu betalen</strong><small>Kaart, MobilePay of Klarna. Geld terug als het niet te repareren is</small></label>
+              </div>
+            </div>
+            <input type="hidden" name="consent" value="ja">
+            <p class="form-hint">We gebruiken je gegevens alleen voor je dossier en de betaling.</p>
+            <a class="pay-logos book-pay-logos" href="/betaling" aria-label="Betaalmethoden: {{PAY_ACCEPTED}}">
+              {{PAY_LOGOS}}
+            </a>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-ghost" id="back" type="button" hidden><span aria-hidden="true">‹</span> Terug</button>
+            <button class="btn" id="next" type="button" hidden>Volgende <span aria-hidden="true">›</span></button>
+            <button class="btn btn-copper" id="send" type="submit">Boeking versturen</button>
+          </div>
+        </form>
+        <p class="book-trust">
+          <a class="tp-link" href="{{TRUSTPILOT_URL}}" rel="noopener" target="_blank"><img src="/img/trustpilot.svg" alt="Trustpilot" width="104" height="26"></a>
+          <span>Gratis check · Prijs vóór we beginnen · 30 dagen garantie</span>
+        </p>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="price-data">{{PRICE_JSON}}</script>
+  <div id="book-config" hidden data-card="{{CARD_ENABLED}}"></div>
+  <script src="/js/site.js"></script>
+  <script src="/js/book.js"></script>
+</body>
+</html>

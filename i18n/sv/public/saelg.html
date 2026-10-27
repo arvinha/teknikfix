@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sälj din iPhone, mobil eller dator, även om den är trasig | TeknikFix</title>
+  <meta name="description" content="Få ett pris direkt på din begagnade eller trasiga mobil, surfplatta eller dator. Välj modell, skriv in IMEI eller ta en bild. Vi köper från hela EU och betalar ut snabbt med MobilePay eller bank.">
+  <link rel="canonical" href="{{ORIGIN}}/saelg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sälj din mobil eller dator | TeknikFix">
+  <meta property="og:description" content="Pris direkt. Även om den är sprucken. Gratis frakt och utbetalning med MobilePay.">
+  <meta property="og:url" content="{{ORIGIN}}/saelg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Köper ni även mobiler som är trasiga?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Sprucken skärm, dåligt batteri eller en som inte går att starta alls. Vi drar av vad det kostar oss att reparera den, och du ser priset direkt." } },
+      { "@type": "Question", "name": "Hur får jag pengarna?", "acceptedAnswer": { "@type": "Answer", "text": "Med MobilePay eller banköverföring, normalt inom 1 vardag efter att vi har kontrollerat enheten. Bor du utanför Danmark skickar vi pengarna till ditt IBAN." } },
+      { "@type": "Question", "name": "Kan jag sälja från ett annat EU-land?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Välj ditt land och skicka enheten med den fraktetikett vi mailar dig. Frakten dras av från beloppet och du får pengarna på ditt IBAN." } },
+      { "@type": "Question", "name": "Vad händer om enheten inte stämmer med beskrivningen?", "acceptedAnswer": { "@type": "Answer", "text": "Då får du ett nytt erbjudande. Säger du nej skickar vi tillbaka den gratis." } },
+      { "@type": "Question", "name": "Köper ni från företag?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Välj Företag och skriv antal per modell. Har du en lång lista kan du mejla den till oss." } }
+    ]
+  }
+  </script>
+</head>
+<body class="book-page sell-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brödsmula"><a href="/">Startsida</a><span aria-hidden="true">/</span><span>Sälj</span></nav>
+        <h1>Sälj din enhet</h1>
+        <p class="lead">Få ett fast pris på under en minut. Även om den är trasig.</p>
+        <ul class="sell-promises">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h11v9H3zM14 10.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>Gratis frakt i Danmark</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h3"/></svg>Pengarna inom 1 vardag</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Dina data raderas</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section book-section">
+      <div class="wrap">
+        <div class="panel book-flow" id="sell">
+          <div id="device-step">
+            <div class="sell-top" id="sell-top" hidden>
+              <p class="flow-count" id="step-count"></p>
+              <div class="steps-bar" id="sell-bar" aria-hidden="true"></div>
+              <div class="sell-chosen" id="sell-chosen" hidden>
+                <span class="sell-chosen-name"><strong id="chosen-name"></strong><span id="chosen-spec"></span></span>
+                <span class="sell-upto" id="upto" hidden></span>
+                <button class="link-button" id="change-model" type="button">Byt</button>
+              </div>
+            </div>
+            <p id="step-live" class="visually-hidden" aria-live="polite"></p>
+
+            <div class="sell-step" data-sell="find">
+              <h2 id="device-title">Vad vill du sälja?</h2>
+              <div class="sell-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+                <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Modell eller IMEI-nummer" aria-label="Skriv modellen eller IMEI-numret" aria-controls="search-hits">
+              </div>
+              <ul class="search-hits" id="search-hits" role="listbox" aria-label="Modeller" hidden></ul>
+              <p class="photo-status" id="photo-status" aria-live="polite" hidden></p>
+              <div class="quick-picks" id="quick-picks"></div>
+              <p class="other-ways-title">Vet du inte vilken modell det är?</p>
+              <div class="other-ways">
+                <label class="way-btn" id="photo-way" data-vision="{{VISION_ENABLED}}">
+                  <input type="file" id="photo" accept="image/*">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.6-2.5h6.8L17 8.5h3v10H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
+                  <span><strong>Ta en bild</strong><small>Av Inställningar → Om, eller etiketten på baksidan</small></span>
+                </label>
+                <button class="way-btn" id="imei-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M9.5 8h5M9.5 11h5M9.5 14h3"/></svg>
+                  <span><strong>Använd IMEI-numret</strong><small>Slå *#06# på mobilen</small></span>
+                </button>
+                <button class="way-btn" id="list-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                  <span><strong>Välj från listan</strong><small>Alla märken och modeller</small></span>
+                </button>
+              </div>
+              <label class="field field-gap" id="list-wrap" hidden><span>Modell</span><select id="model"><option value="">Välj modell</option></select></label>
+            </div>
+
+            <div class="sell-step" data-sell="spec" hidden>
+              <h2 id="spec-title">Hur mycket lagringsutrymme har den?</h2>
+              <div id="variant-block" hidden>
+                <p class="field-title" id="variant-title">Chip</p>
+                <div class="choice-grid tile-grid" id="variant-tiles"></div>
+              </div>
+              <div id="storage-block" hidden>
+                <p class="field-title" id="storage-title" hidden>Lagringsutrymme</p>
+                <div class="choice-grid tile-grid" id="storage-tiles"></div>
+              </div>
+              <div id="conn-block" hidden>
+                <p class="field-title">Kan den ha ett SIM-kort?</p>
+                <div class="choice-grid tile-grid" id="conn-tiles"></div>
+              </div>
+              <p class="field-note field-gap" id="spec-help">Du hittar det under Inställningar → Allmänt → Om.</p>
+            </div>
+
+            <div class="sell-step" data-sell="look" hidden>
+              <h2>Hur ser den ut?</h2>
+              <div class="look-grid" id="look-tiles"></div>
+              <div id="crack-block" hidden>
+                <p class="field-title field-gap">Vad är sprucket?</p>
+                <div class="choice-grid tile-grid" id="crack-tiles"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="works" hidden>
+              <h2>Fungerar allt som det ska?</h2>
+              <div class="look-grid" id="works-tiles"></div>
+              <div id="fault-block" hidden>
+                <p class="field-title field-gap">Vad fungerar inte? <span class="repair-hint">Kryssa i det som stämmer</span></p>
+                <div class="fault-grid" id="fault-list"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="price" hidden>
+              <div class="estimate sell-offer" id="offer" aria-live="polite"></div>
+              <div class="review sell-summary" id="summary"></div>
+              <details class="sell-more" id="more">
+                <summary>Vill du vara helt exakt? Ändra alla detaljer</summary>
+                <div id="questions"></div>
+                <div class="field-pair">
+                  <label class="field"><span>IMEI eller serienummer <small class="muted">(valfritt)</small></span><input id="imei" inputmode="text" maxlength="24" autocomplete="off" placeholder="Slå *#06# på mobilen"></label>
+                  <label class="field"><span>Antal likadana enheter</span><input id="qty" type="number" min="1" max="500" value="1" inputmode="numeric"></label>
+                </div>
+                <p class="form-error" id="imei-error" hidden></p>
+              </details>
+              <p class="field-title field-gap">Så går det vidare</p>
+              <ol class="next-steps">
+                <li><strong>Skriv vart pengarna ska</strong><span>Namn, adress och MobilePay eller konto. Det tar 1 minut.</span></li>
+                <li><strong>Skicka den gratis</strong><span>Vi mailar dig en fraktetikett. Eller lämna in den i Aalborg.</span></li>
+                <li><strong>Få pengarna</strong><span>Vi kontrollerar den och betalar inom 1 vardag.</span></li>
+              </ol>
+            </div>
+
+            <div class="form-nav sell-nav">
+              <button class="btn btn-ghost" id="back" type="button" hidden>Tillbaka</button>
+              <button class="btn btn-ghost" id="cancel-edit" type="button" hidden>Ångra</button>
+              <button class="btn btn-copper" id="next" type="button" hidden>Se priset</button>
+              <button class="btn btn-copper" id="add" type="button" hidden>Sälj den</button>
+            </div>
+          </div>
+
+          <form id="seller-step" hidden novalidate>
+            <h2>Din försäljning</h2>
+            <div class="review sell-list" id="sell-list"></div>
+            <button class="link-button" id="add-more" type="button">+ Lägg till en enhet till</button>
+
+            <p class="field-title field-gap">Du säljer som</p>
+            <div class="segmented">
+              <label><input type="radio" name="sellerType" value="privat" checked><span>Privatperson</span></label>
+              <label><input type="radio" name="sellerType" value="firma"><span>Företag</span></label>
+            </div>
+            <div class="field-pair field-gap" id="company-row" hidden>
+              <label class="field"><span>Företagsnamn</span><input name="company" maxlength="120" autocomplete="organization"></label>
+              <label class="field"><span id="cvr-label">Organisations- eller momsnummer</span><input name="cvr" maxlength="20" autocomplete="off"></label>
+            </div>
+
+            <label class="field field-gap"><span>Namn</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Telefon</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+              <label class="field"><span>E-post</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="field-pair">
+              <label class="field"><span>Adress</span><input name="address" required maxlength="200" autocomplete="street-address" placeholder="Gata, nummer, postnummer och ort"></label>
+              <label class="field"><span>Land</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+            </div>
+
+            <p class="field-title">Hur får vi den?</p>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="delivery" value="post" checked><strong>Skicka med posten</strong><small id="post-home">Gratis. Vi mailar dig en fraktetikett</small><small id="post-abroad" hidden>Vi mailar dig en fraktetikett. Frakten från utlandet ({{SELL_EU_SHIP}} DKK) dras av från beloppet</small></label>
+              <label class="choice" id="dropoff"><input type="radio" name="delivery" value="aflever"><strong>Lämna in i Aalborg</strong><small>{{STREET}}, efter överenskommelse</small></label>
+            </div>
+
+            <p class="field-title field-gap">Hur vill du ha pengarna?</p>
+            <div class="segmented" id="payout-choice">
+              <label id="mp-choice"><input type="radio" name="payoutMethod" value="mobilepay" checked><span>MobilePay</span></label>
+              <label><input type="radio" name="payoutMethod" value="bank"><span>Banköverföring</span></label>
+            </div>
+            <label class="field field-gap" id="mp-row"><span>MobilePay-nummer</span><input name="mobilepay" maxlength="20" inputmode="tel" placeholder="Samma som telefon, om tomt"></label>
+            <div class="field-pair field-gap" id="bank-row" hidden>
+              <label class="field"><span>Clearingnummer</span><input name="reg" maxlength="4" inputmode="numeric"></label>
+              <label class="field"><span>Kontonummer</span><input name="konto" maxlength="14" inputmode="numeric"></label>
+            </div>
+            <label class="field field-gap" id="iban-row" hidden><span>IBAN</span><input name="iban" maxlength="42" autocomplete="off" placeholder="T.ex. DE89 3704 0044 0532 0130 00"></label>
+
+            <button class="link-button" id="note-open" type="button">+ Skriv ett meddelande till oss (valfritt)</button>
+            <label class="field" id="note-wrap" hidden><span>Meddelande till oss <small class="muted">(valfritt)</small></span><textarea name="note" maxlength="2000" placeholder="T.ex. färg, tillbehör eller en lista över enheter"></textarea></label>
+            <label class="check"><input type="checkbox" name="consent" value="ja"> <span>Jag äger enheten, den är inte stulen och jag har fyllt 18. Jag stänger av Hitta min iPhone och andra lås innan jag skickar den.</span></label>
+            <p class="form-error" id="send-error" hidden role="alert"></p>
+            <div class="form-nav">
+              <button class="btn btn-copper" id="send" type="submit">Skicka och få erbjudandet på mejl</button>
+            </div>
+          </form>
+        </div>
+
+        <p class="book-trust">
+          <span>Vi köper från hela EU · Gratis frakt i Danmark · Utbetalning med MobilePay eller bank · Dina data raderas · Säger du nej får du tillbaka den gratis</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Så säljer du</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Få priset</h3><p>Sök efter din modell och svara på två korta frågor. Priset visas direkt.</p></li>
+          <li><span>2</span><h3>Skicka den</h3><p>Vi mailar en fraktetikett. Gratis i Danmark, och från resten av EU drar vi bara av frakten. Bor du i Aalborg kan du lämna in den.</p></li>
+          <li><span>3</span><h3>Få pengarna</h3><p>Vi kontrollerar den och betalar ut med MobilePay eller bank, normalt inom 1 vardag.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2 class="section-title">Företag med många enheter?</h2>
+          <p>Välj <strong>Företag</strong> och skriv antal per modell. Priset räknas ut på samma enkla sätt, oavsett om det är en mobil eller en hel låda.</p>
+          <p>Har du en lång lista kan du mejla den till <a href="mailto:{{EMAIL}}?subject=Opk%C3%B8b%20af%20enheder">{{EMAIL}}</a> eller ringa {{PHONE}}. Vi hämtar större partier i Nordjylland.</p>
+        </div>
+        <div class="narrow">
+          <details class="faq-item"><summary>Köper ni även mobiler som är trasiga?</summary><p>Ja. Sprucken skärm, dåligt batteri eller en som inte går att starta alls. Vi drar av vad det kostar oss att reparera den, och du ser priset direkt.</p></details>
+          <details class="faq-item"><summary>Hur får jag pengarna?</summary><p>Med MobilePay eller banköverföring, normalt inom 1 vardag efter att vi har kontrollerat enheten. Bor du utanför Danmark skickar vi pengarna till ditt IBAN.</p></details>
+          <details class="faq-item"><summary>Kan jag sälja från ett annat EU-land?</summary><p>Ja. Välj ditt land och skicka enheten med den fraktetikett vi mailar dig. Frakten på {{SELL_EU_SHIP}} DKK dras av från beloppet och du får pengarna på ditt IBAN.</p></details>
+          <details class="faq-item"><summary>Vad händer om enheten inte stämmer med beskrivningen?</summary><p>Då får du ett nytt erbjudande. Säger du nej skickar vi tillbaka den gratis.</p></details>
+          <details class="faq-item"><summary>Hur är det med mina data?</summary><p>Ta en säkerhetskopia och återställ gärna enheten. Vi raderar allt innan den repareras och säljs vidare.</p></details>
+          <details class="faq-item"><summary>Varför måste jag stänga av Hitta min iPhone?</summary><p>En låst enhet kan ingen använda. Då kan vi inte köpa den. Gå till Inställningar → ditt namn → Hitta → Hitta min iPhone och stäng av den.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="sell-data">{{SELL_JSON}}</script>
+  <script src="/js/site.js"></script>
+  <script src="/js/saelg.js"></script>
+</body>
+</html>

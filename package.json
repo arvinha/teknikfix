@@ -1,0 +1,12 @@
+{
+  "name": "axiom-reparation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website and booking desk for Axiom, phone, computer and tablet repair in Aalborg.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

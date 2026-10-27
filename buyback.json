@@ -1,0 +1,505 @@
+{
+  "updated": "2026-10-27",
+  "note": "Værdi = vores salgspris i egen butik for en enhed i perfekt stand med 128 GB (computer 256 GB). Sat lidt under refurbed.dk's laveste pris, hvor vi kender den, ellers brugtpris + 15 %. Oktober 2026.",
+  "strategy": {
+    "offerPct": 55,
+    "minProfitDkk": 700,
+    "salesFeePct": 3,
+    "handlingDkk": 150,
+    "usedVatShare": 0.2,
+    "repairCostShare": 0.8,
+    "deadFactor": 0.18,
+    "minOfferDkk": 50,
+    "validDays": 14,
+    "euShippingDkk": 120,
+    "minProfitPct": 12,
+    "minProfitFloorDkk": 250,
+    "adsPct": 8,
+    "warrantyPct": 2,
+    "beatPct": 5
+  },
+  "storage": {
+    "telefon": [
+      {
+        "id": "64",
+        "label": "64 GB eller mindre",
+        "factor": 0.92
+      },
+      {
+        "id": "128",
+        "label": "128 GB",
+        "factor": 1
+      },
+      {
+        "id": "256",
+        "label": "256 GB",
+        "factor": 1.08
+      },
+      {
+        "id": "512",
+        "label": "512 GB",
+        "factor": 1.16
+      },
+      {
+        "id": "1024",
+        "label": "1 TB eller mere",
+        "factor": 1.24
+      }
+    ],
+    "tablet": [
+      {
+        "id": "64",
+        "label": "64 GB eller mindre",
+        "factor": 0.94
+      },
+      {
+        "id": "128",
+        "label": "128 GB",
+        "factor": 1
+      },
+      {
+        "id": "256",
+        "label": "256 GB",
+        "factor": 1.08
+      },
+      {
+        "id": "512",
+        "label": "512 GB",
+        "factor": 1.15
+      },
+      {
+        "id": "1024",
+        "label": "1 TB eller mere",
+        "factor": 1.22
+      }
+    ],
+    "computer": [
+      {
+        "id": "128",
+        "label": "128 GB eller mindre",
+        "factor": 0.9
+      },
+      {
+        "id": "256",
+        "label": "256 GB",
+        "factor": 1
+      },
+      {
+        "id": "512",
+        "label": "512 GB",
+        "factor": 1.08
+      },
+      {
+        "id": "1024",
+        "label": "1 TB eller mere",
+        "factor": 1.16
+      }
+    ]
+  },
+  "manual": [
+    "pc-baerbar",
+    "pc-stationaer",
+    "gaming-pc",
+    "anden-telefon",
+    "anden-tablet"
+  ],
+  "variants": {
+    "macbook-air": [
+      {
+        "id": "intel",
+        "label": "Intel (2020 eller ældre)",
+        "value": 1150,
+        "keywords": "intel i5 i7 i9 2015 2016 2017 2018 2019 2020"
+      },
+      {
+        "id": "m1",
+        "label": "M1",
+        "value": 2900,
+        "keywords": "m1 2020 2021 pro max"
+      },
+      {
+        "id": "m2",
+        "label": "M2",
+        "value": 4450,
+        "keywords": "m2 2022 2023 pro max"
+      },
+      {
+        "id": "m3",
+        "label": "M3",
+        "value": 5500,
+        "keywords": "m3 2023 2024 pro max"
+      },
+      {
+        "id": "m4",
+        "label": "M4 eller nyere",
+        "value": 6750,
+        "keywords": "m4 m5 2024 2025 2026 pro max"
+      }
+    ],
+    "macbook-pro": [
+      {
+        "id": "intel",
+        "label": "Intel (2020 eller ældre)",
+        "value": 1850,
+        "keywords": "intel i5 i7 i9 2015 2016 2017 2018 2019 2020"
+      },
+      {
+        "id": "m1",
+        "label": "M1, M1 Pro eller M1 Max",
+        "value": 4550,
+        "keywords": "m1 2020 2021 pro max"
+      },
+      {
+        "id": "m2",
+        "label": "M2, M2 Pro eller M2 Max",
+        "value": 6050,
+        "keywords": "m2 2022 2023 pro max"
+      },
+      {
+        "id": "m3",
+        "label": "M3, M3 Pro eller M3 Max",
+        "value": 6800,
+        "keywords": "m3 2023 2024 pro max"
+      },
+      {
+        "id": "m4",
+        "label": "M4 eller nyere",
+        "value": 8850,
+        "keywords": "m4 m5 2024 2025 2026 pro max"
+      }
+    ],
+    "imac": [
+      {
+        "id": "intel",
+        "label": "Intel",
+        "value": 1400,
+        "keywords": "intel i5 i7 i9 2015 2016 2017 2018 2019 2020"
+      },
+      {
+        "id": "m1",
+        "label": "M1 eller M2",
+        "value": 3350,
+        "keywords": "m1 2020 2021 pro max"
+      },
+      {
+        "id": "m3",
+        "label": "M3, M4 eller nyere",
+        "value": 4950,
+        "keywords": "m3 2023 2024 pro max"
+      }
+    ],
+    "ipad-pro-11": [
+      {
+        "id": "2018",
+        "label": "1. generation (2018)",
+        "value": 1700,
+        "keywords": "1 gen 2018 a12x"
+      },
+      {
+        "id": "2020",
+        "label": "2. generation (2020)",
+        "value": 2300,
+        "keywords": "2 gen 2020 a12z"
+      },
+      {
+        "id": "2021",
+        "label": "3. generation (2021, M1)",
+        "value": 3300,
+        "keywords": "3 gen 2021 m1"
+      },
+      {
+        "id": "2022",
+        "label": "4. generation (2022, M2)",
+        "value": 4550,
+        "keywords": "4 gen 2022 m2"
+      },
+      {
+        "id": "2024",
+        "label": "M4 (2024)",
+        "value": 6950,
+        "keywords": "5 gen 2024 m4 oled"
+      },
+      {
+        "id": "2025",
+        "label": "M5 (2025)",
+        "value": 6950,
+        "keywords": "6 gen 2025 m5 oled"
+      }
+    ],
+    "ipad-pro-13": [
+      {
+        "id": "2017",
+        "label": "12,9 tommer, 2017 eller ældre",
+        "value": 1200,
+        "keywords": "1 2 gen 2015 2017 a9x a10x"
+      },
+      {
+        "id": "2018",
+        "label": "12,9 tommer, 3. generation (2018)",
+        "value": 2100,
+        "keywords": "3 gen 2018 a12x"
+      },
+      {
+        "id": "2020",
+        "label": "12,9 tommer, 4. generation (2020)",
+        "value": 2900,
+        "keywords": "4 gen 2020 a12z"
+      },
+      {
+        "id": "2021",
+        "label": "12,9 tommer, 5. generation (2021, M1)",
+        "value": 4000,
+        "keywords": "5 gen 2021 m1"
+      },
+      {
+        "id": "2022",
+        "label": "12,9 tommer, 6. generation (2022, M2)",
+        "value": 5300,
+        "keywords": "6 gen 2022 m2"
+      },
+      {
+        "id": "2024",
+        "label": "13 tommer, M4 (2024)",
+        "value": 7850,
+        "keywords": "7 gen 2024 m4 oled"
+      },
+      {
+        "id": "2025",
+        "label": "13 tommer, M5 (2025)",
+        "value": 8200,
+        "keywords": "8 gen 2025 m5 oled"
+      }
+    ],
+    "ipad-air-m": [
+      {
+        "id": "air5",
+        "label": "Air 5 (2022, M1)",
+        "value": 3000,
+        "keywords": "5 gen 2022 m1"
+      },
+      {
+        "id": "m2-11",
+        "label": "11 tommer, M2 (2024)",
+        "value": 3700,
+        "keywords": "6 gen 2024 m2 11"
+      },
+      {
+        "id": "m2-13",
+        "label": "13 tommer, M2 (2024)",
+        "value": 5450,
+        "keywords": "6 gen 2024 m2 13"
+      },
+      {
+        "id": "m3-11",
+        "label": "11 tommer, M3 (2025)",
+        "value": 4150,
+        "keywords": "7 gen 2025 m3 11"
+      },
+      {
+        "id": "m3-13",
+        "label": "13 tommer, M3 (2025)",
+        "value": 5200,
+        "keywords": "7 gen 2025 m3 13"
+      },
+      {
+        "id": "m4-11",
+        "label": "11 tommer, M4 (2026)",
+        "value": 5050,
+        "keywords": "8 gen 2026 m4 11"
+      },
+      {
+        "id": "m4-13",
+        "label": "13 tommer, M4 (2026)",
+        "value": 6250,
+        "keywords": "8 gen 2026 m4 13"
+      }
+    ],
+    "ipad-mini": [
+      {
+        "id": "mini5",
+        "label": "mini 5 (2019) eller ældre",
+        "value": 1000,
+        "keywords": "5 4 gen 2019 2015 a12"
+      },
+      {
+        "id": "mini6",
+        "label": "mini 6 (2021)",
+        "value": 2300,
+        "keywords": "6 gen 2021 a15"
+      },
+      {
+        "id": "mini7",
+        "label": "mini 7 (2024)",
+        "value": 3000,
+        "keywords": "7 gen 2024 a17 pro"
+      }
+    ],
+    "ipad-9": [
+      {
+        "id": "ipad9",
+        "label": "iPad 9 (2021)",
+        "value": 1050,
+        "keywords": "9 gen 2021 a13"
+      },
+      {
+        "id": "ipad8",
+        "label": "iPad 8 (2020)",
+        "value": 750,
+        "keywords": "8 gen 2020 a12"
+      },
+      {
+        "id": "ipad7",
+        "label": "iPad 7 (2019) eller ældre",
+        "value": 450,
+        "keywords": "7 6 5 gen 2019 2018 2017"
+      }
+    ]
+  },
+  "values": {
+    "iphone-17-pro-max": 8050,
+    "iphone-17-pro": 7150,
+    "iphone-air": 5400,
+    "iphone-17": 5600,
+    "iphone-16-pro-max": 5600,
+    "iphone-16-pro": 5100,
+    "iphone-16-plus": 4600,
+    "iphone-16": 4450,
+    "iphone-16e": 3500,
+    "iphone-15-pro-max": 4350,
+    "iphone-15-pro": 4200,
+    "iphone-15-plus": 3100,
+    "iphone-15": 3150,
+    "iphone-14-pro-max": 3450,
+    "iphone-14-pro": 2750,
+    "iphone-14-plus": 2300,
+    "iphone-14": 2300,
+    "iphone-13-pro-max": 2550,
+    "iphone-13-pro": 2150,
+    "iphone-13": 1850,
+    "iphone-13-mini": 1550,
+    "iphone-12-pro-max": 1600,
+    "iphone-12-pro": 1450,
+    "iphone-12": 1300,
+    "iphone-12-mini": 1250,
+    "iphone-11-pro-max": 1450,
+    "iphone-11-pro": 1100,
+    "iphone-11": 1000,
+    "iphone-x-xs-xr": 600,
+    "iphone-se": 1000,
+    "galaxy-s25-ultra": 5300,
+    "galaxy-s25-plus": 3900,
+    "galaxy-s25": 3450,
+    "galaxy-s24-ultra": 4000,
+    "galaxy-s24-plus": 3000,
+    "galaxy-s24": 2650,
+    "galaxy-s24-fe": 2050,
+    "galaxy-s23-ultra": 2900,
+    "galaxy-s23-plus": 2050,
+    "galaxy-s23": 2050,
+    "galaxy-s23-fe": 1400,
+    "galaxy-s22": 1200,
+    "galaxy-s21": 800,
+    "galaxy-a56": 1650,
+    "galaxy-a55": 1250,
+    "galaxy-a54": 900,
+    "galaxy-a36": 1250,
+    "galaxy-a35": 1000,
+    "galaxy-a25": 700,
+    "galaxy-a16": 650,
+    "galaxy-a15": 450,
+    "galaxy-z-fold": 3900,
+    "galaxy-z-flip": 1850,
+    "pixel-10-pro": 4700,
+    "pixel-10": 3350,
+    "pixel-9-pro": 3450,
+    "pixel-9": 2550,
+    "pixel-9a": 1850,
+    "pixel-8-pro": 2200,
+    "pixel-8": 1600,
+    "pixel-8a": 1400,
+    "pixel-7-pro": 1300,
+    "pixel-7": 1000,
+    "pixel-6": 700,
+    "oneplus-flagship": 2200,
+    "oneplus-nord": 800,
+    "xiaomi-flagship": 2200,
+    "redmi-note": 700,
+    "redmi": 350,
+    "moto-edge": 1050,
+    "moto-g": 400,
+    "huawei-p-mate": 1000,
+    "honor": 700,
+    "ipad-pro-13": 5050,
+    "ipad-pro-11": 3900,
+    "ipad-air-m": 2900,
+    "ipad-air-4": 1950,
+    "ipad-mini": 2550,
+    "ipad-11": 2550,
+    "ipad-10": 1800,
+    "ipad-9": 900,
+    "galaxy-tab-s": 1950,
+    "galaxy-tab-a": 600,
+    "surface-pro": 2200,
+    "lenovo-tab": 500
+  },
+  "variantTitles": {
+    "macbook-air": "Hvilken chip?",
+    "macbook-pro": "Hvilken chip?",
+    "imac": "Hvilken chip?",
+    "ipad-pro-11": "Hvilken generation?",
+    "ipad-pro-13": "Hvilken størrelse og generation?",
+    "ipad-air-m": "Hvilken størrelse og chip?",
+    "ipad-mini": "Hvilken generation?",
+    "ipad-9": "Hvilken generation?"
+  },
+  "names": {
+    "ipad-air-m": "iPad Air (M1 eller nyere)",
+    "ipad-mini": "iPad mini"
+  },
+  "keywords": {
+    "iphone-x-xs-xr": "x xs xr max 10",
+    "iphone-se": "se2 se3 2020 2022 2 3 gen",
+    "iphone-air": "17 air",
+    "galaxy-z-fold": "fold4 fold5 fold6 fold7 fold 4 5 6 7",
+    "galaxy-z-flip": "flip4 flip5 flip6 flip7 flip 4 5 6 7",
+    "pixel-10-pro": "xl",
+    "pixel-9-pro": "xl",
+    "pixel-7": "7a",
+    "pixel-6": "6 pro 6a",
+    "oneplus-flagship": "11 12 13 pro r",
+    "oneplus-nord": "nord ce 2 3 4 5",
+    "xiaomi-flagship": "mi 13 14 15 pro ultra t",
+    "redmi-note": "poco note 11 12 13 14 x f m",
+    "redmi": "a1 a2 a3 c 12c 13c",
+    "moto-edge": "edge 20 30 40 50 60 plus pro neo fusion",
+    "moto-g": "g g54 g84 g24 g34 g power play stylus",
+    "huawei-p-mate": "p30 p40 p50 p60 mate 20 30 40 50 60 pro",
+    "honor": "magic 90 200 400 x8 x9",
+    "ipad-air-4": "4 gen 2020 a14",
+    "ipad-11": "11 gen 2025 a16",
+    "ipad-10": "10 gen 2022 a14",
+    "galaxy-tab-s": "s6 s7 s8 s9 s10 s11 fe lite plus ultra",
+    "galaxy-tab-a": "a7 a8 a9 lite",
+    "surface-pro": "surface 7 8 9 10 11 x",
+    "lenovo-tab": "p11 p12 m10 m11 tab",
+    "imac": "mac mini studio",
+    "macbook-air": "mac 13 15",
+    "macbook-pro": "mac 13 14 16"
+  },
+  "connectivity": [
+    {
+      "id": "wifi",
+      "label": "Kun Wi-Fi",
+      "factor": 1
+    },
+    {
+      "id": "cellular",
+      "label": "Wi-Fi + Cellular (SIM-kort)",
+      "factor": 1.08
+    }
+  ],
+  "refs": {
+    "iphone-16-pro": 3920,
+    "ipad-pro-11:2020": 1180
+  }
+}

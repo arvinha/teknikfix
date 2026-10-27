@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarjous vastaanotettu | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section">
+      <div class="wrap">
+        <div class="panel form-done">
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h1>Kiitos, tarjouksesi on tallennettu</h1>
+          <p>Numerosi on <strong>{{REF}}</strong>. Olemme lähettäneet tarjouksen sähköpostiisi.</p>
+          <ol class="done-steps">
+            <li>Poista käytöstä <strong>Etsi iPhoneni</strong> tai Google-tili ja ota SIM-kortti pois.</li>
+            <li>Jos lähetät laitteen postitse, lähetämme sinulle ilmaisen rahtilapun sähköpostitse 1 arkipäivän kuluessa. Jos tuot laitteen itse, soita ensin numeroon {{PHONE}}.</li>
+            <li>Tarkistamme laitteen ja maksamme heti, jos se vastaa kuvaustasi.</li>
+          </ol>
+          <p><a class="btn" href="/saelg/sag?ref={{REF}}">Seuraa myyntiäsi</a> <a class="btn btn-ghost" href="/saelg">Myy toinen</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

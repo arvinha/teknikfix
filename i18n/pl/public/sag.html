@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Śledź swoją naprawę | TeknikFix Aalborg</title>
+  <meta name="description" content="Śledź swoje zgłoszenie w TeknikFix i zapłać, gdy naprawa będzie gotowa. Wystarczy numer zgłoszenia i adres e-mail.">
+  <link rel="canonical" href="{{ORIGIN}}/sag">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Śledź swoją naprawę | TeknikFix">
+  <meta property="og:url" content="{{ORIGIN}}/sag">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span>Śledź zgłoszenie</span></nav>
+        <h1>Śledź swoje zgłoszenie</h1>
+        <p class="lead">Wpisz numer zgłoszenia z potwierdzenia oraz adres e-mail, którego użyłeś(-aś) przy rezerwacji. Tutaj zaakceptujesz cenę i zapłacisz, gdy naprawa będzie gotowa.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap narrow stack">
+        <form class="panel" id="find-sag">
+          <label class="field"><span>Numer zgłoszenia</span><input name="ref" required maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="AX-7K2M"></label>
+          <label class="field"><span>Adres e-mail</span><input name="email" type="email" required autocomplete="email"></label>
+          <button class="btn" type="submit">Pokaż zgłoszenie</button>
+          <p id="find-error" class="form-error" hidden></p>
+        </form>
+        <div id="sag-view" class="panel" hidden></div>
+        <div id="pay-config" hidden data-paypal="{{PAYPAL}}" data-iban="{{IBAN_PRETTY}}" data-bic="{{BIC}}" data-bank="{{BANK}}" data-holder="{{HOLDER}}" data-card="{{CARD_ENABLED}}"></div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script src="/js/labels.js"></script>
+  <script src="/js/sag.js"></script>
+</body>
+</html>

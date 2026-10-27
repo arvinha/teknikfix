@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vendez votre iPhone, téléphone ou ordinateur, même cassé | TeknikFix</title>
+  <meta name="description" content="Obtenez tout de suite un prix pour votre téléphone, tablette ou ordinateur d'occasion ou cassé. Choisissez le modèle, saisissez l'IMEI ou prenez une photo. Nous rachetons partout dans l'UE et payons vite par MobilePay ou virement.">
+  <link rel="canonical" href="{{ORIGIN}}/saelg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Vendez votre téléphone ou ordinateur | TeknikFix">
+  <meta property="og:description" content="Un prix tout de suite. Même s'il est cassé. Envoi gratuit et paiement par MobilePay.">
+  <meta property="og:url" content="{{ORIGIN}}/saelg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Rachetez-vous aussi les téléphones en panne ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Écran cassé, batterie fatiguée, ou un téléphone qui ne s'allume plus du tout. Nous déduisons ce que la réparation nous coûte, et vous voyez le prix tout de suite." } },
+      { "@type": "Question", "name": "Comment est-ce que je reçois l'argent ?", "acceptedAnswer": { "@type": "Answer", "text": "Par MobilePay ou virement bancaire, en général sous 1 jour ouvré après vérification de l'appareil. Si vous habitez hors du Danemark, nous envoyons l'argent sur votre IBAN." } },
+      { "@type": "Question", "name": "Puis-je vendre depuis un autre pays de l'UE ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Choisissez votre pays et envoyez l'appareil avec l'étiquette d'expédition que nous vous envoyons par e-mail. Les frais d'envoi sont déduits du montant, et vous recevez l'argent sur votre IBAN." } },
+      { "@type": "Question", "name": "Et si l'appareil ne correspond pas à la description ?", "acceptedAnswer": { "@type": "Answer", "text": "Vous recevez alors une nouvelle offre. Si vous refusez, nous vous le renvoyons gratuitement." } },
+      { "@type": "Question", "name": "Rachetez-vous aux entreprises ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Choisissez Entreprise et indiquez la quantité par modèle. Si votre liste est longue, envoyez-la-nous par e-mail." } }
+    ]
+  }
+  </script>
+</head>
+<body class="book-page sell-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span>Vendre</span></nav>
+        <h1>Vendez votre appareil</h1>
+        <p class="lead">Obtenez un prix ferme en moins d'une minute. Même s'il est cassé.</p>
+        <ul class="sell-promises">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5h11v9H3zM14 10.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>Envoi gratuit au Danemark</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 14.5h3"/></svg>Paiement sous 1 jour ouvré</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Vos données sont effacées</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section book-section">
+      <div class="wrap">
+        <div class="panel book-flow" id="sell">
+          <div id="device-step">
+            <div class="sell-top" id="sell-top" hidden>
+              <p class="flow-count" id="step-count"></p>
+              <div class="steps-bar" id="sell-bar" aria-hidden="true"></div>
+              <div class="sell-chosen" id="sell-chosen" hidden>
+                <span class="sell-chosen-name"><strong id="chosen-name"></strong><span id="chosen-spec"></span></span>
+                <span class="sell-upto" id="upto" hidden></span>
+                <button class="link-button" id="change-model" type="button">Changer</button>
+              </div>
+            </div>
+            <p id="step-live" class="visually-hidden" aria-live="polite"></p>
+
+            <div class="sell-step" data-sell="find">
+              <h2 id="device-title">Que voulez-vous vendre ?</h2>
+              <div class="sell-search">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+                <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Modèle ou numéro IMEI" aria-label="Saisissez le modèle ou le numéro IMEI" aria-controls="search-hits">
+              </div>
+              <ul class="search-hits" id="search-hits" role="listbox" aria-label="Modèles" hidden></ul>
+              <p class="photo-status" id="photo-status" aria-live="polite" hidden></p>
+              <div class="quick-picks" id="quick-picks"></div>
+              <p class="other-ways-title">Vous ne savez pas de quel modèle il s'agit ?</p>
+              <div class="other-ways">
+                <label class="way-btn" id="photo-way" data-vision="{{VISION_ENABLED}}">
+                  <input type="file" id="photo" accept="image/*">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.6-2.5h6.8L17 8.5h3v10H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
+                  <span><strong>Prendre une photo</strong><small>De Réglages → Informations, ou de l'étiquette au dos</small></span>
+                </label>
+                <button class="way-btn" id="imei-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M9.5 8h5M9.5 11h5M9.5 14h3"/></svg>
+                  <span><strong>Utiliser le numéro IMEI</strong><small>Composez *#06# sur le téléphone</small></span>
+                </button>
+                <button class="way-btn" id="list-way" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+                  <span><strong>Choisir dans la liste</strong><small>Toutes les marques et tous les modèles</small></span>
+                </button>
+              </div>
+              <label class="field field-gap" id="list-wrap" hidden><span>Modèle</span><select id="model"><option value="">Choisir un modèle</option></select></label>
+            </div>
+
+            <div class="sell-step" data-sell="spec" hidden>
+              <h2 id="spec-title">Quelle capacité de stockage a-t-il ?</h2>
+              <div id="variant-block" hidden>
+                <p class="field-title" id="variant-title">Puce</p>
+                <div class="choice-grid tile-grid" id="variant-tiles"></div>
+              </div>
+              <div id="storage-block" hidden>
+                <p class="field-title" id="storage-title" hidden>Stockage</p>
+                <div class="choice-grid tile-grid" id="storage-tiles"></div>
+              </div>
+              <div id="conn-block" hidden>
+                <p class="field-title">Peut-il accueillir une carte SIM ?</p>
+                <div class="choice-grid tile-grid" id="conn-tiles"></div>
+              </div>
+              <p class="field-note field-gap" id="spec-help">Vous le trouverez dans Réglages → Général → Informations.</p>
+            </div>
+
+            <div class="sell-step" data-sell="look" hidden>
+              <h2>Quel est son état ?</h2>
+              <div class="look-grid" id="look-tiles"></div>
+              <div id="crack-block" hidden>
+                <p class="field-title field-gap">Qu'est-ce qui est fissuré ?</p>
+                <div class="choice-grid tile-grid" id="crack-tiles"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="works" hidden>
+              <h2>Tout fonctionne comme il faut ?</h2>
+              <div class="look-grid" id="works-tiles"></div>
+              <div id="fault-block" hidden>
+                <p class="field-title field-gap">Qu'est-ce qui ne fonctionne pas ? <span class="repair-hint">Cochez ce qui correspond</span></p>
+                <div class="fault-grid" id="fault-list"></div>
+              </div>
+            </div>
+
+            <div class="sell-step" data-sell="price" hidden>
+              <div class="estimate sell-offer" id="offer" aria-live="polite"></div>
+              <div class="review sell-summary" id="summary"></div>
+              <details class="sell-more" id="more">
+                <summary>Envie d'être tout à fait précis ? Modifiez tous les détails</summary>
+                <div id="questions"></div>
+                <div class="field-pair">
+                  <label class="field"><span>IMEI ou numéro de série <small class="muted">(facultatif)</small></span><input id="imei" inputmode="text" maxlength="24" autocomplete="off" placeholder="Composez *#06# sur le téléphone"></label>
+                  <label class="field"><span>Nombre d'appareils identiques</span><input id="qty" type="number" min="1" max="500" value="1" inputmode="numeric"></label>
+                </div>
+                <p class="form-error" id="imei-error" hidden></p>
+              </details>
+              <p class="field-title field-gap">La suite se passe ainsi</p>
+              <ol class="next-steps">
+                <li><strong>Indiquez où verser l'argent</strong><span>Nom, adresse et MobilePay ou compte bancaire. Ça prend 1 minute.</span></li>
+                <li><strong>Envoyez-le gratuitement</strong><span>Nous vous envoyons une étiquette d'expédition par e-mail. Ou déposez-le à Aalborg.</span></li>
+                <li><strong>Recevez l'argent</strong><span>Nous le vérifions et payons sous 1 jour ouvré.</span></li>
+              </ol>
+            </div>
+
+            <div class="form-nav sell-nav">
+              <button class="btn btn-ghost" id="back" type="button" hidden>Retour</button>
+              <button class="btn btn-ghost" id="cancel-edit" type="button" hidden>Annuler</button>
+              <button class="btn btn-copper" id="next" type="button" hidden>Voir le prix</button>
+              <button class="btn btn-copper" id="add" type="button" hidden>Le vendre</button>
+            </div>
+          </div>
+
+          <form id="seller-step" hidden novalidate>
+            <h2>Votre vente</h2>
+            <div class="review sell-list" id="sell-list"></div>
+            <button class="link-button" id="add-more" type="button">+ Ajouter un autre appareil</button>
+
+            <p class="field-title field-gap">Vous vendez en tant que</p>
+            <div class="segmented">
+              <label><input type="radio" name="sellerType" value="privat" checked><span>Particulier</span></label>
+              <label><input type="radio" name="sellerType" value="firma"><span>Entreprise</span></label>
+            </div>
+            <div class="field-pair field-gap" id="company-row" hidden>
+              <label class="field"><span>Nom de l'entreprise</span><input name="company" maxlength="120" autocomplete="organization"></label>
+              <label class="field"><span id="cvr-label">Numéro d'entreprise ou de TVA</span><input name="cvr" maxlength="20" autocomplete="off"></label>
+            </div>
+
+            <label class="field field-gap"><span>Nom</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Téléphone</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+              <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="field-pair">
+              <label class="field"><span>Adresse</span><input name="address" required maxlength="200" autocomplete="street-address" placeholder="Rue, numéro, code postal et ville"></label>
+              <label class="field"><span>Pays</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+            </div>
+
+            <p class="field-title">Comment le récupérons-nous ?</p>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="delivery" value="post" checked><strong>Envoyer par la poste</strong><small id="post-home">Gratuit. Nous vous envoyons une étiquette d'expédition par e-mail</small><small id="post-abroad" hidden>Nous vous envoyons une étiquette d'expédition par e-mail. Les frais d'envoi depuis l'étranger ({{SELL_EU_SHIP}} DKK) sont déduits du montant</small></label>
+              <label class="choice" id="dropoff"><input type="radio" name="delivery" value="aflever"><strong>Déposer à Aalborg</strong><small>{{STREET}}, sur rendez-vous</small></label>
+            </div>
+
+            <p class="field-title field-gap">Comment voulez-vous recevoir l'argent ?</p>
+            <div class="segmented" id="payout-choice">
+              <label id="mp-choice"><input type="radio" name="payoutMethod" value="mobilepay" checked><span>MobilePay</span></label>
+              <label><input type="radio" name="payoutMethod" value="bank"><span>Virement bancaire</span></label>
+            </div>
+            <label class="field field-gap" id="mp-row"><span>Numéro MobilePay</span><input name="mobilepay" maxlength="20" inputmode="tel" placeholder="Le même que le téléphone si vide"></label>
+            <div class="field-pair field-gap" id="bank-row" hidden>
+              <label class="field"><span>Code agence</span><input name="reg" maxlength="4" inputmode="numeric"></label>
+              <label class="field"><span>Numéro de compte</span><input name="konto" maxlength="14" inputmode="numeric"></label>
+            </div>
+            <label class="field field-gap" id="iban-row" hidden><span>IBAN</span><input name="iban" maxlength="42" autocomplete="off" placeholder="Ex. DE89 3704 0044 0532 0130 00"></label>
+
+            <button class="link-button" id="note-open" type="button">+ Nous écrire un message (facultatif)</button>
+            <label class="field" id="note-wrap" hidden><span>Message pour nous <small class="muted">(facultatif)</small></span><textarea name="note" maxlength="2000" placeholder="Ex. couleur, accessoires, ou une liste d'appareils"></textarea></label>
+            <label class="check"><input type="checkbox" name="consent" value="ja"> <span>Je suis propriétaire de l'appareil, il n'est pas volé, et j'ai plus de 18 ans. Je désactive Localiser mon iPhone et les autres verrouillages avant de l'envoyer.</span></label>
+            <p class="form-error" id="send-error" hidden role="alert"></p>
+            <div class="form-nav">
+              <button class="btn btn-copper" id="send" type="submit">Envoyer et recevoir l'offre par e-mail</button>
+            </div>
+          </form>
+        </div>
+
+        <p class="book-trust">
+          <span>Nous rachetons partout dans l'UE · Envoi gratuit au Danemark · Paiement par MobilePay ou virement · Vos données sont effacées · Si vous refusez, nous vous le renvoyons gratuitement</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Comment vendre</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Obtenez le prix</h3><p>Cherchez votre modèle et répondez à deux petites questions. Le prix s'affiche tout de suite.</p></li>
+          <li><span>2</span><h3>Envoyez-le</h3><p>Nous vous envoyons une étiquette d'expédition par e-mail. Gratuit au Danemark, et depuis le reste de l'UE nous déduisons simplement les frais d'envoi. Si vous habitez à Aalborg, vous pouvez le déposer.</p></li>
+          <li><span>3</span><h3>Recevez l'argent</h3><p>Nous le vérifions et payons par MobilePay ou virement, en général sous 1 jour ouvré.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2 class="section-title">Une entreprise avec beaucoup d'appareils ?</h2>
+          <p>Choisissez <strong>Entreprise</strong> et indiquez la quantité par modèle. Le calcul du prix est le même, qu'il s'agisse d'un seul téléphone ou d'une caisse entière.</p>
+          <p>Si votre liste est longue, envoyez-la à <a href="mailto:{{EMAIL}}?subject=Opk%C3%B8b%20af%20enheder">{{EMAIL}}</a> ou appelez le {{PHONE}}. Nous venons chercher les gros lots en Nordjylland.</p>
+        </div>
+        <div class="narrow">
+          <details class="faq-item"><summary>Rachetez-vous aussi les téléphones en panne ?</summary><p>Oui. Écran cassé, batterie fatiguée, ou un téléphone qui ne s'allume plus du tout. Nous déduisons ce que la réparation nous coûte, et vous voyez le prix tout de suite.</p></details>
+          <details class="faq-item"><summary>Comment est-ce que je reçois l'argent ?</summary><p>Par MobilePay ou virement bancaire, en général sous 1 jour ouvré après vérification de l'appareil. Si vous habitez hors du Danemark, nous envoyons l'argent sur votre IBAN.</p></details>
+          <details class="faq-item"><summary>Puis-je vendre depuis un autre pays de l'UE ?</summary><p>Oui. Choisissez votre pays et envoyez l'appareil avec l'étiquette d'expédition que nous vous envoyons par e-mail. Les frais d'envoi de {{SELL_EU_SHIP}} DKK sont déduits du montant, et vous recevez l'argent sur votre IBAN.</p></details>
+          <details class="faq-item"><summary>Et si l'appareil ne correspond pas à la description ?</summary><p>Vous recevez alors une nouvelle offre. Si vous refusez, nous vous le renvoyons gratuitement.</p></details>
+          <details class="faq-item"><summary>Et mes données ?</summary><p>Faites une sauvegarde, et réinitialisez l'appareil si vous le pouvez. Nous effaçons tout avant qu'il soit réparé et revendu.</p></details>
+          <details class="faq-item"><summary>Pourquoi dois-je désactiver Localiser mon iPhone ?</summary><p>Personne ne peut utiliser un appareil verrouillé. Nous ne pouvons donc pas le racheter. Allez dans Réglages → votre nom → Localiser → Localiser mon iPhone, et désactivez-le.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="sell-data">{{SELL_JSON}}</script>
+  <script src="/js/site.js"></script>
+  <script src="/js/saelg.js"></script>
+</body>
+</html>

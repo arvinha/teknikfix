@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pago: {{PAY_LIST}} | TeknikFix Aalborg</title>
+  <meta name="description" content="En TeknikFix puedes pagar con {{PAY_LIST}}. Pagas cuando la reparación funciona. Si no se puede reparar, no te cuesta nada: 0 DKK.">
+  <link rel="canonical" href="{{ORIGIN}}/betaling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Pago | TeknikFix">
+  <meta property="og:description" content="{{PAY_LIST_CAP}}. Paga cuando funcione.">
+  <meta property="og:url" content="{{ORIGIN}}/betaling">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a><span aria-hidden="true">/</span><span>Pago</span></nav>
+        <h1>Pagas cuando funciona</h1>
+        <p class="lead">Ves el precio antes de reservar. Cuando hayas comprobado el resultado, pagas con {{PAY_LIST}}.<!--IF_CARD--> Si prefieres pagar enseguida, puedes elegirlo al reservar.<!--END_IF_CARD--></p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="promise-grid">
+          <article class="panel"><h2>1</h2><p>Ves el precio y el plazo al reservar.</p></article>
+          <article class="panel"><h2>2</h2><p>Reparamos. Tú compruebas que el fallo ha desaparecido.</p></article>
+          <article class="panel"><h2>3</h2><p>Tu caso aparece como listo para pagar, con el importe.</p></article>
+          <article class="panel"><h2>4</h2><p>Pagas. Recibes un recibo y actualizamos tu caso.</p></article>
+        </div>
+        <!--IF_CARD-->
+        <article class="pay-card">
+          <h2>Tarjeta, MobilePay o Klarna</h2>
+          <p>La forma más rápida. Pulsa «Pagar» en tu caso y elige cómo quieres pagar. El pago se realiza a través de Stripe y nosotros nunca vemos los datos de tu tarjeta.</p>
+          <ul class="pay-methods" aria-label="Formas de pago"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <p>Con Klarna puedes pagar más tarde o dividir el importe.</p>
+          <p><a class="btn" href="/sag">Ve a tu caso para pagar</a></p>
+        </article>
+        <!--END_IF_CARD-->
+        <div class="pay-grid">
+          <article class="pay-card">
+            <h2>PayPal</h2>
+            <p>El importe está en coronas danesas y aparece rellenado en tu caso cuando la reparación está lista.</p>
+            <p>El pago va a <strong>{{PAYPAL}}</strong>. Indica el número de caso para que sepamos que es el tuyo.</p>
+            <p><a href="/sag">Ve a tu caso para pagar</a></p>
+          </article>
+          <article class="pay-card" id="bank">
+            <h2>Transferencia bancaria</h2>
+            <dl class="bank-dl">
+              <dt>Beneficiario</dt><dd>{{HOLDER}}</dd>
+              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
+              <dt>BIC</dt><dd>{{BIC}}</dd>
+              <dt>Banco</dt><dd>{{BANK}}</dd>
+              <dt>Concepto</dt><dd>Tu número de caso, p. ej. AX-7K2M</dd>
+            </dl>
+            <div class="copy-row">
+              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">Copiar IBAN</button>
+              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">Copiar BIC</button>
+            </div>
+            <p>La cuenta está en coronas suecas. Tu banco cambia las coronas danesas a suecas y puede aplicar una comisión de cambio.</p>
+          </article>
+        </div>
+        <div class="panel">
+          <h2>Si no se puede reparar</h2>
+          <p>Entonces no pagas nada. Las piezas solo se piden cuando has aceptado el precio.<!--IF_CARD--> Si has pagado por adelantado, te devolvemos todo el dinero.<!--END_IF_CARD--> Si el mismo fallo reaparece en 30 días, lo arreglamos sin volver a cobrarte.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

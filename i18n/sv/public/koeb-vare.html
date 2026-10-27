@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ITEM_TITLE}}</title>
+  <meta name="description" content="{{ITEM_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{ITEM_PATH}}">
+  <meta name="robots" content="{{ITEM_ROBOTS}}">
+  <meta property="og:title" content="{{ITEM_TITLE}}">
+  <meta property="og:description" content="{{ITEM_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{ITEM_PATH}}">
+  <meta property="og:image" content="{{ITEM_IMAGE}}">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="shop-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brödsmulor"><a href="/">Startsida</a><span aria-hidden="true">/</span><a href="/koeb">Köp begagnat</a><span aria-hidden="true">/</span><span>{{ITEM_H1}}</span></nav>
+        <div class="shop-item">
+          {{ITEM_GALLERY}}
+          <div class="shop-info">
+            <h1>{{ITEM_H1}}</h1>
+            <p class="shop-item-price">{{ITEM_PRICE}}</p>
+            {{ITEM_ERROR}}
+            <div class="shop-buy-box">{{ITEM_BUY}}</div>
+            <ul class="shop-perks">
+              <li>Fri frakt i Danmark. Skickas inom 1 vardag.</li>
+              <li>24 månaders reklamationsrätt</li>
+              <li>14 dagars ångerrätt</li>
+              <li>Kort, MobilePay, Apple Pay och Google Pay</li>
+            </ul>
+            <dl class="shop-specs">{{ITEM_SPECS}}</dl>
+            <p class="shop-grade-text">{{ITEM_GRADE}}</p>
+            {{ITEM_TEXT}}
+            <p class="field-note">Säljs enligt vinstmarginalbeskattning för begagnade varor. Momsen kan inte dras av.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Det här får du</h2>
+        <div class="promise-grid">
+          <article><h3>Testad av oss</h3><p>Skärm, batteri, kamera, knappar, laddning och uppkoppling är kontrollerade.</p></article>
+          <article><h3>Återställd och utloggad</h3><p>Den är rensad och redo för dig. Inget konto eller någon låsning från den tidigare ägaren.</p></article>
+          <article><h3>Skyddad i 2 år</h3><p>Går den sönder av sig själv reparerar vi den, byter ut den eller ger dig pengarna tillbaka.</p></article>
+          <article><h3>Bra för miljön</h3><p>En begagnad enhet sparar den CO₂ och de råvaror som det kostar att tillverka en ny.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  {{ITEM_LD}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

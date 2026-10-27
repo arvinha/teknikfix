@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PARTS_TITLE}}</title>
+  <meta name="description" content="{{PARTS_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{PARTS_TITLE}}">
+  <meta property="og:description" content="{{PARTS_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="parts-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Polku"><a href="/">Etusivu</a><span aria-hidden="true">/</span>{{PARTS_CRUMB}}</nav>
+        <h1>{{PARTS_H1}}</h1>
+        <p class="lead">{{PARTS_LEAD}}</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap parts-layout">
+        <div>
+          <div class="panel">
+            <label class="field"><span>Etsi oma mallisi</span><select id="part-model"><option value="">Valitse malli</option></select></label>
+            <p class="field-note">Eikö malliasi löydy listalta? Soita numeroon {{PHONE}}, niin etsimme osan sinulle.</p>
+          </div>
+          <p class="form-error" id="cancelled" hidden>Maksu keskeytyi. Ostoskori on tallessa, joten voit yrittää uudelleen.</p>
+          <div class="part-grid" id="part-grid"></div>
+        </div>
+
+        <aside class="panel cart" id="cart" aria-label="Ostoskori">
+          <h2>Ostoskori</h2>
+          <div id="cart-lines"><p class="muted">Ostoskori on tyhjä.</p></div>
+          <label class="field cart-country"><span>Toimitusmaa</span><select id="ship-country" autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          <p class="form-error" id="cart-error" hidden></p>
+          <button class="btn btn-copper cart-pay" id="pay" type="button" disabled>Siirry maksamaan</button>
+          <p class="cart-note">Kortti, MobilePay, Apple Pay ja Klarna. Lähetämme seurannalla koko EU:n alueelle. 14 päivän palautusoikeus.</p>
+        </aside>
+      </div>
+    </section>
+
+    {{PARTS_SEO}}
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Hyvä tietää</h2>
+        <div class="promise-grid">
+          <article><h3>Sopii juuri sinun malliisi</h3><p>Näytämme vain osat, jotka on tehty täsmälleen valitsemaasi malliin.</p></article>
+          <article><h3>Laadukkaat yhteensopivat osat</h3><p>Osat eivät ole alkuperäisiä Apple- tai Samsung-osia, mutta ne on tehty sopimaan ja toimimaan niiden tavoin.</p></article>
+          <article><h3>Suoraan ovelle</h3><p>Osa lähtee suoraan varastostamme. Seurantanumero tulee sinulle sähköpostilla.</p></article>
+          <article><h3>Haluatko mieluummin jättää työn meille?</h3><p>Vaihdamme osan puolestasi Aalborgissa. <a href="/book" style="color: #efc2a8">Katso hinta ja varaa aika</a>.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="parts-data">{{PARTS_JSON}}</script>
+  <div id="parts-config" hidden data-card="{{CARD_ENABLED}}" data-model="{{PARTS_MODEL}}"></div>
+  {{PARTS_LD}}
+  <script src="/js/site.js"></script>
+  <script src="/js/reservedele.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PARTS_TITLE}}</title>
+  <meta name="description" content="{{PARTS_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{PARTS_TITLE}}">
+  <meta property="og:description" content="{{PARTS_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="parts-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a><span aria-hidden="true">/</span>{{PARTS_CRUMB}}</nav>
+        <h1>{{PARTS_H1}}</h1>
+        <p class="lead">{{PARTS_LEAD}}</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap parts-layout">
+        <div>
+          <div class="panel">
+            <label class="field"><span>Zoek jouw model</span><select id="part-model"><option value="">Kies je model</option></select></label>
+            <p class="field-note">Staat je model er niet bij? Bel {{PHONE}}, dan zoeken wij het onderdeel voor je op.</p>
+          </div>
+          <p class="form-error" id="cancelled" hidden>De betaling is afgebroken. Je winkelmandje is bewaard, dus je kunt het gewoon opnieuw proberen.</p>
+          <div class="part-grid" id="part-grid"></div>
+        </div>
+
+        <aside class="panel cart" id="cart" aria-label="Winkelmandje">
+          <h2>Winkelmandje</h2>
+          <div id="cart-lines"><p class="muted">Je winkelmandje is leeg.</p></div>
+          <label class="field cart-country"><span>Verzenden naar</span><select id="ship-country" autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          <p class="form-error" id="cart-error" hidden></p>
+          <button class="btn btn-copper cart-pay" id="pay" type="button" disabled>Naar betalen</button>
+          <p class="cart-note">Kaart, MobilePay, Apple Pay en Klarna. Wij verzenden binnen de hele EU met track-and-trace. 14 dagen bedenktijd.</p>
+        </aside>
+      </div>
+    </section>
+
+    {{PARTS_SEO}}
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Goed om te weten</h2>
+        <div class="promise-grid">
+          <article><h3>Past op jouw model</h3><p>Wij laten alleen onderdelen zien die gemaakt zijn voor precies het model dat je kiest.</p></article>
+          <article><h3>Compatibele kwaliteitsonderdelen</h3><p>Het zijn geen originele Apple- of Samsung-onderdelen, maar onderdelen die gemaakt zijn om net zo te passen en te werken.</p></article>
+          <article><h3>Rechtstreeks aan je deur</h3><p>Het onderdeel wordt rechtstreeks vanuit ons magazijn verstuurd. Je krijgt een trackingnummer per e-mail.</p></article>
+          <article><h3>Liever dat wij het doen?</h3><p>Wij vervangen het onderdeel voor je in Aalborg. <a href="/book" style="color: #efc2a8">Bekijk de prijs en maak een afspraak</a>.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="parts-data">{{PARTS_JSON}}</script>
+  <div id="parts-config" hidden data-card="{{CARD_ENABLED}}" data-model="{{PARTS_MODEL}}"></div>
+  {{PARTS_LD}}
+  <script src="/js/site.js"></script>
+  <script src="/js/reservedele.js"></script>
+</body>
+</html>

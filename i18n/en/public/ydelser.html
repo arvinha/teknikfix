@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phone, computer and tablet repair prices | TeknikFix Aalborg</title>
+  <meta name="description" content="Guide prices for phone, computer and tablet repairs at TeknikFix in Aalborg. Free check-up. You get the final price before we start.">
+  <link rel="canonical" href="{{ORIGIN}}/ydelser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Repair prices | TeknikFix Aalborg">
+  <meta property="og:description" content="Guide prices. Free check-up, and you only pay once it works.">
+  <meta property="og:url" content="{{ORIGIN}}/ydelser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Services</span></nav>
+        <h1>Services and prices</h1>
+        <p class="lead">Here is the price range for each type of repair. You'll find the fixed price for your exact model under <a href="/priser">prices</a>, or when you book. The check-up costs 0 DKK.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="table-wrap" id="telefon">
+          <table class="price-table">
+            <caption class="visually-hidden">Phone</caption>
+            <thead><tr><th>Phone</th><th>Price</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Phone</td></tr>
+              <tr><td>Battery</td><td>{{RANGE_TELEFON_BATTERI}}</td><td>approx. 30 min</td></tr>
+              <tr><td>Screen</td><td>{{RANGE_TELEFON_SKAERM}}</td><td>approx. 45 min</td></tr>
+              <tr><td>Charging port</td><td>{{RANGE_TELEFON_LADEPORT}}</td><td>approx. 45 min</td></tr>
+              <tr><td>Camera</td><td>{{RANGE_TELEFON_KAMERA}}</td><td>approx. 45 min</td></tr>
+              <tr><td>Back glass</td><td>{{RANGE_TELEFON_BAGGLAS}}</td><td>1–2 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="computer">
+          <table class="price-table">
+            <caption class="visually-hidden">Computer</caption>
+            <thead><tr><th>Computer</th><th>Price</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Computer</td></tr>
+              <tr><td>Slow computer, clean-up and optimisation</td><td>{{RANGE_COMPUTER_RENS}}</td><td>1–2 hours</td></tr>
+              <tr><td>Viruses and pop-ups</td><td>{{RANGE_COMPUTER_VIRUS}}</td><td>1–3 hours</td></tr>
+              <tr><td>Reinstalling Windows or macOS</td><td>{{RANGE_COMPUTER_GENINSTALLATION}}</td><td>2–3 hours</td></tr>
+              <tr><td>New SSD, 1 TB</td><td>from {{FRA_COMPUTER_SSD}}</td><td>2–3 hours</td></tr>
+              <tr><td>Laptop screen</td><td>from {{FRA_COMPUTER_SKAERM}}</td><td>1–3 days</td></tr>
+              <tr><td>Laptop battery</td><td>from {{FRA_COMPUTER_BATTERI}}</td><td>1–2 days</td></tr>
+              <tr><td>File recovery</td><td>from {{FRA_COMPUTER_DATA}}</td><td>1–3 days</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="tablet">
+          <table class="price-table">
+            <caption class="visually-hidden">Tablet</caption>
+            <thead><tr><th>Tablet</th><th>Price</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Tablet</td></tr>
+              <tr><td>Screen or glass</td><td>{{RANGE_TABLET_SKAERM}}</td><td>Same day</td></tr>
+              <tr><td>Battery</td><td>{{RANGE_TABLET_BATTERI}}</td><td>2–3 hours</td></tr>
+              <tr><td>Charging port</td><td>{{RANGE_TABLET_LADEPORT}}</td><td>approx. 1 hour</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Always 0 DKK</h2>
+          <p>The check-up, whether you come to us or we come to you. Travel within Aalborg is 0 DKK too. You only pay for a repair you've said yes to, and only once it works.</p>
+          <p>Water damage and very old devices often can't be saved. If that's the case, we'll tell you straight away.</p>
+          <div class="actions"><a class="btn" href="/book">Book and see the price</a><a class="btn btn-ghost" href="/priser">Prices for all models</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

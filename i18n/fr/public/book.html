@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réservez une réparation et voyez le prix tout de suite | TeknikFix Aalborg</title>
+  <meta name="description" content="Choisissez le modèle et la panne, et voyez tout de suite le prix et le délai. Réparation de téléphone, d'ordinateur et de tablette à Aalborg. Payez avec {{PAY_LIST}} quand l'appareil refonctionne.">
+  <link rel="canonical" href="{{ORIGIN}}/book">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Réservez un diagnostic gratuit | TeknikFix">
+  <meta property="og:description" content="Réservez à toute heure, jour et nuit. Diagnostic gratuit, prix annoncé avant le début.">
+  <meta property="og:url" content="{{ORIGIN}}/book">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span>Réserver</span></nav>
+        <h1>Réserver une réparation</h1>
+        <p class="lead">Voyez le prix tout de suite. Nous confirmons l'horaire ensuite.</p>
+      </div>
+    </header>
+    <section class="section book-section">
+      <div class="wrap">
+        <form class="panel book-flow" id="book-form" method="post" action="/api/bookings">
+          <p class="flow-count" id="step-count" hidden>Étape 1 sur 4</p>
+          <div class="steps-bar" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span></div>
+          <p id="step-live" class="visually-hidden" aria-live="polite">Étape 1 sur 4</p>
+          {{BOOK_ERROR}}
+          <p id="form-error" class="form-error" hidden></p>
+
+          <div data-step class="is-active">
+            <h2>Sur quoi devons-nous nous pencher ?</h2>
+            <div class="choice-grid device-choices">
+              <label class="choice choice-icon"><input type="radio" name="device" value="telefon" required><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><strong>Téléphone</strong><small>iPhone, Samsung, Pixel et tous les autres</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="computer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4.5" width="16" height="11" rx="1.5"/><path d="M2 19.5h20"/></svg><strong>Ordinateur</strong><small>Portable ou fixe</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="tablet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><strong>Tablette</strong><small>iPad et autres</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="andet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17h.01"/></svg><strong>Autre</strong><small>Console, montre, écouteurs – dites-nous ce que c'est</small></label>
+            </div>
+          </div>
+
+          <div data-step>
+            <h2>Quel est le problème ?</h2>
+            <div id="pick-wrap" hidden>
+              <label class="field"><span>Modèle</span><select name="modelId" id="model-select"></select></label>
+              <p class="field-note">Votre modèle n'est pas dans la liste ? Choisissez « Mon modèle n'est pas dans la liste » tout en bas. Nous réparons presque toutes les marques, et l'évaluation est gratuite.</p>
+              <div id="repair-wrap" hidden>
+                <p class="field-title">Que faut-il réparer ? <span class="repair-hint">Vous pouvez en choisir plusieurs</span></p>
+                <div class="repair-grid" id="repair-grid"></div>
+              </div>
+              <div class="estimate" id="estimate" hidden aria-live="polite"></div>
+            </div>
+            <label class="field" id="model-text"><span>Marque et modèle, si vous les connaissez</span><input name="model" maxlength="80" placeholder="Par ex. Nothing Phone 2 ou Lenovo ThinkPad"></label>
+            <button class="link-button" id="problem-open" type="button" hidden>+ Écrivez-nous un message (facultatif)</button>
+            <label class="field" id="problem-wrap"><span id="problem-label">La panne</span><textarea name="problem" required minlength="8" maxlength="2000" placeholder="Par ex. l'écran est cassé, ou l'ordinateur ne démarre pas"></textarea></label>
+          </div>
+
+          <div data-step>
+            <h2>Où et quand ?</h2>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="visit" value="vaerksted" required><strong>Je l'apporte</strong><small>Aalborg Øst, sur rendez-vous</small></label>
+              <label class="choice"><input type="radio" name="visit" value="hjemme"><strong>Vous venez chez moi</strong><small>Déplacement gratuit à Aalborg</small></label>
+              <label class="choice"><input type="radio" name="visit" value="post"><strong>Je l'envoie</strong><small>Par la poste, depuis toute l'UE</small></label>
+            </div>
+            <div id="address-wrap">
+              <label class="field field-gap"><span>Votre adresse</span><input name="address" maxlength="200" autocomplete="street-address" placeholder="Rue, numéro, code postal, ville et pays"></label>
+              <p class="field-note" id="post-note" hidden>Nous vous envoyons un e-mail pour vous expliquer comment l'emballer et l'expédier. Une fois réparé, nous le renvoyons à votre adresse. Vous payez vous-même l'envoi jusqu'à chez nous, et nous incluons le retour dans le prix.</p>
+            </div>
+            <p class="field-title field-gap">Quand ?</p>
+            <div class="segmented">
+              <label><input type="radio" name="when" value="hurtigst" checked><span>Le plus vite possible</span></label>
+              <label><input type="radio" name="when" value="tidspunkt"><span>Choisir le jour et l'heure</span></label>
+            </div>
+            <div id="time-wrap" class="time-row">
+              <label class="field"><span>Jour</span><input type="date" name="timeDate" id="time-date"></label>
+              <label class="field"><span>Heure</span><select name="timeSlot" id="time-slot"><option value="formiddag">Matin 9h–12h</option><option value="eftermiddag" selected>Après-midi 12h–17h</option><option value="aften">Soir 17h–22h</option></select></label>
+            </div>
+            <div id="time-pick" class="time-pick" hidden>
+              <div class="day-chips" id="day-chips" role="radiogroup" aria-label="Jour"></div>
+              <div class="slot-chips" id="slot-chips" role="radiogroup" aria-label="Heure"></div>
+            </div>
+            <p class="form-hint">Nous confirmons l'horaire par SMS ou par e-mail. Ne venez qu'après l'avoir reçu.</p>
+          </div>
+
+          <div data-step>
+            <h2>Vos coordonnées</h2>
+            <label class="field"><span>Nom</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Téléphone</span><input name="phone" required minlength="8" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="Votre numéro de portable"></label>
+              <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="review" id="review" hidden></div>
+            <div id="pay-choice" hidden>
+              <p class="field-title">Quand souhaitez-vous payer ?</p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="payWhen" value="efter" checked><strong>Quand ça refonctionne</strong><small>{{PAY_LIST_CAP}}</small></label>
+                <label class="choice"><input type="radio" name="payWhen" value="nu"><strong>Payer maintenant</strong><small>Carte, MobilePay ou Klarna. Remboursement si la réparation est impossible</small></label>
+              </div>
+            </div>
+            <input type="hidden" name="consent" value="ja">
+            <p class="form-hint">Nous n'utilisons vos informations que pour votre dossier et le paiement.</p>
+            <a class="pay-logos book-pay-logos" href="/betaling" aria-label="Moyens de paiement : {{PAY_ACCEPTED}}">
+              {{PAY_LOGOS}}
+            </a>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-ghost" id="back" type="button" hidden><span aria-hidden="true">‹</span> Retour</button>
+            <button class="btn" id="next" type="button" hidden>Suivant <span aria-hidden="true">›</span></button>
+            <button class="btn btn-copper" id="send" type="submit">Envoyer la réservation</button>
+          </div>
+        </form>
+        <p class="book-trust">
+          <a class="tp-link" href="{{TRUSTPILOT_URL}}" rel="noopener" target="_blank"><img src="/img/trustpilot.svg" alt="Trustpilot" width="104" height="26"></a>
+          <span>Diagnostic gratuit · Prix annoncé avant de commencer · Garantie 30 jours</span>
+        </p>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="price-data">{{PRICE_JSON}}</script>
+  <div id="book-config" hidden data-card="{{CARD_ENABLED}}"></div>
+  <script src="/js/site.js"></script>
+  <script src="/js/book.js"></script>
+</body>
+</html>

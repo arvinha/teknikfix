@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Precios de reparación en Aalborg · iPhone, Samsung, Pixel, iPad y ordenador | TeknikFix</title>
+  <meta name="description" content="Consulta el precio de tu reparación al momento. Pantalla de iPhone desde {{FRA_IPHONE_SKAERM}}, pantalla de Samsung desde {{FRA_SAMSUNG_SKAERM}}, Google Pixel, OnePlus, Xiaomi y todas las demás marcas. Diagnóstico gratis en Aalborg, y pagas cuando funcione.">
+  <link rel="canonical" href="{{ORIGIN}}/priser">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Precios de reparación en Aalborg | TeknikFix">
+  <meta property="og:description" content="Precio fijo para pantalla, batería, puerto de carga y mucho más. Encuentra tu modelo.">
+  <meta property="og:url" content="{{ORIGIN}}/priser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">{{PRICE_LD}}</script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a><span aria-hidden="true">/</span><span>Precios</span></nav>
+        <h1>Precios de reparación en Aalborg</h1>
+        <p class="lead">Encuentra tu modelo y consulta el precio y cuánto tardamos. Haz clic en un precio para reservarlo. La revisión es siempre gratis y no pagas hasta que funcione.</p>
+        <div class="page-trust">
+          <a class="pay-logos" href="/betaling" aria-label="Formas de pago: {{PAY_ACCEPTED}}">
+            {{PAY_LOGOS}}
+          </a>
+          <a class="tp-link" href="{{TRUSTPILOT_URL}}" rel="noopener" target="_blank">
+            <img src="/img/trustpilot.svg" alt="Trustpilot" width="104" height="26">
+          </a>
+        </div>
+        <nav class="jump-links" aria-label="Ir a">
+          <a href="#iphone">iPhone</a>
+          <a href="#samsung">Samsung</a>
+          <a href="#pixel">Google Pixel</a>
+          <a href="#oneplus">OnePlus</a>
+          <a href="#xiaomi">Xiaomi</a>
+          <a href="#motorola">Motorola</a>
+          <a href="#huawei">Huawei/Honor</a>
+          <a href="#andentelefon">Otros teléfonos</a>
+          <a href="#ipad">iPad</a>
+          <a href="#galaxytab">Galaxy Tab</a>
+          <a href="#andentablet">Otras tablets</a>
+          <a href="#pc">Ordenador y Mac</a>
+          <a href="#alle-modeller">Diagnóstico gratis</a>
+        </nav>
+      </div>
+    </header>
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap stack price-page">
+        <p class="price-note">Comparamos con regularidad con otros talleres de Aalborg y alrededores, y nuestros precios fijos están por debajo de lo que cobran la mayoría. Los precios se comprobaron por última vez el {{PRICE_UPDATED}}. El plazo vale cuando tenemos la pieza en stock. Si hay que pedirla, suele tardar de 1 a 3 días laborables. Cuando pone «desde», te damos el precio exacto después de la revisión gratuita.</p>
+        {{PRICE_TABLES}}
+        <div class="panel">
+          <h2>¿No encuentras tu modelo o no sabes qué le pasa?</h2>
+          <p>Sin problema. Reparamos casi todas las marcas: Nothing, Oppo, Sony, Nokia, Lenovo, HP, Asus, Acer, Dell y muchas más. Elige «Mi modelo no está en la lista» o «No lo sé: diagnóstico gratis» al reservar. Lo revisamos gratis y te damos un precio fijo antes de tocar nada.</p>
+          <div class="actions">
+            <a class="btn btn-copper" href="/book">Pide una valoración gratis</a>
+            <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Llama al {{PHONE}}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Preguntas sobre precios</h2>
+        <details class="faq-item" open><summary>¿El precio es fijo?</summary><p>Sí, cuando aparece un precio sin «desde». Es el precio que pagas. Si descubrimos otra avería, te lo decimos antes de hacer nada y decides tú.</p></details>
+        <details class="faq-item"><summary>¿Y si no se puede reparar?</summary><p>Entonces cuesta 0 DKK.<!--IF_CARD--> Si has pagado por adelantado, te devolvemos todo el dinero.<!--END_IF_CARD--></p></details>
+        <details class="faq-item"><summary>¿Cómo puedo pagar?</summary><p>Con {{PAY_LIST}}. Pagas cuando la reparación está terminada y funciona.</p></details>
+        <details class="faq-item"><summary>¿Hay garantía?</summary><p>Sí. Si la misma avería vuelve a aparecer en un plazo de 30 días, la arreglamos sin cobrarte de nuevo.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

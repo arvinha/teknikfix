@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ota yhteyttä TeknikFixiin | Saltumvej 195, 9220 Aalborg Øst</title>
+  <meta name="description" content="TeknikFix, Saltumvej 195, 3. kerros, ovi 6, 9220 Aalborg Øst. Puhelin 91 82 58 88. Varaa aika milloin vain, vierailu sopimuksen mukaan. Puhelinten, tietokoneiden ja tablettien korjaus.">
+  <link rel="canonical" href="{{ORIGIN}}/kontakt">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Ota yhteyttä TeknikFixiin Aalborg Østissa">
+  <meta property="og:description" content="Saltumvej 195, 9220 Aalborg Øst. Varaa aika milloin vain, vierailu sopimuksen mukaan.">
+  <meta property="og:url" content="{{ORIGIN}}/kontakt">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ElectronicsRepair",
+    "name": "TeknikFix",
+    "telephone": "{{PHONE_TEL}}",
+    "email": "{{EMAIL}}",
+    "url": "{{ORIGIN}}/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{STREET}}",
+      "postalCode": "{{POSTAL}}",
+      "addressLocality": "{{CITY}}",
+      "addressCountry": "DK"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": {{LAT}}, "longitude": {{LNG}} },
+    "hasMap": "{{MAPS_URL}}",
+    "openingHours": "Mo-Su 00:00-23:59"
+  }
+  </script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Murupolku"><a href="/">Etusivu</a><span aria-hidden="true">/</span><span>Yhteystiedot</span></nav>
+        <h1>Yhteystiedot ja kartta</h1>
+        <p class="lead">Soita, kirjoita tai varaa aika. Vierailu vain sopimuksen mukaan.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap">
+        <div class="visit-grid">
+          <div class="visit-card">
+            <h2>TeknikFix</h2>
+            <p>{{STREET}}<br>{{POSTAL}} {{CITY}}</p>
+            <p><a href="tel:{{PHONE_TEL}}">{{PHONE}}</a><br><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+            <p>Voit varata ajan milloin vain. Vierailu vain sopimuksen mukaan, joten tule paikalle vasta, kun olet saanut vahvistetun ajan. Voimme myös tulla luoksesi Aalborgissa.</p>
+            <p><a class="btn" href="/book">Varaa aika</a></p>
+            <p><a href="{{MAPS_URL_HTML}}" rel="noopener">Google Maps</a></p>
+          </div>
+          <iframe class="map-frame" title="Kartta: TeknikFix, Saltumvej 195, 9220 Aalborg Øst" src="https://maps.google.com/maps?q={{LAT}},{{LNG}}&amp;z=16&amp;hl=da&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="panel" style="margin-top: 16px">
+          <h2>Tietosi</h2>
+          <p>Käytämme nimeäsi, puhelinnumeroasi ja sähköpostiosoitettasi korjauksen sopimiseen ja tekemiseen sekä maksamiseen. Tapaukset tallennetaan TeknikFixin tietokoneelle. Kirjoita osoitteeseen <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>, jos haluat tietojesi korjattavan tai poistettavan. Maksujen tositteet säilytetään niin kauan kuin Tanskan kirjanpitolaki edellyttää.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

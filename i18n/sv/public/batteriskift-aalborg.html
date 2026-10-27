@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batteribyte i Aalborg · iPhone, Samsung, iPad och bärbar dator | TeknikFix</title>
+  <meta name="description" content="Nytt batteri i Aalborg på ca 30 min. iPhone från {{FRA_IPHONE_BATTERI}}, Samsung från {{FRA_SAMSUNG_BATTERI}}, iPad från {{FRA_IPAD_BATTERI}} och bärbar dator från {{FRA_COMPUTER_BATTERI}}. Fast pris, du betalar när den fungerar. Boka dygnet runt.">
+  <link rel="canonical" href="{{ORIGIN}}/batteriskift-aalborg">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Batteribyte i Aalborg | TeknikFix">
+  <meta property="og:description" content="Nytt batteri på ca 30 min. Fast pris för din modell.">
+  <meta property="og:url" content="{{ORIGIN}}/batteriskift-aalborg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Batteribyte i Aalborg",
+        "serviceType": "Byte av batteri",
+        "provider": { "@id": "{{ORIGIN}}/#business" },
+        "areaServed": { "@type": "City", "name": "Aalborg" },
+        "url": "{{ORIGIN}}/batteriskift-aalborg",
+        "offers": [
+          { "@type": "Offer", "name": "Batteribyte iPhone", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPHONE_BATTERI}}, "maxPrice": {{MAX_IPHONE_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Batteribyte Samsung", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_SAMSUNG_BATTERI}}, "maxPrice": {{MAX_SAMSUNG_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Batteribyte iPad", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPAD_BATTERI}}, "maxPrice": {{MAX_IPAD_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Batteri till bärbar dator", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_COMPUTER_BATTERI}}, "priceCurrency": "DKK" } }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startsida", "item": "{{ORIGIN}}/" },
+          { "@type": "ListItem", "position": 2, "name": "Batteribyte i Aalborg", "item": "{{ORIGIN}}/batteriskift-aalborg" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "När behöver batteriet bytas?", "acceptedAnswer": { "@type": "Answer", "text": "När telefonen stängs av vid 20–30 %, blir varm eller när batteriets skick är under 80 %. På iPhone ser du det under Inställningar, Batteri, Batteriets skick." } },
+          { "@type": "Question", "name": "Hur lång tid tar ett batteribyte?", "acceptedAnswer": { "@type": "Answer", "text": "Ca 30 minuter på en telefon när batteriet finns på lager. På en iPad 2–3 timmar och på en bärbar dator vanligtvis 1–2 dagar." } },
+          { "@type": "Question", "name": "Förlorar jag mina data?", "acceptedAnswer": { "@type": "Answer", "text": "Nej. Ett batteribyte rör inte bilder, meddelanden eller appar." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Sökväg"><a href="/">Startsida</a><span aria-hidden="true">/</span><span>Batteribyte</span></nav>
+        <h1>Batteribyte i Aalborg</h1>
+        <p class="lead">Stängs telefonen av vid 30 %, eller håller den inte en hel dag? Ett nytt batteri tar ca 30 minuter, och du kan vänta medan vi gör det. Fast pris för din modell.</p>
+        <div class="actions">
+          <a class="btn btn-copper" href="/book">Se priset och boka</a>
+          <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Ring {{PHONE}}</a>
+        </div>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap split">
+        <div class="stack">
+          <div class="table-wrap">
+            <table class="price-table">
+              <caption class="visually-hidden">Priser på batteribyte</caption>
+              <thead><tr><th>Enhet</th><th>Pris</th><th>Tid</th></tr></thead>
+              <tbody>
+                <tr><td>iPhone</td><td>{{RANGE_IPHONE_BATTERI}}</td><td>ca 30 min</td></tr>
+                <tr><td>Samsung Galaxy</td><td>{{RANGE_SAMSUNG_BATTERI}}</td><td>ca 30 min</td></tr>
+                <tr><td>iPad</td><td>{{RANGE_IPAD_BATTERI}}</td><td>2–3 timmar</td></tr>
+                <tr><td>Bärbar dator och MacBook</td><td>från {{FRA_COMPUTER_BATTERI}}</td><td>1–2 dagar</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><a class="btn btn-ghost" href="/priser">Se priset för din modell</a></p>
+          <div>
+            <h2>Tecken på ett slitet batteri</h2>
+            <p>Telefonen stängs av trots att det finns batteri kvar. Den blir varm när du laddar. Den blir långsam, eftersom den sänker prestandan för att spara på batteriet. Eller så har batteriet börjat svullna, så att skärmen eller baksidan lyfter. Det sista ska bytas direkt.</p>
+            <h2>Vilket batteri använder vi?</h2>
+            <p>Nya batterier av hög kvalitet med full kapacitet. Vi testar laddning och kapacitet innan du får tillbaka telefonen.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Så går det till</h2>
+          <p><strong>1.</strong> Boka och välj din modell. Du ser priset direkt.</p>
+          <p><strong>2.</strong> Vi bekräftar tiden. Du lämnar in enheten i Aalborg Øst, eller så kommer vi till dig.</p>
+          <p><strong>3.</strong> Vi byter batteriet. På en telefon tar det ca 30 minuter.</p>
+          <p><strong>4.</strong> Du betalar med {{PAY_LIST}} när den fungerar.</p>
+          <p>Samma fel inom 30 dagar åtgärdar vi utan ny betalning.</p>
+          <p><a href="/iphone-reparation-aalborg">iPhone</a> · <a href="/samsung-reparation-aalborg">Samsung</a> · <a href="/ipad-reparation-aalborg">iPad</a> · <a href="/macbook-reparation-aalborg">MacBook</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Frågor om batteribyte</h2>
+        <details class="faq-item" open><summary>När behöver batteriet bytas?</summary><p>När telefonen stängs av vid 20–30 %, blir varm eller när batteriets skick är under 80 %. På iPhone ser du det under Inställningar, Batteri, Batteriets skick.</p></details>
+        <details class="faq-item"><summary>Hur lång tid tar ett batteribyte?</summary><p>Ca 30 minuter på en telefon när batteriet finns på lager. På en iPad 2–3 timmar och på en bärbar dator vanligtvis 1–2 dagar.</p></details>
+        <details class="faq-item"><summary>Förlorar jag mina data?</summary><p>Nej. Ett batteribyte rör inte bilder, meddelanden eller appar.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

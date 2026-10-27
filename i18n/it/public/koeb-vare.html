@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ITEM_TITLE}}</title>
+  <meta name="description" content="{{ITEM_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{ITEM_PATH}}">
+  <meta name="robots" content="{{ITEM_ROBOTS}}">
+  <meta property="og:title" content="{{ITEM_TITLE}}">
+  <meta property="og:description" content="{{ITEM_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{ITEM_PATH}}">
+  <meta property="og:image" content="{{ITEM_IMAGE}}">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="shop-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Briciole di pane"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/koeb">Acquista usato</a><span aria-hidden="true">/</span><span>{{ITEM_H1}}</span></nav>
+        <div class="shop-item">
+          {{ITEM_GALLERY}}
+          <div class="shop-info">
+            <h1>{{ITEM_H1}}</h1>
+            <p class="shop-item-price">{{ITEM_PRICE}}</p>
+            {{ITEM_ERROR}}
+            <div class="shop-buy-box">{{ITEM_BUY}}</div>
+            <ul class="shop-perks">
+              <li>Spedizione gratuita in Danimarca. Partenza entro 1 giorno lavorativo.</li>
+              <li>24 mesi di garanzia legale</li>
+              <li>14 giorni per il recesso</li>
+              <li>Carta, MobilePay, Apple Pay e Google Pay</li>
+            </ul>
+            <dl class="shop-specs">{{ITEM_SPECS}}</dl>
+            <p class="shop-grade-text">{{ITEM_GRADE}}</p>
+            {{ITEM_TEXT}}
+            <p class="field-note">Venduto con il regime IVA dei beni usati. L'IVA non è detraibile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Cosa ricevi</h2>
+        <div class="promise-grid">
+          <article><h3>Testato da noi</h3><p>Abbiamo controllato schermo, batteria, fotocamera, tasti, ricarica e connessione.</p></article>
+          <article><h3>Ripristinato e senza account</h3><p>È stato cancellato ed è pronto per te. Nessun account o blocco del proprietario precedente.</p></article>
+          <article><h3>Coperto per 2 anni</h3><p>Se si guasta da solo, lo ripariamo, lo sostituiamo o ti rimborsiamo.</p></article>
+          <article><h3>Meglio per l'ambiente</h3><p>Un dispositivo usato fa risparmiare la CO₂ e le materie prime che servono per produrne uno nuovo.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  {{ITEM_LD}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

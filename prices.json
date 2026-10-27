@@ -1,0 +1,1446 @@
+{
+  "strategy": {
+    "undercutPercent": 7,
+    "minPrice": 249
+  },
+  "marketUpdated": "2026-10-19",
+  "marketSources": [
+    "Datamarked, Nørresundby",
+    "Nordcom, Aalborg",
+    "Phone2Fix, Aalborg",
+    "iHelp, Aalborg",
+    "Green.dk",
+    "OnSpotRepair",
+    "Phonetrade.dk",
+    "Humac (Apple autoriseret)"
+  ],
+  "stockNote": "Tiden gælder, når delen er på lager. Skal den bestilles hjem, tager det typisk 1–3 hverdage.",
+  "repairs": {
+    "telefon": {
+      "skaerm": {
+        "label": "Skærm",
+        "time": "ca. 45 min"
+      },
+      "batteri": {
+        "label": "Batteri",
+        "time": "ca. 30 min"
+      },
+      "ladeport": {
+        "label": "Ladeport",
+        "time": "ca. 45 min"
+      },
+      "bagglas": {
+        "label": "Bagglas",
+        "time": "1–2 timer"
+      },
+      "kamera": {
+        "label": "Kamera",
+        "time": "ca. 45 min"
+      },
+      "vandskade": {
+        "label": "Vandskade, rens og tjek",
+        "time": "1–2 dage",
+        "from": true,
+        "price": 399
+      },
+      "dataoverforsel": {
+        "label": "Flyt data til ny telefon",
+        "time": "ca. 1 time",
+        "price": 299
+      },
+      "fejlfinding": {
+        "label": "Ved ikke – gratis fejlfinding",
+        "time": "ca. 15 min",
+        "price": 0
+      }
+    },
+    "tablet": {
+      "skaerm": {
+        "label": "Skærm eller glas",
+        "time": "samme dag"
+      },
+      "batteri": {
+        "label": "Batteri",
+        "time": "2–3 timer"
+      },
+      "ladeport": {
+        "label": "Ladeport",
+        "time": "ca. 1 time"
+      },
+      "fejlfinding": {
+        "label": "Ved ikke – gratis fejlfinding",
+        "time": "ca. 15 min",
+        "price": 0
+      }
+    },
+    "computer": {
+      "rens": {
+        "label": "Langsom computer, rens og optimering",
+        "time": "1–2 timer"
+      },
+      "virus": {
+        "label": "Virus og pop-ups",
+        "time": "1–3 timer"
+      },
+      "geninstallation": {
+        "label": "Geninstallation af system",
+        "time": "2–3 timer"
+      },
+      "ssd": {
+        "label": "Ny SSD, 1 TB",
+        "time": "2–3 timer",
+        "from": true
+      },
+      "skaerm": {
+        "label": "Skærm",
+        "time": "1–3 dage",
+        "from": true
+      },
+      "batteri": {
+        "label": "Batteri",
+        "time": "1–2 dage",
+        "from": true
+      },
+      "tastatur": {
+        "label": "Tastatur",
+        "time": "1–3 dage",
+        "from": true
+      },
+      "ladestik": {
+        "label": "Ladestik",
+        "time": "1–2 dage",
+        "from": true
+      },
+      "data": {
+        "label": "Redning af filer",
+        "time": "1–3 dage",
+        "from": true
+      },
+      "opsaetning": {
+        "label": "Opsætning af ny computer og flytning af data",
+        "time": "2–3 timer",
+        "price": 549
+      },
+      "fejlfinding": {
+        "label": "Ved ikke – gratis fejlfinding",
+        "time": "ca. 30 min",
+        "price": 0
+      }
+    }
+  },
+  "groups": [
+    {
+      "id": "iphone",
+      "name": "iPhone",
+      "device": "telefon"
+    },
+    {
+      "id": "samsung",
+      "name": "Samsung Galaxy",
+      "device": "telefon"
+    },
+    {
+      "id": "pixel",
+      "name": "Google Pixel",
+      "device": "telefon",
+      "from": true
+    },
+    {
+      "id": "oneplus",
+      "name": "OnePlus",
+      "device": "telefon",
+      "from": true
+    },
+    {
+      "id": "xiaomi",
+      "name": "Xiaomi, Redmi og Poco",
+      "device": "telefon",
+      "from": true
+    },
+    {
+      "id": "motorola",
+      "name": "Motorola",
+      "device": "telefon",
+      "from": true
+    },
+    {
+      "id": "huawei",
+      "name": "Huawei og Honor",
+      "device": "telefon",
+      "from": true
+    },
+    {
+      "id": "andentelefon",
+      "name": "Andre telefoner",
+      "device": "telefon",
+      "from": true
+    },
+    {
+      "id": "ipad",
+      "name": "iPad",
+      "device": "tablet"
+    },
+    {
+      "id": "galaxytab",
+      "name": "Samsung Galaxy Tab",
+      "device": "tablet"
+    },
+    {
+      "id": "andentablet",
+      "name": "Andre tablets",
+      "device": "tablet",
+      "from": true
+    },
+    {
+      "id": "pc",
+      "name": "Computer",
+      "device": "computer"
+    }
+  ],
+  "models": [
+    {
+      "id": "iphone-17-pro-max",
+      "group": "iphone",
+      "name": "iPhone 17 Pro Max",
+      "market": {
+        "skaerm": 2400,
+        "batteri": 900,
+        "ladeport": 900,
+        "bagglas": 1300,
+        "kamera": 1700
+      }
+    },
+    {
+      "id": "iphone-17-pro",
+      "group": "iphone",
+      "name": "iPhone 17 Pro",
+      "market": {
+        "skaerm": 2100,
+        "batteri": 900,
+        "ladeport": 900,
+        "bagglas": 1300,
+        "kamera": 1600
+      }
+    },
+    {
+      "id": "iphone-air",
+      "group": "iphone",
+      "name": "iPhone Air",
+      "market": {
+        "skaerm": 2100,
+        "batteri": 900,
+        "ladeport": 900,
+        "bagglas": 1200,
+        "kamera": 1300
+      }
+    },
+    {
+      "id": "iphone-17",
+      "group": "iphone",
+      "name": "iPhone 17",
+      "market": {
+        "skaerm": 1800,
+        "batteri": 850,
+        "ladeport": 850,
+        "bagglas": 1100,
+        "kamera": 1400
+      }
+    },
+    {
+      "id": "iphone-16-pro-max",
+      "group": "iphone",
+      "name": "iPhone 16 Pro Max",
+      "market": {
+        "skaerm": 1950,
+        "batteri": 750,
+        "ladeport": 800,
+        "bagglas": 1200,
+        "kamera": 1500
+      }
+    },
+    {
+      "id": "iphone-16-pro",
+      "group": "iphone",
+      "name": "iPhone 16 Pro",
+      "market": {
+        "skaerm": 1700,
+        "batteri": 750,
+        "ladeport": 800,
+        "bagglas": 1200,
+        "kamera": 1400
+      }
+    },
+    {
+      "id": "iphone-16-plus",
+      "group": "iphone",
+      "name": "iPhone 16 Plus",
+      "market": {
+        "skaerm": 1600,
+        "batteri": 750,
+        "ladeport": 750,
+        "bagglas": 1100,
+        "kamera": 1300
+      }
+    },
+    {
+      "id": "iphone-16",
+      "group": "iphone",
+      "name": "iPhone 16",
+      "market": {
+        "skaerm": 1450,
+        "batteri": 750,
+        "ladeport": 750,
+        "bagglas": 1000,
+        "kamera": 1300
+      }
+    },
+    {
+      "id": "iphone-16e",
+      "group": "iphone",
+      "name": "iPhone 16e",
+      "market": {
+        "skaerm": 1300,
+        "batteri": 750,
+        "ladeport": 750,
+        "bagglas": 1000,
+        "kamera": 1100
+      }
+    },
+    {
+      "id": "iphone-15-pro-max",
+      "group": "iphone",
+      "name": "iPhone 15 Pro Max",
+      "market": {
+        "skaerm": 1700,
+        "batteri": 720,
+        "ladeport": 750,
+        "bagglas": 1000,
+        "kamera": 1300
+      }
+    },
+    {
+      "id": "iphone-15-pro",
+      "group": "iphone",
+      "name": "iPhone 15 Pro",
+      "market": {
+        "skaerm": 1450,
+        "batteri": 720,
+        "ladeport": 750,
+        "bagglas": 1000,
+        "kamera": 1200
+      }
+    },
+    {
+      "id": "iphone-15-plus",
+      "group": "iphone",
+      "name": "iPhone 15 Plus",
+      "market": {
+        "skaerm": 1400,
+        "batteri": 720,
+        "ladeport": 700,
+        "bagglas": 950,
+        "kamera": 1200
+      }
+    },
+    {
+      "id": "iphone-15",
+      "group": "iphone",
+      "name": "iPhone 15",
+      "market": {
+        "skaerm": 1300,
+        "batteri": 720,
+        "ladeport": 700,
+        "bagglas": 900,
+        "kamera": 1100
+      }
+    },
+    {
+      "id": "iphone-14-pro-max",
+      "group": "iphone",
+      "name": "iPhone 14 Pro Max",
+      "market": {
+        "skaerm": 1700,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 1000,
+        "kamera": 1200
+      }
+    },
+    {
+      "id": "iphone-14-pro",
+      "group": "iphone",
+      "name": "iPhone 14 Pro",
+      "market": {
+        "skaerm": 1550,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 1000,
+        "kamera": 1100
+      }
+    },
+    {
+      "id": "iphone-14-plus",
+      "group": "iphone",
+      "name": "iPhone 14 Plus",
+      "market": {
+        "skaerm": 1200,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 800,
+        "kamera": 1000
+      }
+    },
+    {
+      "id": "iphone-14",
+      "group": "iphone",
+      "name": "iPhone 14",
+      "market": {
+        "skaerm": 1150,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 800,
+        "kamera": 1000
+      }
+    },
+    {
+      "id": "iphone-13-pro-max",
+      "group": "iphone",
+      "name": "iPhone 13 Pro Max",
+      "market": {
+        "skaerm": 1450,
+        "batteri": 620,
+        "ladeport": 650,
+        "bagglas": 950,
+        "kamera": 1100
+      }
+    },
+    {
+      "id": "iphone-13-pro",
+      "group": "iphone",
+      "name": "iPhone 13 Pro",
+      "market": {
+        "skaerm": 1300,
+        "batteri": 620,
+        "ladeport": 650,
+        "bagglas": 950,
+        "kamera": 1100
+      }
+    },
+    {
+      "id": "iphone-13",
+      "group": "iphone",
+      "name": "iPhone 13",
+      "market": {
+        "skaerm": 1100,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 900,
+        "kamera": 900
+      }
+    },
+    {
+      "id": "iphone-13-mini",
+      "group": "iphone",
+      "name": "iPhone 13 mini",
+      "market": {
+        "skaerm": 1000,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 900,
+        "kamera": 900
+      }
+    },
+    {
+      "id": "iphone-12-pro-max",
+      "group": "iphone",
+      "name": "iPhone 12 Pro Max",
+      "market": {
+        "skaerm": 1000,
+        "batteri": 580,
+        "ladeport": 600,
+        "bagglas": 900,
+        "kamera": 1100
+      }
+    },
+    {
+      "id": "iphone-12-pro",
+      "group": "iphone",
+      "name": "iPhone 12 Pro",
+      "market": {
+        "skaerm": 850,
+        "batteri": 580,
+        "ladeport": 550,
+        "bagglas": 900,
+        "kamera": 1000
+      }
+    },
+    {
+      "id": "iphone-12",
+      "group": "iphone",
+      "name": "iPhone 12",
+      "market": {
+        "skaerm": 850,
+        "batteri": 580,
+        "ladeport": 550,
+        "bagglas": 850,
+        "kamera": 900
+      }
+    },
+    {
+      "id": "iphone-12-mini",
+      "group": "iphone",
+      "name": "iPhone 12 mini",
+      "market": {
+        "skaerm": 750,
+        "batteri": 580,
+        "ladeport": 550,
+        "bagglas": 850,
+        "kamera": 800
+      }
+    },
+    {
+      "id": "iphone-11-pro-max",
+      "group": "iphone",
+      "name": "iPhone 11 Pro Max",
+      "market": {
+        "skaerm": 800,
+        "batteri": 500,
+        "ladeport": 550,
+        "bagglas": 850,
+        "kamera": 900
+      }
+    },
+    {
+      "id": "iphone-11-pro",
+      "group": "iphone",
+      "name": "iPhone 11 Pro",
+      "market": {
+        "skaerm": 700,
+        "batteri": 500,
+        "ladeport": 550,
+        "bagglas": 850,
+        "kamera": 900
+      }
+    },
+    {
+      "id": "iphone-11",
+      "group": "iphone",
+      "name": "iPhone 11",
+      "market": {
+        "skaerm": 600,
+        "batteri": 500,
+        "ladeport": 500,
+        "bagglas": 800,
+        "kamera": 800
+      }
+    },
+    {
+      "id": "iphone-x-xs-xr",
+      "group": "iphone",
+      "name": "iPhone X, XS eller XR",
+      "market": {
+        "skaerm": 550,
+        "batteri": 450,
+        "ladeport": 450,
+        "bagglas": 750,
+        "kamera": 750
+      }
+    },
+    {
+      "id": "iphone-se",
+      "group": "iphone",
+      "name": "iPhone SE (2020 eller 2022)",
+      "market": {
+        "skaerm": 500,
+        "batteri": 420,
+        "ladeport": 450,
+        "bagglas": 650,
+        "kamera": 600
+      }
+    },
+    {
+      "id": "galaxy-s25-ultra",
+      "group": "samsung",
+      "name": "Galaxy S25 Ultra",
+      "market": {
+        "skaerm": 2800,
+        "batteri": 850,
+        "ladeport": 850,
+        "bagglas": 800,
+        "kamera": 1300
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s25-plus",
+      "group": "samsung",
+      "name": "Galaxy S25+",
+      "market": {
+        "skaerm": 2300,
+        "batteri": 850,
+        "ladeport": 850,
+        "bagglas": 800,
+        "kamera": 1100
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s25",
+      "group": "samsung",
+      "name": "Galaxy S25",
+      "market": {
+        "skaerm": 2100,
+        "batteri": 850,
+        "ladeport": 850,
+        "bagglas": 800,
+        "kamera": 1000
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s24-ultra",
+      "group": "samsung",
+      "name": "Galaxy S24 Ultra",
+      "market": {
+        "skaerm": 2450,
+        "batteri": 800,
+        "ladeport": 750,
+        "bagglas": 800,
+        "kamera": 1200
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s24-plus",
+      "group": "samsung",
+      "name": "Galaxy S24+",
+      "market": {
+        "skaerm": 2050,
+        "batteri": 800,
+        "ladeport": 750,
+        "bagglas": 800,
+        "kamera": 1000
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s24",
+      "group": "samsung",
+      "name": "Galaxy S24",
+      "market": {
+        "skaerm": 1850,
+        "batteri": 800,
+        "ladeport": 750,
+        "bagglas": 800,
+        "kamera": 950
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s24-fe",
+      "group": "samsung",
+      "name": "Galaxy S24 FE",
+      "market": {
+        "skaerm": 1400,
+        "batteri": 750,
+        "ladeport": 700,
+        "bagglas": 700,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s23-ultra",
+      "group": "samsung",
+      "name": "Galaxy S23 Ultra",
+      "market": {
+        "skaerm": 2500,
+        "batteri": 800,
+        "ladeport": 750,
+        "bagglas": 800,
+        "kamera": 1200
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s23-plus",
+      "group": "samsung",
+      "name": "Galaxy S23+",
+      "market": {
+        "skaerm": 2050,
+        "batteri": 800,
+        "ladeport": 750,
+        "bagglas": 750,
+        "kamera": 950
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s23",
+      "group": "samsung",
+      "name": "Galaxy S23",
+      "market": {
+        "skaerm": 1900,
+        "batteri": 800,
+        "ladeport": 750,
+        "bagglas": 750,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s23-fe",
+      "group": "samsung",
+      "name": "Galaxy S23 FE",
+      "market": {
+        "skaerm": 1300,
+        "batteri": 750,
+        "ladeport": 700,
+        "bagglas": 700,
+        "kamera": 850
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s22",
+      "group": "samsung",
+      "name": "Galaxy S22",
+      "market": {
+        "skaerm": 1900,
+        "batteri": 750,
+        "ladeport": 700,
+        "bagglas": 700,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-s21",
+      "group": "samsung",
+      "name": "Galaxy S21",
+      "market": {
+        "skaerm": 1900,
+        "batteri": 750,
+        "ladeport": 700,
+        "bagglas": 700,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a56",
+      "group": "samsung",
+      "name": "Galaxy A56",
+      "market": {
+        "skaerm": 1250,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 600,
+        "kamera": 800
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a55",
+      "group": "samsung",
+      "name": "Galaxy A55",
+      "market": {
+        "skaerm": 1200,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 600,
+        "kamera": 800
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a54",
+      "group": "samsung",
+      "name": "Galaxy A54",
+      "market": {
+        "skaerm": 1150,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 600,
+        "kamera": 750
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a36",
+      "group": "samsung",
+      "name": "Galaxy A36",
+      "market": {
+        "skaerm": 1150,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 600,
+        "kamera": 750
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a35",
+      "group": "samsung",
+      "name": "Galaxy A35",
+      "market": {
+        "skaerm": 1150,
+        "batteri": 620,
+        "ladeport": 600,
+        "bagglas": 600,
+        "kamera": 750
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a25",
+      "group": "samsung",
+      "name": "Galaxy A25",
+      "market": {
+        "skaerm": 1050,
+        "batteri": 600,
+        "ladeport": 580,
+        "bagglas": 580,
+        "kamera": 700
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a16",
+      "group": "samsung",
+      "name": "Galaxy A16",
+      "market": {
+        "skaerm": 950,
+        "batteri": 600,
+        "ladeport": 580,
+        "bagglas": 580,
+        "kamera": 650
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-a15",
+      "group": "samsung",
+      "name": "Galaxy A15",
+      "market": {
+        "skaerm": 950,
+        "batteri": 600,
+        "ladeport": 580,
+        "bagglas": 580,
+        "kamera": 650
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-z-fold",
+      "group": "samsung",
+      "name": "Galaxy Z Fold (4, 5, 6 eller 7)",
+      "from": true,
+      "market": {
+        "skaerm": 4500,
+        "batteri": 1000,
+        "ladeport": 950,
+        "bagglas": 1000,
+        "kamera": 1300
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "galaxy-z-flip",
+      "group": "samsung",
+      "name": "Galaxy Z Flip (4, 5, 6 eller 7)",
+      "from": true,
+      "market": {
+        "skaerm": 2900,
+        "batteri": 950,
+        "ladeport": 900,
+        "bagglas": 900,
+        "kamera": 1100
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "ipad-pro-13",
+      "group": "ipad",
+      "name": "iPad Pro 12,9 eller 13 tommer",
+      "market": {
+        "skaerm": 3600,
+        "batteri": 1250,
+        "ladeport": 1000
+      }
+    },
+    {
+      "id": "ipad-pro-11",
+      "group": "ipad",
+      "name": "iPad Pro 11 tommer",
+      "market": {
+        "skaerm": 2800,
+        "batteri": 1150,
+        "ladeport": 950
+      }
+    },
+    {
+      "id": "ipad-air-m",
+      "group": "ipad",
+      "name": "iPad Air (M1, M2 eller M3)",
+      "market": {
+        "skaerm": 2600,
+        "batteri": 1100,
+        "ladeport": 900
+      }
+    },
+    {
+      "id": "ipad-air-4",
+      "group": "ipad",
+      "name": "iPad Air 4",
+      "market": {
+        "skaerm": 1900,
+        "batteri": 1000,
+        "ladeport": 900
+      }
+    },
+    {
+      "id": "ipad-mini",
+      "group": "ipad",
+      "name": "iPad mini 6 eller 7",
+      "market": {
+        "skaerm": 1700,
+        "batteri": 950,
+        "ladeport": 850
+      }
+    },
+    {
+      "id": "ipad-11",
+      "group": "ipad",
+      "name": "iPad 11. generation (2025)",
+      "market": {
+        "skaerm": 1500,
+        "batteri": 950,
+        "ladeport": 850
+      }
+    },
+    {
+      "id": "ipad-10",
+      "group": "ipad",
+      "name": "iPad 10. generation",
+      "market": {
+        "skaerm": 1300,
+        "batteri": 900,
+        "ladeport": 800
+      }
+    },
+    {
+      "id": "ipad-9",
+      "group": "ipad",
+      "name": "iPad 9. generation eller ældre",
+      "market": {
+        "skaerm": 900,
+        "batteri": 800,
+        "ladeport": 700
+      }
+    },
+    {
+      "id": "galaxy-tab-s",
+      "group": "galaxytab",
+      "name": "Galaxy Tab S",
+      "market": {
+        "skaerm": 2200,
+        "batteri": 900,
+        "ladeport": 750
+      }
+    },
+    {
+      "id": "galaxy-tab-a",
+      "group": "galaxytab",
+      "name": "Galaxy Tab A",
+      "market": {
+        "skaerm": 1100,
+        "batteri": 750,
+        "ladeport": 650
+      }
+    },
+    {
+      "id": "pc-baerbar",
+      "group": "pc",
+      "name": "Bærbar pc (Windows)",
+      "market": {
+        "rens": 499,
+        "virus": 549,
+        "geninstallation": 649,
+        "ssd": 1199,
+        "skaerm": 1400,
+        "batteri": 850,
+        "tastatur": 950,
+        "ladestik": 750,
+        "data": 900
+      }
+    },
+    {
+      "id": "pc-stationaer",
+      "group": "pc",
+      "name": "Stationær pc",
+      "market": {
+        "rens": 449,
+        "virus": 549,
+        "geninstallation": 649,
+        "ssd": 999,
+        "data": 900
+      }
+    },
+    {
+      "id": "macbook-air",
+      "group": "pc",
+      "tags": [
+        "macbook"
+      ],
+      "name": "MacBook Air",
+      "market": {
+        "rens": 599,
+        "virus": 549,
+        "geninstallation": 699,
+        "skaerm": 2900,
+        "batteri": 1350,
+        "tastatur": 1900,
+        "ladestik": 1100,
+        "data": 1200
+      }
+    },
+    {
+      "id": "macbook-pro",
+      "group": "pc",
+      "tags": [
+        "macbook"
+      ],
+      "name": "MacBook Pro",
+      "market": {
+        "rens": 649,
+        "virus": 549,
+        "geninstallation": 699,
+        "skaerm": 3600,
+        "batteri": 1500,
+        "tastatur": 2200,
+        "ladestik": 1200,
+        "data": 1200
+      }
+    },
+    {
+      "id": "imac",
+      "group": "pc",
+      "name": "iMac eller Mac mini",
+      "tags": [
+        "macbook"
+      ],
+      "market": {
+        "rens": 699,
+        "virus": 549,
+        "geninstallation": 699,
+        "ssd": 1499,
+        "data": 1200
+      }
+    },
+    {
+      "id": "gaming-pc",
+      "group": "pc",
+      "name": "Gaming-pc",
+      "market": {
+        "rens": 549,
+        "virus": 549,
+        "geninstallation": 649,
+        "ssd": 999,
+        "data": 900
+      }
+    },
+    {
+      "id": "pixel-10-pro",
+      "group": "pixel",
+      "name": "Pixel 10 Pro eller 10 Pro XL",
+      "market": {
+        "skaerm": 2600,
+        "batteri": 900,
+        "ladeport": 900,
+        "bagglas": 1100,
+        "kamera": 1400
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-10",
+      "group": "pixel",
+      "name": "Pixel 10",
+      "market": {
+        "skaerm": 2000,
+        "batteri": 850,
+        "ladeport": 850,
+        "bagglas": 900,
+        "kamera": 1200
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-9-pro",
+      "group": "pixel",
+      "name": "Pixel 9 Pro eller 9 Pro XL",
+      "market": {
+        "skaerm": 2400,
+        "batteri": 850,
+        "ladeport": 850,
+        "bagglas": 1000,
+        "kamera": 1300
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-9",
+      "group": "pixel",
+      "name": "Pixel 9",
+      "market": {
+        "skaerm": 1800,
+        "batteri": 800,
+        "ladeport": 800,
+        "bagglas": 900,
+        "kamera": 1100
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-9a",
+      "group": "pixel",
+      "name": "Pixel 9a",
+      "market": {
+        "skaerm": 1300,
+        "batteri": 700,
+        "ladeport": 700,
+        "bagglas": 700,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-8-pro",
+      "group": "pixel",
+      "name": "Pixel 8 Pro",
+      "market": {
+        "skaerm": 2200,
+        "batteri": 750,
+        "ladeport": 750,
+        "bagglas": 900,
+        "kamera": 1200
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-8",
+      "group": "pixel",
+      "name": "Pixel 8",
+      "market": {
+        "skaerm": 1500,
+        "batteri": 700,
+        "ladeport": 700,
+        "bagglas": 800,
+        "kamera": 1000
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-8a",
+      "group": "pixel",
+      "name": "Pixel 8a",
+      "market": {
+        "skaerm": 1200,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 700,
+        "kamera": 800
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-7-pro",
+      "group": "pixel",
+      "name": "Pixel 7 Pro",
+      "market": {
+        "skaerm": 1900,
+        "batteri": 700,
+        "ladeport": 700,
+        "bagglas": 800,
+        "kamera": 1000
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-7",
+      "group": "pixel",
+      "name": "Pixel 7 eller 7a",
+      "market": {
+        "skaerm": 1200,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 700,
+        "kamera": 850
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "pixel-6",
+      "group": "pixel",
+      "name": "Pixel 6, 6 Pro eller 6a",
+      "market": {
+        "skaerm": 1100,
+        "batteri": 600,
+        "ladeport": 600,
+        "bagglas": 700,
+        "kamera": 800
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "oneplus-flagship",
+      "group": "oneplus",
+      "name": "OnePlus 11, 12 eller 13",
+      "market": {
+        "skaerm": 2200,
+        "batteri": 800,
+        "ladeport": 800,
+        "bagglas": 800,
+        "kamera": 1100
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "oneplus-nord",
+      "group": "oneplus",
+      "name": "OnePlus Nord (alle modeller)",
+      "market": {
+        "skaerm": 1100,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 600,
+        "kamera": 750
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "xiaomi-flagship",
+      "group": "xiaomi",
+      "name": "Xiaomi 13, 14 eller 15",
+      "market": {
+        "skaerm": 2000,
+        "batteri": 750,
+        "ladeport": 750,
+        "bagglas": 800,
+        "kamera": 1000
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "redmi-note",
+      "group": "xiaomi",
+      "name": "Redmi Note eller Poco",
+      "market": {
+        "skaerm": 950,
+        "batteri": 600,
+        "ladeport": 600,
+        "bagglas": 550,
+        "kamera": 700
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "redmi",
+      "group": "xiaomi",
+      "name": "Redmi (A- og C-serien)",
+      "market": {
+        "skaerm": 750,
+        "batteri": 500,
+        "ladeport": 500,
+        "bagglas": 450,
+        "kamera": 550
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "moto-edge",
+      "group": "motorola",
+      "name": "Motorola Edge",
+      "market": {
+        "skaerm": 1600,
+        "batteri": 700,
+        "ladeport": 700,
+        "bagglas": 650,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "moto-g",
+      "group": "motorola",
+      "name": "Moto G",
+      "market": {
+        "skaerm": 850,
+        "batteri": 550,
+        "ladeport": 550,
+        "bagglas": 500,
+        "kamera": 650
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "huawei-p-mate",
+      "group": "huawei",
+      "name": "Huawei P eller Mate",
+      "market": {
+        "skaerm": 1600,
+        "batteri": 700,
+        "ladeport": 700,
+        "bagglas": 700,
+        "kamera": 900
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "honor",
+      "group": "huawei",
+      "name": "Honor",
+      "market": {
+        "skaerm": 1100,
+        "batteri": 650,
+        "ladeport": 650,
+        "bagglas": 600,
+        "kamera": 750
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "anden-telefon",
+      "group": "andentelefon",
+      "name": "Nothing, Oppo, Sony, Nokia, Doro eller anden",
+      "market": {
+        "skaerm": 900,
+        "batteri": 550,
+        "ladeport": 550,
+        "bagglas": 550,
+        "kamera": 650
+      },
+      "tags": [
+        "android"
+      ]
+    },
+    {
+      "id": "surface-pro",
+      "group": "andentablet",
+      "name": "Microsoft Surface Pro",
+      "market": {
+        "skaerm": 3200,
+        "batteri": 1400,
+        "ladeport": 1100
+      }
+    },
+    {
+      "id": "lenovo-tab",
+      "group": "andentablet",
+      "name": "Lenovo Tab",
+      "market": {
+        "skaerm": 1100,
+        "batteri": 750,
+        "ladeport": 650
+      }
+    },
+    {
+      "id": "anden-tablet",
+      "group": "andentablet",
+      "name": "Huawei, Xiaomi eller anden tablet",
+      "market": {
+        "skaerm": 1000,
+        "batteri": 750,
+        "ladeport": 650
+      }
+    }
+  ],
+  "overrides": {}
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zostań serwisantem w TeknikFix: zlecenia w Twojej okolicy</title>
+  <meta name="description" content="Naprawiasz telefony, tablety lub komputery? Zostań partnerem TeknikFix i otrzymuj zlecenia ze stałą ceną w swojej okolicy. Rezerwacje, płatności i klientów bierzemy na siebie.">
+  <link rel="canonical" href="{{ORIGIN}}/partner">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Zostań serwisantem w TeknikFix">
+  <meta property="og:description" content="Otrzymuj zlecenia napraw w swojej okolicy. Rezerwacje, płatności i klientów bierzemy na siebie.">
+  <meta property="og:url" content="{{ORIGIN}}/partner">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span>Zostań partnerem</span></nav>
+        <h1>Zostań serwisantem w TeknikFix</h1>
+        <p class="lead">Świetnie naprawiasz. My znajdujemy klientów, ustalamy cenę i odbieramy płatność. Zlecenie poznasz, zanim się zgodzisz.</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <div class="ways">
+          <div class="way"><span class="way-num">01</span><h3>Zlecenia dla Ciebie</h3><p>Klienci z Twojej okolicy rezerwują przez teknikfix.dk. Jeśli zlecenie do Ciebie pasuje, jest Twoje.</p></div>
+          <div class="way"><span class="way-num">02</span><h3>Żadnych negocjacji cen</h3><p>Klient zna stałą cenę, zanim zarezerwuje. Ty widzisz swoją wypłatę, zanim się zgodzisz.</p></div>
+          <div class="way"><span class="way-num">03</span><h3>Części i płatność załatwione</h3><p>Zamawiamy część do zlecenia, a klient płaci przez platformę. Ty po prostu naprawiasz.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap split">
+        <form class="panel" id="partner-form" novalidate>
+          <h2>Zgłoś się</h2>
+          <div class="field-pair">
+            <label class="field"><span>Imię i nazwisko</span><input name="name" required maxlength="80" autocomplete="name"></label>
+            <label class="field"><span>Firma <small class="muted">(opcjonalnie)</small></span><input name="company" maxlength="120" autocomplete="organization"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Telefon</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+            <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Miejscowość lub kod pocztowy</span><input name="city" required maxlength="80" autocomplete="address-level2"></label>
+            <label class="field"><span>Kraj</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Jak daleko dojeżdżasz? (km)</span><input name="radiusKm" type="number" min="0" max="500" value="20" inputmode="numeric"></label>
+            <label class="field"><span>Numer firmy lub VAT <small class="muted">(jeśli go masz)</small></span><input name="cvr" maxlength="20"></label>
+          </div>
+          <p class="field-title">Co naprawiasz?</p>
+          <div class="fault-grid">
+            <label class="check"><input type="checkbox" name="skills" value="telefon"> <span>Telefony</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="tablet"> <span>Tablety</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="computer"> <span>Komputery</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="mikrolodning"> <span>Mikrolutowanie</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="data"> <span>Odzyskiwanie danych</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="konsol"> <span>Konsole</span></label>
+          </div>
+          <label class="field"><span>Doświadczenie</span><select name="experience"><option value="under 1 år">Poniżej 1 roku</option><option value="1-3 år" selected>1–3 lata</option><option value="3-5 år">3–5 lat</option><option value="over 5 år">Ponad 5 lat</option></select></label>
+          <label class="check"><input type="checkbox" name="workshop" value="ja"> <span>Mam własny warsztat, do którego mogą przyjść klienci</span></label>
+          <label class="field"><span>Napisz o sobie kilka słów <small class="muted">(opcjonalnie)</small></span><textarea name="message" maxlength="2000"></textarea></label>
+          <label class="check"><input type="checkbox" name="consent" value="ja"> <span>TeknikFix może zapisać moje dane i skontaktować się ze mną w sprawie zleceń.</span></label>
+          <p class="form-error" id="partner-error" hidden role="alert"></p>
+          <button class="btn btn-copper" type="submit" id="partner-send">Wyślij zgłoszenie</button>
+        </form>
+        <div class="panel form-done" id="partner-done" hidden>
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h2>Dziękujemy za zgłoszenie</h2>
+          <p>Zadzwonimy do Ciebie w ciągu kilku dni. Twój numer to <strong id="partner-ref"></strong>.</p>
+        </div>
+        <div>
+          <h2 class="section-title">Jak to działa</h2>
+          <ol class="steps steps-stack">
+            <li><span>1</span><h3>Zgłoś się</h3><p>Napisz, co naprawiasz i gdzie działasz.</p></li>
+            <li><span>2</span><h3>Dzwonimy do Ciebie</h3><p>Krótka rozmowa o jakości, gwarancji i cenach. Potem jesteś gotowy.</p></li>
+            <li><span>3</span><h3>Dostajesz zlecenia</h3><p>Damy Ci znać, gdy klient z Twojej okolicy zarezerwuje naprawę. Jeśli się zgodzisz, zlecenie jest Twoje.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var form = document.querySelector("#partner-form");
+      var error = document.querySelector("#partner-error");
+      var button = document.querySelector("#partner-send");
+      var home = document.documentElement.getAttribute("data-country");
+      if (home && form.querySelector("select[name=country] option[value=" + home + "]")) form.elements.country.value = home;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.hidden = true;
+        button.disabled = true;
+        var f = form.elements;
+        var skills = Array.prototype.slice.call(form.querySelectorAll("input[name=skills]:checked")).map(function (i) { return i.value; });
+        var payload = {
+          name: f.name.value, company: f.company.value, phone: f.phone.value, email: f.email.value, city: f.city.value, country: f.country.value,
+          radiusKm: f.radiusKm.value, cvr: f.cvr.value, skills: skills, experience: f.experience.value,
+          workshop: f.workshop.checked ? "ja" : "", message: f.message.value, consent: f.consent.checked ? "ja" : ""
+        };
+        fetch("/api/partner", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.message || "Zgłoszenie nie zostało wysłane.");
+            document.querySelector("#partner-ref").textContent = res.body.ref;
+            form.hidden = true;
+            document.querySelector("#partner-done").hidden = false;
+          })
+          .catch(function (err) { error.hidden = false; error.textContent = err.message; button.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

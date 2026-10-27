@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oferta otrzymana | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <section class="section">
+      <div class="wrap">
+        <div class="panel form-done">
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h1>Dziękujemy, Twoja oferta została zapisana</h1>
+          <p>Twój numer to <strong>{{REF}}</strong>. Wysłaliśmy ofertę na Twój adres e-mail.</p>
+          <ol class="done-steps">
+            <li>Wyłącz funkcję <strong>Znajdź mój iPhone</strong> lub konto Google i wyjmij kartę SIM.</li>
+            <li>Jeśli wysyłasz paczkę pocztą, w ciągu 1 dnia roboczego wyślemy Ci e-mailem bezpłatną etykietę nadawczą. Jeśli dostarczasz urządzenie osobiście, najpierw zadzwoń pod numer {{PHONE}}.</li>
+            <li>Sprawdzimy urządzenie i od razu wypłacimy pieniądze, jeśli będzie zgodne z Twoim opisem.</li>
+          </ol>
+          <p><a class="btn" href="/saelg/sag?ref={{REF}}">Śledź swoją sprzedaż</a> <a class="btn btn-ghost" href="/saelg">Sprzedaj kolejne</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

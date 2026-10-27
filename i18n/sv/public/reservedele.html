@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PARTS_TITLE}}</title>
+  <meta name="description" content="{{PARTS_DESC}}">
+  <link rel="canonical" href="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="{{PARTS_TITLE}}">
+  <meta property="og:description" content="{{PARTS_DESC}}">
+  <meta property="og:url" content="{{ORIGIN}}{{PARTS_PATH}}">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="parts-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Sökväg"><a href="/">Startsida</a><span aria-hidden="true">/</span>{{PARTS_CRUMB}}</nav>
+        <h1>{{PARTS_H1}}</h1>
+        <p class="lead">{{PARTS_LEAD}}</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap parts-layout">
+        <div>
+          <div class="panel">
+            <label class="field"><span>Hitta din modell</span><select id="part-model"><option value="">Välj modell</option></select></label>
+            <p class="field-note">Hittar du den inte i listan? Ring {{PHONE}} så hittar vi delen åt dig.</p>
+          </div>
+          <p class="form-error" id="cancelled" hidden>Betalningen avbröts. Varukorgen är sparad, så du kan försöka igen.</p>
+          <div class="part-grid" id="part-grid"></div>
+        </div>
+
+        <aside class="panel cart" id="cart" aria-label="Varukorg">
+          <h2>Varukorg</h2>
+          <div id="cart-lines"><p class="muted">Varukorgen är tom.</p></div>
+          <label class="field cart-country"><span>Skicka till</span><select id="ship-country" autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          <p class="form-error" id="cart-error" hidden></p>
+          <button class="btn btn-copper cart-pay" id="pay" type="button" disabled>Gå till betalning</button>
+          <p class="cart-note">Kort, MobilePay, Apple Pay och Klarna. Vi skickar till hela EU med spårning. 14 dagars ångerrätt.</p>
+        </aside>
+      </div>
+    </section>
+
+    {{PARTS_SEO}}
+
+    <section class="section band">
+      <div class="wrap">
+        <h2 class="section-title">Bra att veta</h2>
+        <div class="promise-grid">
+          <article><h3>Passar din modell</h3><p>Vi visar bara delar som är gjorda för exakt den modell du väljer.</p></article>
+          <article><h3>Kompatibla kvalitetsdelar</h3><p>Delarna är inte original från Apple eller Samsung, men är gjorda för att passa och fungera som dem.</p></article>
+          <article><h3>Direkt till dörren</h3><p>Delen skickas direkt från lagret. Du får ett spårningsnummer via e-post.</p></article>
+          <article><h3>Vill du hellre att vi gör det?</h3><p>Vi byter delen åt dig i Aalborg. <a href="/book" style="color: #efc2a8">Se priset och boka</a>.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="parts-data">{{PARTS_JSON}}</script>
+  <div id="parts-config" hidden data-card="{{CARD_ENABLED}}" data-model="{{PARTS_MODEL}}"></div>
+  {{PARTS_LD}}
+  <script src="/js/site.js"></script>
+  <script src="/js/reservedele.js"></script>
+</body>
+</html>

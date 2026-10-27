@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Precios de reparación de móvil, ordenador y tablet | TeknikFix Aalborg</title>
+  <meta name="description" content="Precios orientativos de reparación de móvil, ordenador y tablet en TeknikFix, en Aalborg. Revisión gratuita. Te damos el precio final antes de empezar.">
+  <link rel="canonical" href="{{ORIGIN}}/ydelser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Precios de reparación | TeknikFix Aalborg">
+  <meta property="og:description" content="Precios orientativos. Revisión gratuita y solo pagas cuando funciona.">
+  <meta property="og:url" content="{{ORIGIN}}/ydelser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a><span aria-hidden="true">/</span><span>Servicios</span></nav>
+        <h1>Servicios y precios</h1>
+        <p class="lead">Aquí tienes el rango de precios de cada tipo de reparación. El precio fijo para tu modelo lo encontrarás en <a href="/priser">precios</a>, o al reservar. La revisión cuesta 0 DKK.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="table-wrap" id="telefon">
+          <table class="price-table">
+            <caption class="visually-hidden">Móvil</caption>
+            <thead><tr><th>Móvil</th><th>Precio</th><th>Tiempo</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Móvil</td></tr>
+              <tr><td>Batería</td><td>{{RANGE_TELEFON_BATTERI}}</td><td>aprox. 30 min</td></tr>
+              <tr><td>Pantalla</td><td>{{RANGE_TELEFON_SKAERM}}</td><td>aprox. 45 min</td></tr>
+              <tr><td>Puerto de carga</td><td>{{RANGE_TELEFON_LADEPORT}}</td><td>aprox. 45 min</td></tr>
+              <tr><td>Cámara</td><td>{{RANGE_TELEFON_KAMERA}}</td><td>aprox. 45 min</td></tr>
+              <tr><td>Cristal trasero</td><td>{{RANGE_TELEFON_BAGGLAS}}</td><td>1–2 horas</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="computer">
+          <table class="price-table">
+            <caption class="visually-hidden">Ordenador</caption>
+            <thead><tr><th>Ordenador</th><th>Precio</th><th>Tiempo</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Ordenador</td></tr>
+              <tr><td>Ordenador lento, limpieza y optimización</td><td>{{RANGE_COMPUTER_RENS}}</td><td>1–2 horas</td></tr>
+              <tr><td>Virus y ventanas emergentes</td><td>{{RANGE_COMPUTER_VIRUS}}</td><td>1–3 horas</td></tr>
+              <tr><td>Reinstalación de Windows o macOS</td><td>{{RANGE_COMPUTER_GENINSTALLATION}}</td><td>2–3 horas</td></tr>
+              <tr><td>SSD nuevo, 1 TB</td><td>desde {{FRA_COMPUTER_SSD}}</td><td>2–3 horas</td></tr>
+              <tr><td>Pantalla de portátil</td><td>desde {{FRA_COMPUTER_SKAERM}}</td><td>1–3 días</td></tr>
+              <tr><td>Batería de portátil</td><td>desde {{FRA_COMPUTER_BATTERI}}</td><td>1–2 días</td></tr>
+              <tr><td>Recuperación de archivos</td><td>desde {{FRA_COMPUTER_DATA}}</td><td>1–3 días</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="tablet">
+          <table class="price-table">
+            <caption class="visually-hidden">Tablet</caption>
+            <thead><tr><th>Tablet</th><th>Precio</th><th>Tiempo</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Tablet</td></tr>
+              <tr><td>Pantalla o cristal</td><td>{{RANGE_TABLET_SKAERM}}</td><td>El mismo día</td></tr>
+              <tr><td>Batería</td><td>{{RANGE_TABLET_BATTERI}}</td><td>2–3 horas</td></tr>
+              <tr><td>Puerto de carga</td><td>{{RANGE_TABLET_LADEPORT}}</td><td>aprox. 1 hora</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Siempre 0 DKK</h2>
+          <p>La revisión, vengas a vernos o vayamos nosotros a tu casa. El desplazamiento dentro de Aalborg también cuesta 0 DKK. Solo pagas por una reparación que hayas aceptado, y solo cuando funciona.</p>
+          <p>A menudo no podemos salvar un aparato que ha sufrido daños por agua ni los dispositivos muy antiguos. Si es el caso, te lo decimos enseguida.</p>
+          <div class="actions"><a class="btn" href="/book">Reserva y consulta el precio</a><a class="btn btn-ghost" href="/priser">Precios de todos los modelos</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

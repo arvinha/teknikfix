@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sager | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="admin-page">
+  {{HEADER}}
+  <main id="indhold" class="section">
+    <div class="wrap">
+      <form class="panel login-card" id="login">
+        <h1>Sager</h1>
+        <p>Kun for TeknikFix. Adgangskoden står i filen <strong>.env</strong> på computeren, linjen ADMIN_PASSWORD.</p>
+        <label class="field"><span>Adgangskode</span><input name="password" type="password" required autocomplete="current-password"></label>
+        <button class="btn" type="submit">Log ind</button>
+        <p id="login-error" class="form-error" hidden></p>
+      </form>
+
+      <section id="desk" hidden>
+        <div class="actions">
+          <h1 style="margin: 0">TeknikFix</h1>
+          <span id="sag-count" class="muted"></span>
+          <button class="btn btn-ghost" id="export" type="button">Hent kopi</button>
+          <button class="btn btn-ghost" id="logout" type="button">Log ud</button>
+        </div>
+        <div class="admin-tabs" role="tablist" id="admin-tabs">
+          <button type="button" role="tab" data-tab="reparation" aria-selected="true">Reparationer</button>
+          <button type="button" role="tab" data-tab="opkoeb" aria-selected="false">Opkøb</button>
+          <button type="button" role="tab" data-tab="butik" aria-selected="false">Butik</button>
+          <button type="button" role="tab" data-tab="dele" aria-selected="false">Reservedele</button>
+          <button type="button" role="tab" data-tab="partnere" aria-selected="false">Partnere</button>
+        </div>
+
+        <div data-panel="reparation">
+          <div class="admin-layout">
+            <div>
+              <label class="field"><span>Søg</span><input id="search" placeholder="Navn, telefon eller sag"></label>
+              <div id="sag-list"></div>
+            </div>
+            <div class="panel" id="sag-detail"><p>Vælg en sag i listen.</p></div>
+          </div>
+
+          <details class="guide" id="price-admin"><summary>Priser og konkurrence</summary><p>Henter priser...</p></details>
+        </div>
+
+        <div data-panel="opkoeb" hidden>
+          <div class="admin-layout">
+            <div>
+              <label class="field"><span>Søg</span><input data-search="opkoeb" placeholder="Navn, telefon, model eller SL-nummer"></label>
+              <div data-list="opkoeb"></div>
+            </div>
+            <div class="panel" data-detail="opkoeb"><p>Vælg et opkøb i listen.</p></div>
+          </div>
+          <details class="guide" id="buy-prices"><summary>Opkøbspriser og avance</summary><p>Henter...</p></details>
+          <details class="guide">
+            <summary>Sådan kører opkøb</summary>
+            <ol>
+              <li>Kunden får en pris med det samme på <a href="/saelg">/saelg</a> og sender tilbuddet. Du får en notifikation.</li>
+              <li>Sender kunden med posten: lav en fragtlabel (fx PostNord, Shipmondo eller GLS), mail den til kunden, og tryk <strong>Label sendt</strong>.</li>
+              <li>Når enheden kommer: tjek den, skriv IMEI i noten, og tjek at den ikke er meldt stjålet. Tryk <strong>Modtaget</strong>.</li>
+              <li>Passer den: udbetal med MobilePay eller bank, og tryk <strong>Udbetalt</strong>. Passer den ikke: skriv ny pris, og tryk <strong>Send nyt tilbud</strong>. Kunden svarer ja eller nej på sin side.</li>
+              <li>Gem navn, adresse og IMEI på alle opkøb. Det er krav ved køb af brugte varer.</li>
+            </ol>
+          </details>
+        </div>
+
+        <div data-panel="butik" hidden>
+          <div class="panel" id="shop-stock"><p>Henter lager...</p></div>
+          <h2>Ordrer fra butikken</h2>
+          <div class="admin-layout">
+            <div>
+              <label class="field"><span>Søg</span><input data-search="butik" placeholder="Navn, model eller KB-nummer"></label>
+              <div data-list="butik"></div>
+            </div>
+            <div class="panel" data-detail="butik"><p>Vælg en ordre i listen.</p></div>
+          </div>
+          <details class="guide">
+            <summary>Sådan kører butikken</summary>
+            <ol>
+              <li>Når et opkøb er tjekket og nulstillet, tryk <strong>Læg i butik</strong> på linjen under Opkøb, eller tryk <strong>Ny enhed</strong> her.</li>
+              <li>Vælg stand, skriv batteri-%, og tryk <strong>Foreslå pris</strong>. Prisen ligger lidt under refurbed.dk. Ret den, hvis du vil.</li>
+              <li>Tag 3–5 billeder på hvid baggrund: forside, bagside og kanter. Enheder med billeder kommer med i Google Shopping.</li>
+              <li>Når nogen køber, får du en notifikation, og kunden får kvittering. Send den inden for 1 hverdag, og skriv sporingsnummeret på ordren. Så får kunden mail og sms.</li>
+              <li>Google Shopping: opret Google Merchant Center, og tilføj produktfeedet <strong>https://teknikfix.dk/koeb/feed.xml</strong>. Det opdateres af sig selv.</li>
+            </ol>
+          </details>
+        </div>
+
+        <div data-panel="dele" hidden>
+          <div class="admin-layout">
+            <div>
+              <label class="field"><span>Søg</span><input data-search="dele" placeholder="Navn, del eller RD-nummer"></label>
+              <div data-list="dele"></div>
+            </div>
+            <div class="panel" data-detail="dele"><p>Vælg en ordre i listen.</p></div>
+          </div>
+          <details class="guide" id="part-prices"><summary>Reservedele: priser, indkøb og leverandør</summary><p>Henter...</p></details>
+        </div>
+
+        <div data-panel="partnere" hidden>
+          <div class="admin-layout">
+            <div>
+              <label class="field"><span>Søg</span><input data-search="partnere" placeholder="Navn, by eller RP-nummer"></label>
+              <div data-list="partnere"></div>
+            </div>
+            <div class="panel" data-detail="partnere"><p>Vælg en reparatør i listen.</p></div>
+          </div>
+        </div>
+
+        <details class="guide">
+          <summary>Slå kort, MobilePay og Klarna til (Stripe)</summary>
+          <ol>
+            <li>Opret en konto på <a href="https://dashboard.stripe.com/register" rel="noopener">stripe.com</a>. Vælg Danmark, enkeltmandsvirksomhed, og brug CVR {{CVR}}. Stripe beder om MitID-oplysninger og en bankkonto til udbetaling.</li>
+            <li>Under <em>Settings → Payment methods</em> slår du <strong>Cards, MobilePay, Klarna, Apple Pay og Google Pay</strong> til.</li>
+            <li>Under <em>Developers → API keys</em> kopierer du <strong>Secret key</strong> (starter med sk_live_).</li>
+            <li>Åbn filen <strong>.env</strong> i mappen website, og tilføj linjen <code>STRIPE_SECRET_KEY=sk_live_...</code>. Genstart computeren eller hjemmesiden.</li>
+            <li>Under <em>Developers → Webhooks</em> tilføjer du <strong>https://teknikfix.dk/api/stripe/webhook</strong> med hændelserne <em>checkout.session.completed</em> og <em>checkout.session.async_payment_succeeded</em>. Kopiér <strong>Signing secret</strong> til .env som <code>STRIPE_WEBHOOK_SECRET=whsec_...</code>.</li>
+          </ol>
+          <p>Indtil da kan kunderne betale med PayPal og bankoverførsel.</p>
+        </details>
+
+        <details class="guide">
+          <summary>Sådan bliver TeknikFix synlig på Google og Google Maps</summary>
+          <p>Hjemmesiden er klar til søgning. Disse trin kræver dit MitID, dit betalingskort eller din Google-konto, så de skal laves af dig.</p>
+          <ol>
+            <li><strong>teknikfix.dk</strong> er købt hos Simply. Bekræft domænet med MitID i mailen fra Punktum dk, så det bliver aktivt.</li>
+            <li>Opret en gratis konto på <a href="https://dash.cloudflare.com/sign-up" rel="noopener">cloudflare.com</a>, tilføj teknikfix.dk (gratis plan), og skift navneservere i <a href="https://www.simply.com/dk/controlpanel/teknikfix.dk/dns/" rel="noopener">Simply kontrolpanel</a> til de to, Cloudflare viser.</li>
+            <li>Dobbeltklik <strong>GO-ONLINE.bat</strong> i mappen website. Log ind på Cloudflare i browseren, og vælg teknikfix.dk. Så kører siden på https://teknikfix.dk fra denne computer.</li>
+            <li>Registrér <strong>TeknikFix</strong> som binavn til Axiom på <a href="https://virk.dk" rel="noopener">virk.dk</a> (Ændre virksomhed, binavne). Det er gratis, og så passer navnet med CVR.</li>
+            <li>Gå til <a href="https://business.google.com" rel="noopener">business.google.com</a>, og tilføj firmaet <strong>TeknikFix</strong>. Primær kategori: <em>Mobiltelefonreparation</em>. Ekstra: <em>Computerreparation</em>, <em>Elektronikreparation</em>.</li>
+            <li>Adresse: {{STREET}}, {{POSTAL}} {{CITY}}. Vælg, at kunder kan komme til adressen, og at du også kører ud i Aalborg. Telefon: {{PHONE}}. Hjemmeside: https://teknikfix.dk. Åbningstider: åben 24 timer alle dage.</li>
+            <li>Bekræft profilen med den video, det brev eller den kode, Google beder om.</li>
+            <li>I <a href="https://search.google.com/search-console" rel="noopener">Google Search Console</a> tilføjer du domænet teknikfix.dk. Vælg DNS-bekræftelse, og læg TXT-posten ind i Cloudflare under DNS. Indsend derefter <strong>https://teknikfix.dk/sitemap.xml</strong>.</li>
+            <li>Bed de første kunder om en Google-anmeldelse. Det er det, der flytter dig op på kortet.</li>
+          </ol>
+          <p>Tekst du kan sætte ind som beskrivelse:</p>
+          <textarea id="gbp" readonly>TeknikFix reparerer telefoner, computere og tablets i Aalborg Øst. Gratis gennemgang, fast pris før vi starter, og du betaler først når reparationen virker. Book en tid døgnet rundt. Besøg kun efter aftale, eller vi kommer til dig. CVR {{CVR}}.</textarea>
+          <p><button class="btn btn-ghost" type="button" data-copy-target="#gbp">Kopiér beskrivelse</button></p>
+          <p>Tag egne billeder af værkstedet, en færdig reparation og døren med nummer 6. Google viser dem, når profilen er bekræftet. Kortet på hjemmesiden viser allerede adressen.</p>
+        </details>
+      </section>
+    </div>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script src="/js/labels.js"></script>
+  <script src="/js/admin.js"></script>
+  <script src="/js/admin-platform.js"></script>
+  <script src="/js/admin-shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wymiana baterii w Aalborg · iPhone, Samsung, iPad i laptop | TeknikFix</title>
+  <meta name="description" content="Nowa bateria w Aalborg w ok. 30 min. iPhone od {{FRA_IPHONE_BATTERI}}, Samsung od {{FRA_SAMSUNG_BATTERI}}, iPad od {{FRA_IPAD_BATTERI}} i laptop od {{FRA_COMPUTER_BATTERI}}. Stała cena, płacisz, gdy urządzenie działa. Rezerwacja całą dobę.">
+  <link rel="canonical" href="{{ORIGIN}}/batteriskift-aalborg">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Wymiana baterii w Aalborg | TeknikFix">
+  <meta property="og:description" content="Nowa bateria w ok. 30 min. Stała cena dla Twojego modelu.">
+  <meta property="og:url" content="{{ORIGIN}}/batteriskift-aalborg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Wymiana baterii w Aalborg",
+        "serviceType": "Wymiana baterii",
+        "provider": { "@id": "{{ORIGIN}}/#business" },
+        "areaServed": { "@type": "City", "name": "Aalborg" },
+        "url": "{{ORIGIN}}/batteriskift-aalborg",
+        "offers": [
+          { "@type": "Offer", "name": "Wymiana baterii w iPhonie", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPHONE_BATTERI}}, "maxPrice": {{MAX_IPHONE_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Wymiana baterii w Samsungu", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_SAMSUNG_BATTERI}}, "maxPrice": {{MAX_SAMSUNG_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Wymiana baterii w iPadzie", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPAD_BATTERI}}, "maxPrice": {{MAX_IPAD_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Bateria do laptopa", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_COMPUTER_BATTERI}}, "priceCurrency": "DKK" } }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "{{ORIGIN}}/" },
+          { "@type": "ListItem", "position": 2, "name": "Wymiana baterii w Aalborg", "item": "{{ORIGIN}}/batteriskift-aalborg" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Kiedy trzeba wymienić baterię?", "acceptedAnswer": { "@type": "Answer", "text": "Gdy telefon wyłącza się przy 20–30%, robi się gorący albo stan baterii spadł poniżej 80%. W iPhonie sprawdzisz to w Ustawienia, Bateria, Stan baterii." } },
+          { "@type": "Question", "name": "Ile trwa wymiana baterii?", "acceptedAnswer": { "@type": "Answer", "text": "Ok. 30 minut w telefonie, jeśli bateria jest na stanie. W iPadzie 2–3 godziny, a w laptopie zwykle 1–2 dni." } },
+          { "@type": "Question", "name": "Czy stracę swoje dane?", "acceptedAnswer": { "@type": "Answer", "text": "Nie. Wymiana baterii nie rusza zdjęć, wiadomości ani aplikacji." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><span>Wymiana baterii</span></nav>
+        <h1>Wymiana baterii w Aalborg</h1>
+        <p class="lead">Telefon wyłącza się przy 30% albo nie wytrzymuje całego dnia? Nowa bateria to ok. 30 minut, a Ty możesz poczekać na miejscu. Stała cena dla Twojego modelu.</p>
+        <div class="actions">
+          <a class="btn btn-copper" href="/book">Sprawdź cenę i zarezerwuj</a>
+          <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Zadzwoń: {{PHONE}}</a>
+        </div>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap split">
+        <div class="stack">
+          <div class="table-wrap">
+            <table class="price-table">
+              <caption class="visually-hidden">Ceny wymiany baterii</caption>
+              <thead><tr><th>Urządzenie</th><th>Cena</th><th>Czas</th></tr></thead>
+              <tbody>
+                <tr><td>iPhone</td><td>{{RANGE_IPHONE_BATTERI}}</td><td>ok. 30 min</td></tr>
+                <tr><td>Samsung Galaxy</td><td>{{RANGE_SAMSUNG_BATTERI}}</td><td>ok. 30 min</td></tr>
+                <tr><td>iPad</td><td>{{RANGE_IPAD_BATTERI}}</td><td>2–3 godziny</td></tr>
+                <tr><td>Laptop i MacBook</td><td>od {{FRA_COMPUTER_BATTERI}}</td><td>1–2 dni</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><a class="btn btn-ghost" href="/priser">Sprawdź cenę dla swojego modelu</a></p>
+          <div>
+            <h2>Oznaki zużytej baterii</h2>
+            <p>Telefon wyłącza się, choć na wskaźniku jeszcze jest naładowanie. Robi się gorący podczas ładowania. Zwalnia, bo przyciąga prąd oszczędnie, żeby oszczędzać baterię. Albo bateria zaczęła puchnąć i ekran lub tylna obudowa się unoszą. W takim przypadku wymiana jest potrzebna od razu.</p>
+            <h2>Jakiej baterii używamy?</h2>
+            <p>Nowych baterii wysokiej jakości, z pełną pojemnością. Zanim oddamy Ci telefon, testujemy ładowanie i pojemność.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Jak to wygląda</h2>
+          <p><strong>1.</strong> Zarezerwuj i wybierz swój model. Cenę widzisz od razu.</p>
+          <p><strong>2.</strong> Potwierdzamy termin. Przynosisz urządzenie do nas w Aalborg Øst albo przyjeżdżamy do Ciebie.</p>
+          <p><strong>3.</strong> Wymieniamy baterię. W telefonie zajmuje to ok. 30 minut.</p>
+          <p><strong>4.</strong> Płacisz przez {{PAY_LIST}}, gdy urządzenie działa.</p>
+          <p>Tę samą usterkę w ciągu 30 dni naprawiamy bez dodatkowej opłaty.</p>
+          <p><a href="/iphone-reparation-aalborg">iPhone</a> · <a href="/samsung-reparation-aalborg">Samsung</a> · <a href="/ipad-reparation-aalborg">iPad</a> · <a href="/macbook-reparation-aalborg">MacBook</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Pytania o wymianę baterii</h2>
+        <details class="faq-item" open><summary>Kiedy trzeba wymienić baterię?</summary><p>Gdy telefon wyłącza się przy 20–30%, robi się gorący albo stan baterii spadł poniżej 80%. W iPhonie sprawdzisz to w Ustawienia, Bateria, Stan baterii.</p></details>
+        <details class="faq-item"><summary>Ile trwa wymiana baterii?</summary><p>Ok. 30 minut w telefonie, jeśli bateria jest na stanie. W iPadzie 2–3 godziny, a w laptopie zwykle 1–2 dni.</p></details>
+        <details class="faq-item"><summary>Czy stracę swoje dane?</summary><p>Nie. Wymiana baterii nie rusza zdjęć, wiadomości ani aplikacji.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

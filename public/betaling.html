@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Betaling: {{PAY_LIST}} | TeknikFix Aalborg</title>
+  <meta name="description" content="Hos TeknikFix betaler du med {{PAY_LIST}}. Du betaler, når reparationen virker. Kan den ikke repareres, koster det 0 kr.">
+  <link rel="canonical" href="{{ORIGIN}}/betaling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Betaling | TeknikFix">
+  <meta property="og:description" content="{{PAY_LIST_CAP}}. Betal når den virker.">
+  <meta property="og:url" content="{{ORIGIN}}/betaling">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><span>Betaling</span></nav>
+        <h1>Du betaler, når den virker</h1>
+        <p class="lead">Du ser prisen, før du booker. Når du har set resultatet, betaler du med {{PAY_LIST}}.<!--IF_CARD--> Vil du hellere betale med det samme, kan du vælge det, når du booker.<!--END_IF_CARD--></p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="promise-grid">
+          <article class="panel"><h2>1</h2><p>Du ser prisen og tiden, når du booker.</p></article>
+          <article class="panel"><h2>2</h2><p>Vi reparerer. Du tjekker, at fejlen er væk.</p></article>
+          <article class="panel"><h2>3</h2><p>Sagen står som klar til betaling, med beløbet.</p></article>
+          <article class="panel"><h2>4</h2><p>Du betaler. Du får en kvittering, og sagen bliver opdateret.</p></article>
+        </div>
+        <!--IF_CARD-->
+        <article class="pay-card">
+          <h2>Kort, MobilePay eller Klarna</h2>
+          <p>Den hurtigste måde. Tryk «Betal» på din sag, og vælg den måde, du vil betale på. Betalingen går gennem Stripe, og vi ser aldrig dine kortoplysninger.</p>
+          <ul class="pay-methods" aria-label="Betalingsmåder"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <p>Med Klarna kan du betale senere eller dele beløbet op.</p>
+          <p><a class="btn" href="/sag">Gå til din sag for at betale</a></p>
+        </article>
+        <!--END_IF_CARD-->
+        <div class="pay-grid">
+          <article class="pay-card">
+            <h2>PayPal</h2>
+            <p>Beløbet står i danske kroner, og det er udfyldt på sagen, når reparationen er klar.</p>
+            <p>Betalingen går til <strong>{{PAYPAL}}</strong>. Skriv sagsnummeret, så vi kan se, at det er din sag.</p>
+            <p><a href="/sag">Gå til din sag for at betale</a></p>
+          </article>
+          <article class="pay-card" id="bank">
+            <h2>Bankoverførsel</h2>
+            <dl class="bank-dl">
+              <dt>Modtager</dt><dd>{{HOLDER}}</dd>
+              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
+              <dt>BIC</dt><dd>{{BIC}}</dd>
+              <dt>Bank</dt><dd>{{BANK}}</dd>
+              <dt>Tekst</dt><dd>Dit sagsnummer, fx AX-7K2M</dd>
+            </dl>
+            <div class="copy-row">
+              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">Kopiér IBAN</button>
+              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">Kopiér BIC</button>
+            </div>
+            <p>Kontoen står i svenske kroner. Din bank veksler fra danske kroner, og der kan være et vekselgebyr.</p>
+          </article>
+        </div>
+        <div class="panel">
+          <h2>Hvis den ikke kan repareres</h2>
+          <p>Så betaler du ikke. Dele bliver først bestilt, når du har sagt ja til prisen.<!--IF_CARD--> Har du betalt på forhånd, får du alle pengene tilbage.<!--END_IF_CARD--> Samme fejl inden for 30 dage retter vi uden ny betaling.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

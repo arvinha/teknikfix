@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Śledź swoją sprzedaż | TeknikFix</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Ścieżka nawigacji"><a href="/">Strona główna</a><span aria-hidden="true">/</span><a href="/saelg">Sprzedaj</a><span aria-hidden="true">/</span><span>Śledź sprzedaż</span></nav>
+        <h1>Śledź swoją sprzedaż</h1>
+        <p class="lead">Wpisz numer z wiadomości e-mail (SL-…) i swój adres e-mail.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap narrow stack">
+        <form class="panel" id="find-sale">
+          <label class="field"><span>Numer</span><input name="ref" required maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="SL-7K2M"></label>
+          <label class="field"><span>Adres e-mail</span><input name="email" type="email" required autocomplete="email"></label>
+          <button class="btn" type="submit">Pokaż sprzedaż</button>
+          <p id="find-error" class="form-error" hidden></p>
+        </form>
+        <div id="sale-view" class="panel" hidden></div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script src="/js/saelg-sag.js"></script>
+</body>
+</html>

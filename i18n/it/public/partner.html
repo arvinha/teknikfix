@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diventa riparatore con TeknikFix: ricevi lavori nella tua zona</title>
+  <meta name="description" content="Ripari telefoni, tablet o computer? Diventa partner di TeknikFix e ricevi lavori a prezzo fisso nella tua zona. Ci pensiamo noi a prenotazioni, pagamenti e clienti.">
+  <link rel="canonical" href="{{ORIGIN}}/partner">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Diventa riparatore con TeknikFix">
+  <meta property="og:description" content="Ricevi lavori di riparazione nella tua zona. Ci pensiamo noi a prenotazioni, pagamenti e clienti.">
+  <meta property="og:url" content="{{ORIGIN}}/partner">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Briciole di pane"><a href="/">Home</a><span aria-hidden="true">/</span><span>Diventa partner</span></nav>
+        <h1>Diventa riparatore con TeknikFix</h1>
+        <p class="lead">Tu sei bravo a riparare. Noi ti portiamo i clienti, stabiliamo il prezzo e incassiamo il pagamento. Vedi il lavoro prima di dire di sì.</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <div class="ways">
+          <div class="way"><span class="way-num">01</span><h3>Lavori per te</h3><p>I clienti della tua zona prenotano su teknikfix.dk. Se il lavoro fa per te, è tuo.</p></div>
+          <div class="way"><span class="way-num">02</span><h3>Niente trattative sul prezzo</h3><p>Il cliente ha già visto il prezzo fisso prima di prenotare. Tu vedi il tuo compenso prima di dire di sì.</p></div>
+          <div class="way"><span class="way-num">03</span><h3>Ricambi e pagamento risolti</h3><p>Ordiniamo noi il ricambio per il lavoro e il cliente paga tramite la piattaforma. Tu devi solo riparare.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0">
+      <div class="wrap split">
+        <form class="panel" id="partner-form" novalidate>
+          <h2>Iscriviti</h2>
+          <div class="field-pair">
+            <label class="field"><span>Nome</span><input name="name" required maxlength="80" autocomplete="name"></label>
+            <label class="field"><span>Azienda <small class="muted">(facoltativo)</small></span><input name="company" maxlength="120" autocomplete="organization"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Telefono</span><input name="phone" required maxlength="30" autocomplete="tel" inputmode="tel"></label>
+            <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Città o CAP</span><input name="city" required maxlength="80" autocomplete="address-level2"></label>
+            <label class="field"><span>Paese</span><select name="country" required autocomplete="country">{{EU_COUNTRIES}}</select></label>
+          </div>
+          <div class="field-pair">
+            <label class="field"><span>Fino a quanti km ti sposti?</span><input name="radiusKm" type="number" min="0" max="500" value="20" inputmode="numeric"></label>
+            <label class="field"><span>Numero aziendale o partita IVA <small class="muted">(se ce l'hai)</small></span><input name="cvr" maxlength="20"></label>
+          </div>
+          <p class="field-title">Cosa ripari?</p>
+          <div class="fault-grid">
+            <label class="check"><input type="checkbox" name="skills" value="telefon"> <span>Telefoni</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="tablet"> <span>Tablet</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="computer"> <span>Computer</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="mikrolodning"> <span>Microsaldatura</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="data"> <span>Recupero dati</span></label>
+            <label class="check"><input type="checkbox" name="skills" value="konsol"> <span>Console</span></label>
+          </div>
+          <label class="field"><span>Esperienza</span><select name="experience"><option value="under 1 år">Meno di 1 anno</option><option value="1-3 år" selected>1–3 anni</option><option value="3-5 år">3–5 anni</option><option value="over 5 år">Più di 5 anni</option></select></label>
+          <label class="check"><input type="checkbox" name="workshop" value="ja"> <span>Ho un laboratorio mio dove i clienti possono passare</span></label>
+          <label class="field"><span>Raccontaci qualcosa di te <small class="muted">(facoltativo)</small></span><textarea name="message" maxlength="2000"></textarea></label>
+          <label class="check"><input type="checkbox" name="consent" value="ja"> <span>TeknikFix può conservare i miei dati e contattarmi per i lavori.</span></label>
+          <p class="form-error" id="partner-error" hidden role="alert"></p>
+          <button class="btn btn-copper" type="submit" id="partner-send">Invia iscrizione</button>
+        </form>
+        <div class="panel form-done" id="partner-done" hidden>
+          <div class="done-mark" aria-hidden="true">✓</div>
+          <h2>Grazie per l'iscrizione</h2>
+          <p>Ti chiameremo entro un paio di giorni. Il tuo numero è <strong id="partner-ref"></strong>.</p>
+        </div>
+        <div>
+          <h2 class="section-title">Come funziona</h2>
+          <ol class="steps steps-stack">
+            <li><span>1</span><h3>Iscriviti</h3><p>Dicci cosa ripari e dove lavori.</p></li>
+            <li><span>2</span><h3>Ti chiamiamo</h3><p>Una breve chiacchierata su qualità, garanzia e prezzi. Poi sei pronto.</p></li>
+            <li><span>3</span><h3>Ricevi lavori</h3><p>Ti avvisiamo quando un cliente della tua zona prenota. Se dici di sì, il lavoro è tuo.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script>
+    (function () {
+      var form = document.querySelector("#partner-form");
+      var error = document.querySelector("#partner-error");
+      var button = document.querySelector("#partner-send");
+      var home = document.documentElement.getAttribute("data-country");
+      if (home && form.querySelector("select[name=country] option[value=" + home + "]")) form.elements.country.value = home;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.hidden = true;
+        button.disabled = true;
+        var f = form.elements;
+        var skills = Array.prototype.slice.call(form.querySelectorAll("input[name=skills]:checked")).map(function (i) { return i.value; });
+        var payload = {
+          name: f.name.value, company: f.company.value, phone: f.phone.value, email: f.email.value, city: f.city.value, country: f.country.value,
+          radiusKm: f.radiusKm.value, cvr: f.cvr.value, skills: skills, experience: f.experience.value,
+          workshop: f.workshop.checked ? "ja" : "", message: f.message.value, consent: f.consent.checked ? "ja" : ""
+        };
+        fetch("/api/partner", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.message || "La richiesta non è stata inviata.");
+            document.querySelector("#partner-ref").textContent = res.body.ref;
+            form.hidden = true;
+            document.querySelector("#partner-done").hidden = false;
+          })
+          .catch(function (err) { error.hidden = false; error.textContent = err.message; button.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

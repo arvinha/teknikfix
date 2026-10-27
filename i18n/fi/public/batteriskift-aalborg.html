@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akunvaihto Aalborgissa · iPhone, Samsung, iPad ja kannettava | TeknikFix</title>
+  <meta name="description" content="Uusi akku Aalborgissa noin 30 minuutissa. iPhone alkaen {{FRA_IPHONE_BATTERI}}, Samsung alkaen {{FRA_SAMSUNG_BATTERI}}, iPad alkaen {{FRA_IPAD_BATTERI}} ja kannettava alkaen {{FRA_COMPUTER_BATTERI}}. Kiinteä hinta, maksat kun laite toimii. Varaa aika vuorokauden ympäri.">
+  <link rel="canonical" href="{{ORIGIN}}/batteriskift-aalborg">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="TeknikFix">
+  <meta property="og:title" content="Akunvaihto Aalborgissa | TeknikFix">
+  <meta property="og:description" content="Uusi akku noin 30 minuutissa. Kiinteä hinta omalle mallillesi.">
+  <meta property="og:url" content="{{ORIGIN}}/batteriskift-aalborg">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Akunvaihto Aalborgissa",
+        "serviceType": "Akun vaihto",
+        "provider": { "@id": "{{ORIGIN}}/#business" },
+        "areaServed": { "@type": "City", "name": "Aalborg" },
+        "url": "{{ORIGIN}}/batteriskift-aalborg",
+        "offers": [
+          { "@type": "Offer", "name": "iPhonen akunvaihto", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPHONE_BATTERI}}, "maxPrice": {{MAX_IPHONE_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Samsungin akunvaihto", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_SAMSUNG_BATTERI}}, "maxPrice": {{MAX_SAMSUNG_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "iPadin akunvaihto", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_IPAD_BATTERI}}, "maxPrice": {{MAX_IPAD_BATTERI}}, "priceCurrency": "DKK" } },
+          { "@type": "Offer", "name": "Kannettavan akku", "priceCurrency": "DKK", "priceSpecification": { "@type": "PriceSpecification", "minPrice": {{MIN_COMPUTER_BATTERI}}, "priceCurrency": "DKK" } }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Etusivu", "item": "{{ORIGIN}}/" },
+          { "@type": "ListItem", "position": 2, "name": "Akunvaihto Aalborgissa", "item": "{{ORIGIN}}/batteriskift-aalborg" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Milloin akku pitäisi vaihtaa?", "acceptedAnswer": { "@type": "Answer", "text": "Kun puhelin sammuu 20–30 %:n varauksella, kuumenee tai akun kunto on alle 80 %. iPhonessa näet sen kohdasta Asetukset, Akku, Akun kunto." } },
+          { "@type": "Question", "name": "Kauanko akunvaihto kestää?", "acceptedAnswer": { "@type": "Answer", "text": "Puhelimessa noin 30 minuuttia, kun akku on varastossa. iPadissa 2–3 tuntia ja kannettavassa tyypillisesti 1–2 päivää." } },
+          { "@type": "Question", "name": "Menetänkö tietoni?", "acceptedAnswer": { "@type": "Answer", "text": "Et. Akunvaihto ei koske kuviin, viesteihin tai sovelluksiin." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Murupolku"><a href="/">Etusivu</a><span aria-hidden="true">/</span><span>Akunvaihto</span></nav>
+        <h1>Akunvaihto Aalborgissa</h1>
+        <p class="lead">Sammuuko puhelin 30 %:n varauksella, tai eikö se kestä päivääkään? Uuden akun vaihto vie noin 30 minuuttia, ja voit odottaa paikan päällä. Kiinteä hinta omalle mallillesi.</p>
+        <div class="actions">
+          <a class="btn btn-copper" href="/book">Katso hinta ja varaa aika</a>
+          <a class="btn btn-ghost" href="tel:{{PHONE_TEL}}">Soita {{PHONE}}</a>
+        </div>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap split">
+        <div class="stack">
+          <div class="table-wrap">
+            <table class="price-table">
+              <caption class="visually-hidden">Akunvaihdon hinnat</caption>
+              <thead><tr><th>Laite</th><th>Hinta</th><th>Aika</th></tr></thead>
+              <tbody>
+                <tr><td>iPhone</td><td>{{RANGE_IPHONE_BATTERI}}</td><td>noin 30 min</td></tr>
+                <tr><td>Samsung Galaxy</td><td>{{RANGE_SAMSUNG_BATTERI}}</td><td>noin 30 min</td></tr>
+                <tr><td>iPad</td><td>{{RANGE_IPAD_BATTERI}}</td><td>2–3 tuntia</td></tr>
+                <tr><td>Kannettava tietokone ja MacBook</td><td>alkaen {{FRA_COMPUTER_BATTERI}}</td><td>1–2 päivää</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><a class="btn btn-ghost" href="/priser">Katso oman mallisi hinta</a></p>
+          <div>
+            <h2>Kulunut akku näkyy näistä</h2>
+            <p>Puhelin sammuu, vaikka virtaa on vielä jäljellä. Se kuumenee latauksen aikana. Se hidastuu, koska se säästää akkua vähentämällä tehoa. Tai akku on alkanut pullistua, jolloin näyttö tai takakansi nousee irti. Pullistunut akku pitää vaihtaa heti.</p>
+            <h2>Millaisen akun asennamme?</h2>
+            <p>Uusia, laadukkaita akkuja täydellä kapasiteetilla. Testaamme latauksen ja kapasiteetin ennen kuin saat puhelimen takaisin.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Näin se etenee</h2>
+          <p><strong>1.</strong> Varaa aika ja valitse mallisi. Näet hinnan heti.</p>
+          <p><strong>2.</strong> Vahvistamme ajan. Tuot laitteen meille Aalborg Østiin, tai tulemme luoksesi.</p>
+          <p><strong>3.</strong> Vaihdamme akun. Puhelimessa se vie noin 30 minuuttia.</p>
+          <p><strong>4.</strong> Maksat {{PAY_LIST}}, kun laite toimii.</p>
+          <p>Jos sama vika ilmenee 30 päivän sisällä, korjaamme sen ilman uutta maksua.</p>
+          <p><a href="/iphone-reparation-aalborg">iPhone</a> · <a href="/samsung-reparation-aalborg">Samsung</a> · <a href="/ipad-reparation-aalborg">iPad</a> · <a href="/macbook-reparation-aalborg">MacBook</a></p>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="padding-top: 0">
+      <div class="wrap narrow">
+        <h2>Kysymyksiä akunvaihdosta</h2>
+        <details class="faq-item" open><summary>Milloin akku pitäisi vaihtaa?</summary><p>Kun puhelin sammuu 20–30 %:n varauksella, kuumenee tai akun kunto on alle 80 %. iPhonessa näet sen kohdasta Asetukset, Akku, Akun kunto.</p></details>
+        <details class="faq-item"><summary>Kauanko akunvaihto kestää?</summary><p>Puhelimessa noin 30 minuuttia, kun akku on varastossa. iPadissa 2–3 tuntia ja kannettavassa tyypillisesti 1–2 päivää.</p></details>
+        <details class="faq-item"><summary>Menetänkö tietoni?</summary><p>Et. Akunvaihto ei koske kuviin, viesteihin tai sovelluksiin.</p></details>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prezzi per la riparazione di telefoni, computer e tablet | TeknikFix Aalborg</title>
+  <meta name="description" content="Prezzi indicativi per la riparazione di telefoni, computer e tablet da TeknikFix ad Aalborg. Controllo gratuito. Il prezzo definitivo lo conosci prima che iniziamo.">
+  <link rel="canonical" href="{{ORIGIN}}/ydelser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Prezzi delle riparazioni | TeknikFix Aalborg">
+  <meta property="og:description" content="Prezzi indicativi. Controllo gratuito, e paghi solo quando funziona.">
+  <meta property="og:url" content="{{ORIGIN}}/ydelser">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Briciole di pane"><a href="/">Home</a><span aria-hidden="true">/</span><span>Servizi</span></nav>
+        <h1>Servizi e prezzi</h1>
+        <p class="lead">Qui trovi la fascia di prezzo per ogni tipo di riparazione. Il prezzo fisso per il tuo modello preciso lo trovi alla pagina <a href="/priser">prezzi</a>, oppure quando prenoti. Il controllo costa 0 DKK.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="table-wrap" id="telefon">
+          <table class="price-table">
+            <caption class="visually-hidden">Telefono</caption>
+            <thead><tr><th>Telefono</th><th>Prezzo</th><th>Tempo</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Telefono</td></tr>
+              <tr><td>Batteria</td><td>{{RANGE_TELEFON_BATTERI}}</td><td>circa 30 min</td></tr>
+              <tr><td>Schermo</td><td>{{RANGE_TELEFON_SKAERM}}</td><td>circa 45 min</td></tr>
+              <tr><td>Porta di ricarica</td><td>{{RANGE_TELEFON_LADEPORT}}</td><td>circa 45 min</td></tr>
+              <tr><td>Fotocamera</td><td>{{RANGE_TELEFON_KAMERA}}</td><td>circa 45 min</td></tr>
+              <tr><td>Vetro posteriore</td><td>{{RANGE_TELEFON_BAGGLAS}}</td><td>1–2 ore</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="computer">
+          <table class="price-table">
+            <caption class="visually-hidden">Computer</caption>
+            <thead><tr><th>Computer</th><th>Prezzo</th><th>Tempo</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Computer</td></tr>
+              <tr><td>Computer lento, pulizia e ottimizzazione</td><td>{{RANGE_COMPUTER_RENS}}</td><td>1–2 ore</td></tr>
+              <tr><td>Virus e pop-up</td><td>{{RANGE_COMPUTER_VIRUS}}</td><td>1–3 ore</td></tr>
+              <tr><td>Reinstallazione di Windows o macOS</td><td>{{RANGE_COMPUTER_GENINSTALLATION}}</td><td>2–3 ore</td></tr>
+              <tr><td>Nuovo SSD, 1 TB</td><td>da {{FRA_COMPUTER_SSD}}</td><td>2–3 ore</td></tr>
+              <tr><td>Schermo del portatile</td><td>da {{FRA_COMPUTER_SKAERM}}</td><td>1–3 giorni</td></tr>
+              <tr><td>Batteria del portatile</td><td>da {{FRA_COMPUTER_BATTERI}}</td><td>1–2 giorni</td></tr>
+              <tr><td>Recupero dei file</td><td>da {{FRA_COMPUTER_DATA}}</td><td>1–3 giorni</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" id="tablet">
+          <table class="price-table">
+            <caption class="visually-hidden">Tablet</caption>
+            <thead><tr><th>Tablet</th><th>Prezzo</th><th>Tempo</th></tr></thead>
+            <tbody>
+              <tr class="group-row"><td colspan="3">Tablet</td></tr>
+              <tr><td>Schermo o vetro</td><td>{{RANGE_TABLET_SKAERM}}</td><td>In giornata</td></tr>
+              <tr><td>Batteria</td><td>{{RANGE_TABLET_BATTERI}}</td><td>2–3 ore</td></tr>
+              <tr><td>Porta di ricarica</td><td>{{RANGE_TABLET_LADEPORT}}</td><td>circa 1 ora</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Sempre 0 DKK</h2>
+          <p>Il controllo, sia che tu venga da noi sia che veniamo noi da te. Anche lo spostamento ad Aalborg costa 0 DKK. Paghi solo per una riparazione a cui hai detto sì, e solo quando funziona.</p>
+          <p>Danni da liquidi e apparecchi molto vecchi spesso non riusciamo a salvarli. In quel caso te lo diciamo subito.</p>
+          <div class="actions"><a class="btn" href="/book">Prenota e scopri il prezzo</a><a class="btn btn-ghost" href="/priser">Prezzi per tutti i modelli</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prenota la riparazione e vedi subito il prezzo | TeknikFix Aalborg</title>
+  <meta name="description" content="Scegli modello e guasto e vedi subito prezzo e tempi. Riparazione di telefoni, computer e tablet ad Aalborg. Paghi con {{PAY_LIST}} quando funziona di nuovo.">
+  <link rel="canonical" href="{{ORIGIN}}/book">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Prenota il controllo gratuito | TeknikFix">
+  <meta property="og:description" content="Prenota a qualsiasi ora. Controllo gratuito, prezzo prima di iniziare.">
+  <meta property="og:url" content="{{ORIGIN}}/book">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="book-page">
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero book-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Briciole di pane"><a href="/">Home</a><span aria-hidden="true">/</span><span>Prenota</span></nav>
+        <h1>Prenota una riparazione</h1>
+        <p class="lead">Vedi subito il prezzo. Ti confermiamo l'orario dopo.</p>
+      </div>
+    </header>
+    <section class="section book-section">
+      <div class="wrap">
+        <form class="panel book-flow" id="book-form" method="post" action="/api/bookings">
+          <p class="flow-count" id="step-count" hidden>Passo 1 di 4</p>
+          <div class="steps-bar" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span></div>
+          <p id="step-live" class="visually-hidden" aria-live="polite">Passo 1 di 4</p>
+          {{BOOK_ERROR}}
+          <p id="form-error" class="form-error" hidden></p>
+
+          <div data-step class="is-active">
+            <h2>Cosa dobbiamo controllare?</h2>
+            <div class="choice-grid device-choices">
+              <label class="choice choice-icon"><input type="radio" name="device" value="telefon" required><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><strong>Telefono</strong><small>iPhone, Samsung, Pixel e tutti gli altri</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="computer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4.5" width="16" height="11" rx="1.5"/><path d="M2 19.5h20"/></svg><strong>Computer</strong><small>Portatile o fisso</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="tablet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><strong>Tablet</strong><small>iPad e altri</small></label>
+              <label class="choice choice-icon"><input type="radio" name="device" value="andet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17h.01"/></svg><strong>Altro</strong><small>Console, orologio, cuffie: dicci cos'è</small></label>
+            </div>
+          </div>
+
+          <div data-step>
+            <h2>Cosa non va?</h2>
+            <div id="pick-wrap" hidden>
+              <label class="field"><span>Modello</span><select name="modelId" id="model-select"></select></label>
+              <p class="field-note">Il tuo modello non è in elenco? Scegli «Il mio modello non è in elenco» in fondo. Ripariamo quasi tutte le marche e la valutazione è gratuita.</p>
+              <div id="repair-wrap" hidden>
+                <p class="field-title">Cosa serve riparare? <span class="repair-hint">Puoi sceglierne più di una</span></p>
+                <div class="repair-grid" id="repair-grid"></div>
+              </div>
+              <div class="estimate" id="estimate" hidden aria-live="polite"></div>
+            </div>
+            <label class="field" id="model-text"><span>Marca e modello, se lo conosci</span><input name="model" maxlength="80" placeholder="Es. Nothing Phone 2 o Lenovo ThinkPad"></label>
+            <button class="link-button" id="problem-open" type="button" hidden>+ Scrivici un messaggio (facoltativo)</button>
+            <label class="field" id="problem-wrap"><span id="problem-label">Il guasto</span><textarea name="problem" required minlength="8" maxlength="2000" placeholder="Es. lo schermo è rotto o il computer non si accende"></textarea></label>
+          </div>
+
+          <div data-step>
+            <h2>Dove e quando?</h2>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="visit" value="vaerksted" required><strong>La porto io</strong><small>Aalborg Øst, su appuntamento</small></label>
+              <label class="choice"><input type="radio" name="visit" value="hjemme"><strong>Venite da me</strong><small>Trasporto gratuito ad Aalborg</small></label>
+              <label class="choice"><input type="radio" name="visit" value="post"><strong>La spedisco io</strong><small>Per posta da tutta l'UE</small></label>
+            </div>
+            <div id="address-wrap">
+              <label class="field field-gap"><span>Il tuo indirizzo</span><input name="address" maxlength="200" autocomplete="street-address" placeholder="Via, numero, CAP, città e paese"></label>
+              <p class="field-note" id="post-note" hidden>Ti scriviamo via e-mail come imballare e spedire il dispositivo. Quando è riparato, te lo rispediamo all'indirizzo indicato. La spedizione verso di noi la paghi tu, e nel prezzo includiamo la spedizione di ritorno.</p>
+            </div>
+            <p class="field-title field-gap">Quando?</p>
+            <div class="segmented">
+              <label><input type="radio" name="when" value="hurtigst" checked><span>Il prima possibile</span></label>
+              <label><input type="radio" name="when" value="tidspunkt"><span>Scegli giorno e ora</span></label>
+            </div>
+            <div id="time-wrap" class="time-row">
+              <label class="field"><span>Giorno</span><input type="date" name="timeDate" id="time-date"></label>
+              <label class="field"><span>Ora</span><select name="timeSlot" id="time-slot"><option value="formiddag">Mattina 9–12</option><option value="eftermiddag" selected>Pomeriggio 12–17</option><option value="aften">Sera 17–22</option></select></label>
+            </div>
+            <div id="time-pick" class="time-pick" hidden>
+              <div class="day-chips" id="day-chips" role="radiogroup" aria-label="Giorno"></div>
+              <div class="slot-chips" id="slot-chips" role="radiogroup" aria-label="Ora"></div>
+            </div>
+            <p class="form-hint">Ti confermiamo l'orario via SMS o e-mail. Passa solo dopo aver ricevuto la conferma.</p>
+          </div>
+
+          <div data-step>
+            <h2>I tuoi dati</h2>
+            <label class="field"><span>Nome</span><input name="name" required minlength="2" maxlength="80" autocomplete="name"></label>
+            <div class="field-pair">
+              <label class="field"><span>Telefono</span><input name="phone" required minlength="8" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="Il tuo numero di cellulare"></label>
+              <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email"></label>
+            </div>
+            <div class="review" id="review" hidden></div>
+            <div id="pay-choice" hidden>
+              <p class="field-title">Quando vuoi pagare?</p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="payWhen" value="efter" checked><strong>Quando funziona</strong><small>{{PAY_LIST_CAP}}</small></label>
+                <label class="choice"><input type="radio" name="payWhen" value="nu"><strong>Paga ora</strong><small>Carta, MobilePay o Klarna. Rimborso se non si può riparare</small></label>
+              </div>
+            </div>
+            <input type="hidden" name="consent" value="ja">
+            <p class="form-hint">Usiamo i tuoi dati solo per la pratica e per il pagamento.</p>
+            <a class="pay-logos book-pay-logos" href="/betaling" aria-label="Metodi di pagamento: {{PAY_ACCEPTED}}">
+              {{PAY_LOGOS}}
+            </a>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-ghost" id="back" type="button" hidden><span aria-hidden="true">‹</span> Indietro</button>
+            <button class="btn" id="next" type="button" hidden>Avanti <span aria-hidden="true">›</span></button>
+            <button class="btn btn-copper" id="send" type="submit">Invia la prenotazione</button>
+          </div>
+        </form>
+        <p class="book-trust">
+          <a class="tp-link" href="{{TRUSTPILOT_URL}}" rel="noopener" target="_blank"><img src="/img/trustpilot.svg" alt="Trustpilot" width="104" height="26"></a>
+          <span>Controllo gratuito · Prezzo prima di iniziare · 30 giorni di garanzia</span>
+        </p>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script type="application/json" id="price-data">{{PRICE_JSON}}</script>
+  <div id="book-config" hidden data-card="{{CARD_ENABLED}}"></div>
+  <script src="/js/site.js"></script>
+  <script src="/js/book.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bezahlung: {{PAY_LIST}} | TeknikFix Aalborg</title>
+  <meta name="description" content="Bei TeknikFix bezahlst du mit {{PAY_LIST}}. Du bezahlst, wenn die Reparatur funktioniert. Lässt sich das Gerät nicht reparieren, kostet es 0 DKK.">
+  <link rel="canonical" href="{{ORIGIN}}/betaling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Bezahlung | TeknikFix">
+  <meta property="og:description" content="{{PAY_LIST_CAP}}. Bezahle, wenn es funktioniert.">
+  <meta property="og:url" content="{{ORIGIN}}/betaling">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brotkrumen"><a href="/">Startseite</a><span aria-hidden="true">/</span><span>Bezahlung</span></nav>
+        <h1>Du bezahlst, wenn es funktioniert</h1>
+        <p class="lead">Du siehst den Preis, bevor du buchst. Wenn du das Ergebnis gesehen hast, bezahlst du mit {{PAY_LIST}}.<!--IF_CARD--> Wenn du lieber gleich bezahlen möchtest, kannst du das bei der Buchung auswählen.<!--END_IF_CARD--></p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap stack">
+        <div class="promise-grid">
+          <article class="panel"><h2>1</h2><p>Du siehst Preis und Dauer, wenn du buchst.</p></article>
+          <article class="panel"><h2>2</h2><p>Wir reparieren. Du prüfst, ob der Fehler weg ist.</p></article>
+          <article class="panel"><h2>3</h2><p>Dein Fall steht als bereit zur Bezahlung da, mit dem Betrag.</p></article>
+          <article class="panel"><h2>4</h2><p>Du bezahlst. Du bekommst eine Quittung, und dein Fall wird aktualisiert.</p></article>
+        </div>
+        <!--IF_CARD-->
+        <article class="pay-card">
+          <h2>Karte, MobilePay oder Klarna</h2>
+          <p>Der schnellste Weg. Klicke bei deinem Fall auf „Bezahlen“ und wähle die Zahlungsart, die du nutzen möchtest. Die Zahlung läuft über Stripe, und wir sehen deine Kartendaten nie.</p>
+          <ul class="pay-methods" aria-label="Zahlungsarten"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <p>Mit Klarna kannst du später bezahlen oder den Betrag aufteilen.</p>
+          <p><a class="btn" href="/sag">Zu deinem Fall und bezahlen</a></p>
+        </article>
+        <!--END_IF_CARD-->
+        <div class="pay-grid">
+          <article class="pay-card">
+            <h2>PayPal</h2>
+            <p>Der Betrag steht in dänischen Kronen und ist in deinem Fall eingetragen, sobald die Reparatur fertig ist.</p>
+            <p>Die Zahlung geht an <strong>{{PAYPAL}}</strong>. Schreib die Fallnummer dazu, damit wir sehen, dass es dein Fall ist.</p>
+            <p><a href="/sag">Zu deinem Fall und bezahlen</a></p>
+          </article>
+          <article class="pay-card" id="bank">
+            <h2>Banküberweisung</h2>
+            <dl class="bank-dl">
+              <dt>Empfänger</dt><dd>{{HOLDER}}</dd>
+              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
+              <dt>BIC</dt><dd>{{BIC}}</dd>
+              <dt>Bank</dt><dd>{{BANK}}</dd>
+              <dt>Verwendungszweck</dt><dd>Deine Fallnummer, z. B. AX-7K2M</dd>
+            </dl>
+            <div class="copy-row">
+              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">IBAN kopieren</button>
+              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">BIC kopieren</button>
+            </div>
+            <p>Das Konto wird in schwedischen Kronen geführt. Deine Bank rechnet von dänischen Kronen um, und es kann eine Umrechnungsgebühr anfallen.</p>
+          </article>
+        </div>
+        <div class="panel">
+          <h2>Wenn sich das Gerät nicht reparieren lässt</h2>
+          <p>Dann bezahlst du nichts. Teile werden erst bestellt, wenn du dem Preis zugestimmt hast.<!--IF_CARD--> Wenn du vorab bezahlt hast, bekommst du das ganze Geld zurück.<!--END_IF_CARD--> Tritt derselbe Fehler innerhalb von 30 Tagen erneut auf, beheben wir ihn ohne neue Zahlung.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+</body>
+</html>

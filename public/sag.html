@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Følg din reparation | TeknikFix Aalborg</title>
+  <meta name="description" content="Følg din sag hos TeknikFix og betal, når reparationen er færdig. Brug sagsnummer og e-mail.">
+  <link rel="canonical" href="{{ORIGIN}}/sag">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Følg din reparation | TeknikFix">
+  <meta property="og:url" content="{{ORIGIN}}/sag">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><span>Følg sag</span></nav>
+        <h1>Følg din sag</h1>
+        <p class="lead">Skriv sagsnummeret fra kvitteringen og den e-mail, du booked med. Her kan du godkende prisen og betale, når reparationen er færdig.</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap narrow stack">
+        <form class="panel" id="find-sag">
+          <label class="field"><span>Sagsnummer</span><input name="ref" required maxlength="12" autocapitalize="characters" autocomplete="off" placeholder="AX-7K2M"></label>
+          <label class="field"><span>E-mail</span><input name="email" type="email" required autocomplete="email"></label>
+          <button class="btn" type="submit">Vis sagen</button>
+          <p id="find-error" class="form-error" hidden></p>
+        </form>
+        <div id="sag-view" class="panel" hidden></div>
+        <div id="pay-config" hidden data-paypal="{{PAYPAL}}" data-iban="{{IBAN_PRETTY}}" data-bic="{{BIC}}" data-bank="{{BANK}}" data-holder="{{HOLDER}}" data-card="{{CARD_ENABLED}}"></div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script src="/js/labels.js"></script>
+  <script src="/js/sag.js"></script>
+</body>
+</html>
