@@ -64,6 +64,11 @@
     if (!prices) loadPrices();
   }
 
+  window.addEventListener("hashchange", function () {
+    const linked = decodeURIComponent(location.hash.slice(1)).toUpperCase();
+    if (items.some(function (entry) { return entry.ref === linked; })) paintDetail(linked);
+  });
+
   const priceBox = document.querySelector("#price-admin");
   let prices = null;
   let priceMode = "mine";
@@ -286,6 +291,12 @@
       "<button class=\"btn btn-ghost\" type=\"button\" data-set=\"betalt\">Betalt</button>" +
       "<button class=\"btn btn-ghost\" type=\"button\" data-set=\"kunne_ikke\">Kunne ikke</button></div>" +
       "<p id=\"editor-error\" class=\"form-error\" hidden></p></form>" +
+      "<details class=\"guide\" data-job-box=\"" + esc(item.ref) + "\"><summary>Send til en partner-reparatør</summary>" +
+      "<p>Godkendte partnere får en mail og kan tage opgaven på /partner/opgaver. Kun den, der tager den, ser kundens oplysninger.</p>" +
+      "<label class=\"field\"><span>Partnerens betaling i kroner</span><input data-job-payout inputmode=\"numeric\" value=\"" + esc(priceValue ? Math.round((Number(priceValue) * 0.5) / 50) * 50 : "") + "\"></label>" +
+      "<label class=\"field\"><span>Besked til partneren <small class=\"muted\">(valgfrit, uden kundens navn)</small></span><textarea data-job-note maxlength=\"400\" placeholder=\"Fx: Delen ligger klar på værkstedet.\"></textarea></label>" +
+      "<button class=\"btn btn-copper\" type=\"button\" data-job-new>Send til partnere</button>" +
+      "<p class=\"form-error\" data-job-error hidden></p></details>" +
       (notes ? "<h3>Noter</h3><ul class=\"note-list\">" + notes + "</ul>" : "");
     document.querySelector("#editor").addEventListener("submit", function (event) {
       event.preventDefault();

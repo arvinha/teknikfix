@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opgaver til reparatører | TeknikFix</title>
+  <meta name="description" content="Log ind som reparatør hos TeknikFix og tag reparationsopgaver i dit område.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  {{HEADER}}
+  <main id="indhold">
+    <header class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><a href="/partner">Partner</a><span aria-hidden="true">/</span><span>Opgaver</span></nav>
+        <h1>Opgaver til reparatører</h1>
+        <p class="lead" id="job-lead">Log ind med den e-mail, du tilmeldte dig med. Vi sender dig en kode.</p>
+      </div>
+    </header>
+
+    <section class="section" style="padding-top: 24px">
+      <div class="wrap">
+        <form class="panel job-login" id="code-form" novalidate>
+          <h2>Log ind</h2>
+          <label class="field"><span>E-mail</span><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          <button class="btn btn-copper" type="submit">Send mig en kode</button>
+          <p class="form-error" data-error hidden role="alert"></p>
+          <p class="muted">Ikke partner endnu? <a href="/partner">Tilmeld dig her</a>. Vi godkender dig efter en kort snak.</p>
+        </form>
+
+        <form class="panel job-login" id="login-form" hidden novalidate>
+          <h2>Skriv koden</h2>
+          <p data-info></p>
+          <label class="field"><span>Kode fra mailen</span><input name="code" required maxlength="6" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}"></label>
+          <button class="btn btn-copper" type="submit">Log ind</button>
+          <button class="btn btn-ghost" type="button" data-back>Brug en anden e-mail</button>
+          <p class="form-error" data-error hidden role="alert"></p>
+        </form>
+
+        <div id="board" hidden>
+          <div class="job-top">
+            <p id="job-hello"></p>
+            <button class="btn btn-ghost" type="button" id="job-logout">Log ud</button>
+          </div>
+          <div class="job-earned" id="job-earned"></div>
+
+          <h2>Ledige opgaver</h2>
+          <div class="job-list" id="job-open"></div>
+
+          <h2>Mine opgaver</h2>
+          <div class="job-list" id="job-mine"></div>
+
+          <details class="guide">
+            <summary>Sådan virker det</summary>
+            <ol>
+              <li>Tryk <strong>Tag opgaven</strong>. Så er den din, og du ser kundens navn, telefon og adresse.</li>
+              <li>Ring til kunden inden for 24 timer, og aftal tid. Kunden har fået besked om, at du kontakter dem.</li>
+              <li>Tryk <strong>Jeg er i gang</strong>, når du har enheden. Kunden får besked.</li>
+              <li>Tryk <strong>Færdig</strong>, når den virker. Kunden får et betalingslink, og du får din betaling, når kunden har betalt.</li>
+              <li>Kan du alligevel ikke? Tryk <strong>Giv opgaven tilbage</strong>, så en anden kan tage den.</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{FOOTER}}
+  <script src="/js/site.js"></script>
+  <script src="/js/partner-opgaver.js"></script>
+</body>
+</html>

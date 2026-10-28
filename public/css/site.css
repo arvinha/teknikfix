@@ -1061,6 +1061,25 @@ label.find-way:hover { background: #dcefe3; }
 .partner-band .kicker { color: #e9b48f; }
 .partner-band .btn { flex: 0 0 auto; }
 @media (max-width: 760px) { .partner-band { flex-direction: column; align-items: flex-start; padding: 22px; } }
+
+.job-login { max-width: 460px; }
+.job-login .btn { margin: 4px 8px 4px 0; }
+.job-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.job-earned { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 12px 0 28px; }
+.job-earned div { padding: 16px 18px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); }
+.job-earned span { display: block; font-size: .9rem; color: var(--muted); }
+.job-earned strong { font-size: 1.4rem; }
+.job-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 14px; margin-bottom: 32px; }
+.job-card { position: relative; margin: 0; }
+.job-card h3 { margin: 6px 0; padding-right: 96px; }
+.job-card.is-active { border-color: var(--copper); }
+.job-pay { position: absolute; top: 16px; right: 18px; margin: 0; font-weight: 700; font-size: 1.15rem; color: var(--forest); }
+.job-note { padding: 8px 12px; border-radius: 10px; background: rgba(0, 0, 0, .04); }
+@media (max-width: 520px) {
+  .job-earned { grid-template-columns: 1fr; }
+  .job-card .admin-kv { grid-template-columns: 1fr; gap: 0; }
+  .job-card .admin-kv dd { margin-bottom: 8px; }
+}
 .path { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px; color: inherit; text-decoration: none; box-shadow: var(--shadow); }
 .path:hover { border-color: var(--forest); color: inherit; }
 .path svg { width: 36px; height: 36px; fill: none; stroke: var(--copper); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 12px; }

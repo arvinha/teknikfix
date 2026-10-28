@@ -105,6 +105,8 @@
         </div>
 
         <div data-panel="partnere" hidden>
+          <div class="panel" id="job-admin"><p>Henter opgaver...</p></div>
+          <h2>Reparatører</h2>
           <div class="admin-layout">
             <div>
               <label class="field"><span>Søg</span><input data-search="partnere" placeholder="Navn, by eller RP-nummer"></label>
@@ -112,6 +114,16 @@
             </div>
             <div class="panel" data-detail="partnere"><p>Vælg en reparatør i listen.</p></div>
           </div>
+          <details class="guide">
+            <summary>Sådan kører partner-opgaver</summary>
+            <ol>
+              <li>Ring til en ny reparatør, og tryk <strong>Godkend</strong>. Så kan de logge ind på <a href="/partner/opgaver">/partner/opgaver</a> med en kode, vi mailer til dem.</li>
+              <li>Åbn en sag under Reparationer, og tryk <strong>Send til partnere</strong>. Godkendte partnere, der reparerer den slags enhed, får en mail.</li>
+              <li>Den første, der trykker Tag opgaven, får den og ser kundens oplysninger. Kunden får besked, og du får en notifikation.</li>
+              <li>Når partneren trykker Færdig, får kunden automatisk et betalingslink. Du får en notifikation om, hvor meget partneren skal have.</li>
+              <li>Overfør pengene til partneren, og tryk <strong>Udbetalt</strong> her. Partneren kan se det på sin side.</li>
+            </ol>
+          </details>
         </div>
 
         <details class="guide">
@@ -154,5 +166,6 @@
   <script src="/js/admin.js"></script>
   <script src="/js/admin-platform.js"></script>
   <script src="/js/admin-shop.js"></script>
+  <script src="/js/admin-jobs.js"></script>
 </body>
 </html>

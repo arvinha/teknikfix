@@ -22,6 +22,7 @@ const CONFIG_PATH = path.join(ROOT, "site.config.json");
 loadEnv(path.join(ROOT, ".env"));
 const platform = require("./platform");
 const shop = require("./shop");
+const jobs = require("./jobs");
 
 const PORT = Number(process.env.PORT) || 4321;
 const PASSWORD = process.env.ADMIN_PASSWORD || "";
@@ -923,7 +924,7 @@ function cachedRender(file, req, extra) {
 }
 
 function send(req, res, file, nav, tokens) {
-  if (file === "admin.html" || file === "book-tak.html" || platform.NOINDEX.includes(file) || shop.NOINDEX.includes(file)) {
+  if (file === "admin.html" || file === "book-tak.html" || platform.NOINDEX.includes(file) || shop.NOINDEX.includes(file) || jobs.NOINDEX.includes(file)) {
     res.setHeader("X-Robots-Tag", "noindex, nofollow");
   }
   res.setHeader("Cache-Control", "no-cache");
@@ -938,8 +939,27 @@ const BOOK_ERRORS = {
   server: "Sagen blev ikke gemt. Ring {{PHONE}}, så vi tager den alligevel."
 };
 
+const bookingAccess = {
+  get: (rawRef) => {
+    const ref = normRef(rawRef);
+    return withBookings((list) => ({ save: false, value: list.find((item) => item.ref === ref) || null }));
+  },
+  change: (rawRef, mutator) => {
+    const ref = normRef(rawRef);
+    return withBookings((list) => {
+      const booking = list.find((item) => item.ref === ref);
+      if (!booking) return { save: false, value: null };
+      booking.events = booking.events || [];
+      mutator(booking);
+      booking.updatedAt = new Date().toISOString();
+      return { save: true, value: booking };
+    });
+  }
+};
+
 platform.register(app, { config, limited, clientIp, cleanLine, cleanText, sameEmail, requireAdmin, originOf, send });
 shop.register(app, { config, limited, clientIp, cleanLine, cleanText, requireAdmin, originOf, send });
+jobs.register(app, { config, limited, clientIp, cleanLine, cleanText, requireAdmin, send, bookings: bookingAccess, statusLabel: STATUS_LABEL });
 
 app.get("/", (req, res) => send(req, res, "index.html", ""));
 app.get("/ydelser", (req, res) => send(req, res, "ydelser.html", "ydelser"));
@@ -992,7 +1012,7 @@ app.get("/i18n/:lang/js/:file", (req, res, next) => {
 app.get("/robots.txt", (req, res) => {
   const origin = originOf(req);
   res.type("text/plain").send(
-    `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /book/tak\nDisallow: /saelg/tak\nDisallow: /saelg/sag\nDisallow: /reservedele/tak\nDisallow: /koeb/tak\n\nSitemap: ${origin}/sitemap.xml\n`
+    `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /book/tak\nDisallow: /saelg/tak\nDisallow: /saelg/sag\nDisallow: /reservedele/tak\nDisallow: /koeb/tak\nDisallow: /partner/opgaver\n\nSitemap: ${origin}/sitemap.xml\n`
   );
 });
 

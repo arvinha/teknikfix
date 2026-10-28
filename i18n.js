@@ -34,7 +34,7 @@ const ROOTS = "book|sag|saelg|koeb|reservedele|priser|partner|kontakt|ydelser|om
 const PAGE_RE = new RegExp(`^/(?:${ROOTS})(?=[/?#]|$)`);
 const LINK_RE = new RegExp(`(["'])/(${ROOTS})(?=[/?#"'&]|$)`, "g");
 
-const SCRIPTS = ["site.js", "book.js", "finder.js", "labels.js", "reservedele.js", "saelg.js", "saelg-sag.js", "sag.js"];
+const SCRIPTS = ["site.js", "book.js", "finder.js", "labels.js", "reservedele.js", "saelg.js", "saelg-sag.js", "sag.js", "partner-opgaver.js"];
 const FIRST_PAGES = ["index", "saelg", "reservedele", "book", "priser", "partner", "kontakt", "ydelser", "om", "betaling", "handelsbetingelser", "privatlivspolitik", "sag", "saelg-tak", "saelg-sag", "reservedele-tak", "book-tak", "404"];
 
 function env(name) {
