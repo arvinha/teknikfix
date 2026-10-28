@@ -952,7 +952,7 @@ label.find-way:hover { background: #dcefe3; }
 .shop-stock { font-size: 0.85rem; font-weight: 600; color: var(--forest); }
 .shop-stock::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor; margin-right: 6px; vertical-align: 1px; }
 .shop-stock.is-incoming { color: var(--copper); }
-.shop-gallery-example { position: relative; margin: 0; display: block; }
+.shop-gallery.shop-gallery-example { position: relative; margin: 0; display: block; }
 .shop-gallery-example img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
 .shop-gallery-example .shop-example { top: 12px; bottom: auto; left: 12px; font-size: 0.85rem; }
 .shop-gallery-example figcaption { margin-top: 8px; }

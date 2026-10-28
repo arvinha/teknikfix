@@ -55,7 +55,7 @@ function phone(id) {
   const se = id === "iphone-se";
   const notch = /^iphone-(x-xs-xr|11|12|13)/.test(id) || /^iphone-(14|14-plus)$/.test(id) || id === "iphone-16e";
   const front =
-    `<g transform="translate(150 110) rotate(-6)">` +
+    `<g transform="translate(380 120) rotate(6)">` +
     `<rect x="0" y="0" width="280" height="560" rx="${se ? 40 : 48}" fill="${BODY}" stroke="${EDGE}" stroke-width="6"/>` +
     (se
       ? `<rect x="18" y="80" width="244" height="400" rx="4" fill="url(#screen)"/><circle cx="140" cy="522" r="24" fill="none" stroke="${EDGE}" stroke-width="4"/><rect x="110" y="38" width="60" height="8" rx="4" fill="#23262b"/>`
@@ -68,7 +68,7 @@ function phone(id) {
     `<path d="M40 70 L200 70 L60 420 Z" fill="#ffffff" opacity="0.06"/>` +
     `</g>`;
   const back =
-    `<g transform="translate(380 150) rotate(6)">` +
+    `<g transform="translate(150 150) rotate(-6)">` +
     `<rect x="0" y="0" width="270" height="540" rx="46" fill="${BODY}" stroke="${EDGE}" stroke-width="6"/>` +
     `<rect x="6" y="6" width="258" height="528" rx="40" fill="url(#back)"/>` +
     (apple ? iphoneCameras(id, 26, 26) : androidCameras(id, 24, 30, 230)) +
@@ -78,13 +78,13 @@ function phone(id) {
 
 function tablet() {
   return (
-    `<g transform="translate(330 120) rotate(5)">` +
+    `<g transform="translate(90 120) rotate(-5)">` +
     `<rect x="0" y="0" width="360" height="500" rx="30" fill="${BODY}" stroke="${EDGE}" stroke-width="6"/>` +
     `<rect x="6" y="6" width="348" height="488" rx="26" fill="url(#back)"/>` +
     `<rect x="22" y="22" width="56" height="56" rx="16" fill="#4a4f57"/>` +
     lens(50, 50, 16) +
     `</g>` +
-    `<g transform="translate(90 170) rotate(-4)">` +
+    `<g transform="translate(320 170) rotate(4)">` +
     `<rect x="0" y="0" width="380" height="520" rx="32" fill="${BODY}" stroke="${EDGE}" stroke-width="6"/>` +
     `<rect x="18" y="18" width="344" height="484" rx="18" fill="url(#screen)"/>` +
     `<circle cx="190" cy="10" r="4" fill="#0b0c0e"/>` +
