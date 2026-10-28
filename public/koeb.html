@@ -22,11 +22,19 @@
 <body class="shop-page">
   {{HEADER}}
   <main id="indhold">
-    <header class="page-hero">
+    <header class="shop-hero">
       <div class="wrap">
         <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><span>Køb brugt</span></nav>
-        <h1>Køb brugt. Testet og klar.</h1>
-        <p class="lead">Telefoner, tablets og computere, som vi selv har tjekket, nulstillet og gjort klar. Gode priser, og du er lige så godt dækket som ved en ny.</p>
+        <p class="shop-kicker">TeknikFix Butik</p>
+        <h1>Brugte telefoner, testet og klar.</h1>
+        <p class="lead">iPhone, Samsung, Pixel, iPad og Mac, som vi selv har testet, nulstillet og gjort klar. Spar penge, og vær lige så godt dækket som ved en ny.</p>
+        <nav class="shop-quick" aria-label="Hurtige valg">
+          <a href="/koeb?kategori=telefon&amp;maerke=Apple">iPhone</a>
+          <a href="/koeb?kategori=telefon&amp;maerke=Samsung">Samsung Galaxy</a>
+          <a href="/koeb?kategori=telefon&amp;maerke=Google">Google Pixel</a>
+          <a href="/koeb?kategori=tablet">iPad og tablets</a>
+          <a href="/koeb?kategori=computer">MacBook og computere</a>
+        </nav>
         <ul class="sell-promises shop-trust">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>24 måneders reklamationsret</li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>14 dages fortrydelsesret</li>
@@ -57,12 +65,25 @@
 
     <section class="section">
       <div class="wrap">
+        <h2 class="section-title">Sådan gør vi den klar</h2>
+        <ol class="steps steps-4">
+          <li><span>1</span><h3>Vi køber den</h3><p>Fra private og firmaer i Danmark og EU. Vi tjekker IMEI-nummeret, så den ikke er meldt stjålet.</p></li>
+          <li><span>2</span><h3>Vi tester alt</h3><p>Skærm, batteri, kamera, højttaler, mikrofon, knapper, opladning, Face ID og forbindelse. Er noget slidt, skifter vi det på vores eget værksted.</p></li>
+          <li><span>3</span><h3>Vi sletter og nulstiller</h3><p>Alle data fra den tidligere ejer bliver slettet, og den er logget ud af alle konti.</p></li>
+          <li><span>4</span><h3>Du får den hjem</h3><p>Gratis fragt med sporing. Beløbet bliver først trukket, når vi sender den.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
         <h2 class="section-title">Spørgsmål og svar</h2>
         <div>
           <details class="faq-item"><summary>Hvad hvis der er noget galt med den?</summary><p>Du har 24 måneders reklamationsret. Skriv eller ring til os, så reparerer vi den, bytter den eller giver dig pengene tilbage.</p></details>
           <details class="faq-item"><summary>Kan jeg fortryde?</summary><p>Ja. Du har 14 dages fortrydelsesret fra du modtager pakken. Send den tilbage i samme stand, så får du pengene tilbage.</p></details>
-          <details class="faq-item"><summary>Hvornår får jeg den?</summary><p>Vi sender den inden for 1 hverdag med sporing. Fragten er gratis i Danmark.</p></details>
-          <details class="faq-item"><summary>Hvordan betaler jeg?</summary><p>Med kort, MobilePay, Apple Pay eller Google Pay. Betalingen går gennem Stripe, så vi ser aldrig dine kortoplysninger.</p></details>
+          <details class="faq-item"><summary>Hvornår får jeg den?</summary><p>Står der «På lager», sender vi den inden for 1 hverdag. Står der «Sendes inden for 5 hverdage», er den på vej til os fra sælgeren, og vi sender den, så snart den er testet. Fragten er gratis i Danmark, og du får et sporingsnummer.</p></details>
+          <details class="faq-item"><summary>Hvordan betaler jeg?</summary><p>Med {{PAY_LIST}}. Beløbet bliver reserveret, når du køber, og først trukket, når vi sender den. Betalingen går gennem Stripe, så vi ser aldrig dine kortoplysninger.</p></details>
+          <details class="faq-item"><summary>Hvorfor er billedet et eksempel?</summary><p>Nogle enheder er lige kommet ind og er ikke fotograferet endnu. Så viser vi et eksempelbillede. Du får præcis den model, lagerplads og stand, der står på siden.</p></details>
           <details class="faq-item"><summary>Vil du hellere sælge din gamle?</summary><p>Vi køber også. <a href="/saelg">Få en fast pris på din gamle</a> på under et minut.</p></details>
         </div>
       </div>

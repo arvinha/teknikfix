@@ -9,6 +9,7 @@ const stripe = require("./stripe");
 const notify = require("./notify");
 const customer = require("./customer");
 const i18n = require("./i18n");
+const stockimg = require("./stockimg");
 const { createStore, makeRef, normRef } = require("./store");
 
 const DATA = path.join(__dirname, "data");
@@ -21,6 +22,12 @@ fs.mkdirSync(PHOTOS, { recursive: true });
 const CHECKOUT_S = 31 * 60;
 const RESERVE_MS = 33 * 60 * 1000;
 const MAX_PHOTOS = 8;
+/** A device bought from a seller is listed while it is on its way to us and ships within this many working days. */
+const INCOMING_DAYS = 5;
+/** Card reservations expire after 7 days, so a reserved order that hasn't shipped is flagged, then released. */
+const RESERVE_WARN_MS = 5 * 86400000;
+const RESERVE_RELEASE_MS = 6.5 * 86400000;
+const AUTO_MAX_PER_LINE = 5;
 const PHOTO_RE = /^[a-z0-9-]+\.(jpg|png|webp)$/;
 const PHOTO_TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
 
@@ -30,7 +37,22 @@ const GRADES = {
   god: { label: "God", text: "Synlige brugsspor på kanter eller bagside. Skærmen er pæn og uden revner.", factor: 0.86 }
 };
 const STATUS = { aktiv: "Til salg", reserveret: "Reserveret", solgt: "Solgt", skjult: "Skjult" };
-const ORDER_STATUS = { betalt: "Betalt, skal sendes", afsendt: "Sendt", leveret: "Leveret", returneret: "Returneret", refunderet: "Refunderet", dobbelt: "Solgt to gange, refundér" };
+const ORDER_STATUS = {
+  betalt: "Betalt, skal sendes",
+  afsendt: "Sendt",
+  leveret: "Leveret",
+  returneret: "Returneret",
+  refunderet: "Refunderet",
+  annulleret: "Annulleret",
+  tjek: "Tjek betalingen i Stripe",
+  dobbelt: "Solgt to gange, refundér"
+};
+const BRANDS = [
+  ["", "Alle mærker"],
+  ["Apple", "Apple"],
+  ["Samsung", "Samsung"],
+  ["Google", "Google"]
+];
 const CATEGORIES = [
   ["", "Alle"],
   ["telefon", "Telefoner"],
@@ -78,16 +100,28 @@ const TEXT = {
   specTested: "Testet",
   tested: "Alle funktioner er testet, og den er nulstillet",
   shipping: "Gratis fragt i Danmark. Sendes inden for 1 hverdag med sporing.",
+  shippingIncoming: "Gratis fragt i Danmark. Sendes inden for 5 hverdage med sporing.",
+  inStock: "På lager",
+  incomingBadge: "Sendes inden for 5 hverdage",
+  incomingText: "Den er på vej til os fra sælgeren. Vi tester den, nulstiller den og sender den inden for 5 hverdage.",
+  exampleImage: "Eksempelbillede",
+  exampleNote: "Billedet er et eksempel. Du får præcis den model, lagerplads og stand, der står her.",
+  charged: "Beløbet bliver reserveret nu og først trukket, når vi sender den.",
+  cancelSubject: "Din ordre er annulleret · {ref}",
+  cancelBody: "Vi har desværre måttet annullere dit køb af {title}, fordi den ikke levede op til vores krav, da vi testede den. Beløbet er ikke trukket, og reservationen på din konto forsvinder af sig selv. Undskyld ulejligheden.",
+  cancelSms: "TeknikFix: Din ordre {ref} er annulleret. Beløbet er ikke trukket. Se din mail.",
   vat: "Sælges efter brugtmomsordningen.",
   titleItem: "{title}: brugt i {grade} stand til {price} | TeknikFix",
   descItem: "Køb {title} i {grade} stand for {price}. Testet og nulstillet, 24 måneders reklamationsret, 14 dages fortrydelsesret og gratis fragt i Danmark.",
   thanksTitle: "Tak for dit køb",
-  thanksPaid: "Ordrenummer <strong>{ref}</strong>. Kvitteringen er sendt til {email}. Vi sender {title} inden for 1 hverdag, og du får et sporingsnummer på mail.",
+  thanksPaid: "Ordrenummer <strong>{ref}</strong>. Kvitteringen er sendt til {email}. Vi sender {title} inden for {days}, og du får et sporingsnummer på mail. Beløbet bliver først trukket, når vi sender den.",
+  oneDay: "1 hverdag",
+  incomingDays: "5 hverdage",
   thanksPending: "Vi har ikke fået besked om betalingen endnu. Du får en mail, så snart den er registreret.",
   thanksMissing: "Vi kunne ikke finde ordren. Har du betalt, får du en mail, så snart betalingen er registreret.",
   receipt: "KVITTERING",
   mailSubject: "Tak for dit køb · {ref}",
-  mailBody: "Tak for dit køb. Vi sender den inden for 1 hverdag, og du får en mail med sporingsnummer, så snart pakken er sendt.",
+  mailBody: "Tak for dit køb. Vi sender den inden for {days}, og du får en mail med sporingsnummer, så snart pakken er sendt. Beløbet er reserveret og bliver først trukket, når vi sender den.",
   mailRights: "Du har 14 dages fortrydelsesret fra du modtager pakken og 24 måneders reklamationsret. Er der noget i vejen, så svar på denne mail.",
   shippedSubject: "Din pakke er på vej · {ref}",
   shippedBody: "{title} er sendt.",
@@ -151,17 +185,24 @@ function photoUrl(file) {
   return `/foto/${file}`;
 }
 
+function exampleUrl(listing) {
+  return `/eksempel/${encodeURIComponent(listing.modelId || "telefon")}-${listing.device || "telefon"}.svg`;
+}
+
 function publicListing(listing, lang) {
   const grade = GRADES[listing.grade] || GRADES.god;
   return {
     ref: listing.ref,
     title: titleOf(listing, lang),
     device: listing.device,
+    brand: brandOf(listing),
     grade: listing.grade,
     gradeLabel: i18n.t(lang, grade.label),
     batteryPct: listing.batteryPct || null,
     priceDkk: listing.priceDkk,
     photos: listing.photos || [],
+    example: exampleUrl(listing),
+    incoming: Boolean(listing.incoming),
     available: available(listing),
     sold: listing.status === "solgt",
     createdAt: listing.createdAt
@@ -174,20 +215,24 @@ const PLACEHOLDER =
 
 function cardHtml(item, lang) {
   const tr = (text) => i18n.t(lang, text);
-  const photo = item.photos[0] ? `<img src="${photoUrl(item.photos[0])}" alt="${esc(item.title)}" loading="lazy" width="400" height="400">` : PLACEHOLDER;
+  const photo = item.photos[0]
+    ? `<img src="${photoUrl(item.photos[0])}" alt="${esc(item.title)}" loading="lazy" width="400" height="400">`
+    : `<img src="${esc(item.example)}" alt="${esc(item.title)}" loading="lazy" width="400" height="400"><span class="shop-example">${esc(tr(TEXT.exampleImage))}</span>`;
   const battery = item.batteryPct ? ` · ${esc(fill(tr(TEXT.battery), { n: item.batteryPct }))}` : "";
+  const stock = item.incoming ? `<span class="shop-stock is-incoming">${esc(tr(TEXT.incomingBadge))}</span>` : `<span class="shop-stock">${esc(tr(TEXT.inStock))}</span>`;
   return (
     `<li><a class="shop-card" href="/koeb/${esc(item.ref)}">` +
     `<span class="shop-photo">${photo}${item.available ? "" : `<span class="shop-badge">${esc(tr(TEXT.reserved))}</span>`}</span>` +
     `<span class="shop-card-body"><strong class="shop-card-title">${esc(item.title)}</strong>` +
     `<span class="shop-card-meta"><span class="shop-grade grade-${esc(item.grade)}">${esc(item.gradeLabel)}</span>${battery}</span>` +
-    `<span class="shop-price">${money(item.priceDkk)}</span></span></a></li>`
+    `${stock}<span class="shop-price">${money(item.priceDkk)}</span></span></a></li>`
   );
 }
 
-function listLink(category, sort) {
+function listLink(category, sort, brand) {
   const query = new URLSearchParams();
   if (category) query.set("kategori", category);
+  if (brand) query.set("maerke", brand);
   if (sort) query.set("sort", sort);
   const text = query.toString();
   return `/koeb${text ? `?${text}` : ""}`;
@@ -196,24 +241,35 @@ function listLink(category, sort) {
 async function listTokens(lang, origin, query) {
   const tr = (text) => i18n.t(lang, text);
   const category = CATEGORIES.some(([id]) => id && id === query.kategori) ? query.kategori : "";
+  const brand = BRANDS.some(([id]) => id && id === query.maerke) ? query.maerke : "";
   const sort = SORTS.some(([id]) => id && id === query.sort) ? query.sort : "";
   const all = (await listings.all()).filter((item) => item.status !== "skjult" && item.status !== "solgt").map((item) => publicListing(item, lang));
   const counts = { "": all.length };
   for (const item of all) counts[item.device] = (counts[item.device] || 0) + 1;
-  let shown = all.filter((item) => !category || item.device === category);
+  const inCategory = all.filter((item) => !category || item.device === category);
+  const brandCounts = { "": inCategory.length };
+  for (const item of inCategory) brandCounts[item.brand] = (brandCounts[item.brand] || 0) + 1;
+  let shown = inCategory.filter((item) => !brand || item.brand === brand);
   shown.sort((a, b) => {
     if (a.available !== b.available) return a.available ? -1 : 1;
     if (sort === "billigst") return a.priceDkk - b.priceDkk;
     if (sort === "dyrest") return b.priceDkk - a.priceDkk;
     return a.createdAt < b.createdAt ? 1 : -1;
   });
+  const brandsShown = BRANDS.filter(([id]) => !id || brandCounts[id]);
   const filters =
     `<nav class="shop-filters" aria-label="${esc(tr("Kategorier"))}">` +
     CATEGORIES.filter(([id]) => !id || counts[id])
-      .map(([id, label]) => `<a href="${listLink(id, sort)}"${id === category ? ' aria-current="true"' : ""}>${esc(tr(label))} <small>${counts[id] || 0}</small></a>`)
+      .map(([id, label]) => `<a href="${listLink(id, sort, "")}"${id === category ? ' aria-current="true"' : ""}>${esc(tr(label))} <small>${counts[id] || 0}</small></a>`)
       .join("") +
-    `</nav><nav class="shop-sort" aria-label="${esc(tr("Sortér"))}">` +
-    SORTS.map(([id, label]) => `<a href="${listLink(category, id)}"${id === sort ? ' aria-current="true"' : ""}>${esc(tr(label))}</a>`).join("") +
+    "</nav>" +
+    (brandsShown.length > 2
+      ? `<nav class="shop-filters shop-brands" aria-label="${esc(tr("Mærker"))}">` +
+        brandsShown.map(([id, label]) => `<a href="${listLink(category, sort, id)}"${id === brand ? ' aria-current="true"' : ""}>${esc(tr(label))}</a>`).join("") +
+        "</nav>"
+      : "") +
+    `<nav class="shop-sort" aria-label="${esc(tr("Sortér"))}">` +
+    SORTS.map(([id, label]) => `<a href="${listLink(category, id, brand)}"${id === sort ? ' aria-current="true"' : ""}>${esc(tr(label))}</a>`).join("") +
     "</nav>";
   const count = shown.length === 1 ? tr(TEXT.availableOne) : fill(tr(TEXT.available), { n: shown.length });
   const grid = shown.length
@@ -293,7 +349,8 @@ function itemTokens(listing, lang, origin, config, error) {
     ? `<div class="shop-gallery">${item.photos
         .map((file, index) => `<a href="${photoUrl(file)}" target="_blank" rel="noopener"><img src="${photoUrl(file)}" alt="${esc(item.title)}" ${index ? 'loading="lazy"' : ""} width="800" height="800"></a>`)
         .join("")}</div>`
-    : `<div class="shop-gallery shop-gallery-empty">${PLACEHOLDER}</div>`;
+    : `<figure class="shop-gallery shop-gallery-example"><img src="${esc(item.example)}" alt="${esc(item.title)}" width="800" height="800">` +
+      `<span class="shop-example">${esc(tr(TEXT.exampleImage))}</span><figcaption class="field-note">${esc(tr(TEXT.exampleNote))}</figcaption></figure>`;
   const specs = [
     [TEXT.specGrade, item.gradeLabel],
     [TEXT.specStorage, listing.storageLabel ? listing.storageLabel.replace(" eller mindre", "") : ""],
@@ -307,7 +364,10 @@ function itemTokens(listing, lang, origin, config, error) {
     .join("");
   let buy;
   if (item.available && stripe.enabled()) {
-    buy = `<form method="post" action="/koeb/${esc(listing.ref)}/betal"><button class="btn btn-copper shop-buy" type="submit">${esc(tr(TEXT.buy))}</button></form>`;
+    buy =
+      (item.incoming ? `<p class="shop-incoming">${esc(tr(TEXT.incomingText))}</p>` : "") +
+      `<form method="post" action="/koeb/${esc(listing.ref)}/betal"><button class="btn btn-copper shop-buy" type="submit">${esc(tr(TEXT.buy))}</button></form>` +
+      `<p class="field-note">${esc(tr(TEXT.charged))}</p>`;
   } else if (item.available) {
     const digits = String(config.phone || "").replace(/\D/g, "");
     const tel = digits.startsWith("45") ? `+${digits}` : `+45${digits}`;
@@ -324,6 +384,7 @@ function itemTokens(listing, lang, origin, config, error) {
     ITEM_PATH: `/koeb/${listing.ref}`,
     ITEM_ROBOTS: listing.status === "solgt" ? "noindex, follow" : "index, follow",
     ITEM_IMAGE: item.photos[0] ? `${origin}${photoUrl(item.photos[0])}` : `${origin}/og.png`,
+    ITEM_SHIP: esc(tr(listing.incoming ? TEXT.shippingIncoming : TEXT.shipping)),
     ITEM_H1: esc(item.title),
     ITEM_GALLERY: gallery,
     ITEM_PRICE: price,
@@ -377,7 +438,26 @@ function receiptMail(order, config) {
     `Sælger: ${config.brand || "TeknikFix"} (${config.legalName || ""}), CVR ${config.cvr}`,
     `${config.street}, ${config.postal} ${config.city}`
   ];
-  return customer.sendMailTo(target(order), fill(TEXT.mailSubject, { ref: order.ref }), [TEXT.mailBody, receipt.join("\n"), TEXT.mailRights], config, null);
+  const days = order.incoming ? TEXT.incomingDays : TEXT.oneDay;
+  return customer.sendMailTo(target(order), fill(TEXT.mailSubject, { ref: order.ref }), [fill(TEXT.mailBody, { days }), receipt.join("\n"), TEXT.mailRights], config, null);
+}
+
+function cancelledMail(order, config) {
+  return Promise.all([
+    customer.sendMailTo(target(order), fill(TEXT.cancelSubject, { ref: order.ref }), [fill(TEXT.cancelBody, { title: order.title })], config, null),
+    customer.sendSms(target(order), fill(TEXT.cancelSms, { ref: order.ref }))
+  ]);
+}
+
+/** Releases the reserved amount. Returns "" or an error text. */
+async function releasePayment(order) {
+  if (!order.paymentIntent || order.captured) return "";
+  try {
+    await stripe.cancelPayment(order.paymentIntent);
+    return "";
+  } catch (error) {
+    return error.message;
+  }
 }
 
 function shippedMail(order, config) {
@@ -391,9 +471,10 @@ function shippedMail(order, config) {
 
 /** Stripe webhook and thank-you page both land here. Safe to call twice. */
 async function markPaid(session, config) {
-  if (!session || session.payment_status !== "paid") return null;
-  const ref = normRef("KB", session.metadata && session.metadata.ref, 5);
+  const ref = normRef("KB", session && session.metadata && session.metadata.ref, 5);
   if (!ref) return null;
+  const auth = await stripe.authorized(session);
+  if (!auth) return null;
   let fresh = false;
   const order = await orders.withList((list) => {
     const found = list.find((item) => item.ref === ref);
@@ -403,13 +484,15 @@ async function markPaid(session, config) {
     found.status = "betalt";
     found.paidAt = new Date().toISOString();
     found.sessionId = session.id;
-    found.paymentIntent = typeof session.payment_intent === "string" ? session.payment_intent : "";
+    found.paymentIntent = auth.intent;
+    found.captured = auth.captured;
     found.paidDkk = Math.round(Number(session.amount_total) / 100);
     found.customer = shippingFrom(session);
-    event(found, `Betalt ${found.paidDkk} kr.`);
+    event(found, auth.captured ? `Betalt ${found.paidDkk} kr.` : `${found.paidDkk} kr er reserveret. Beløbet trækkes, når vi sender den.`);
     return { save: true, value: found };
   });
   if (!order || !fresh) return order;
+  let source = "";
   const clash = await listings.withList((list) => {
     const listing = list.find((item) => item.ref === order.listingRef);
     if (!listing) return { save: false, value: false };
@@ -418,6 +501,7 @@ async function markPaid(session, config) {
     listing.orderRef = order.ref;
     listing.soldAt = new Date().toISOString();
     listing.updatedAt = listing.soldAt;
+    source = listing.incoming && listing.buybackRef ? listing.buybackRef : "";
     return { save: true, value: false };
   });
   if (clash) {
@@ -433,7 +517,13 @@ async function markPaid(session, config) {
   if (!clash) void receiptMail(order, config);
   void notify.send({
     title: `${clash ? "OBS: solgt to gange · " : ""}Butik ${order.ref} · ${money(order.paidDkk)}`,
-    message: `${order.title}\n${order.customer.name} · ${order.customer.postal} ${order.customer.city}\n${clash ? "Enheden var allerede solgt. Refundér i Stripe." : "Send den inden for 1 hverdag."}`,
+    message:
+      `${order.title}\n${order.customer.name} · ${order.customer.postal} ${order.customer.city}\n` +
+      (clash
+        ? "Enheden var allerede solgt. Refundér i Stripe."
+        : source
+          ? `Den er på vej fra sælger (${source}). Test den, og send den inden for ${INCOMING_DAYS} hverdage. Pengene trækkes, når du skriver sporingsnummeret.`
+          : "Send den inden for 1 hverdag. Pengene trækkes, når du skriver sporingsnummeret."),
     tags: [clash ? "warning" : "shopping_cart"],
     priority: clash ? 5 : 4,
     booking: { ref: order.ref, phone: order.customer.phone }
@@ -445,6 +535,200 @@ async function handleStripeSession(session, config) {
   if (!session || !session.metadata || session.metadata.kind !== "butik") return false;
   await markPaid(session, config);
   return true;
+}
+
+// ---------- Automatic listings from buybacks ----------
+/** The shop grade we expect from the seller's answers, or "" when someone has to look at it first. */
+function expectedGrade(answers) {
+  const a = answers || {};
+  const faults = a.faults || [];
+  if (a.power === "nej" || a.water === "ja" || a.lock === "til") return "";
+  if (faults.includes("faceid") || faults.includes("lyd") || a.body === "skader") return "";
+  const worn = [a.screen === "ridser", a.back === "ridser", a.body === "brugsspor"].filter(Boolean).length;
+  return worn ? "god" : "meget-god";
+}
+
+/**
+ * Lists the devices of a buyback as soon as they are on their way to us. Prices come from our own sale value
+ * (a little under Refurbed when its price is known). Safe to call more than once.
+ */
+async function listFromBuyback(sale) {
+  if (!sale || !Array.isArray(sale.items)) return [];
+  const created = await listings.withList((list) => {
+    const made = [];
+    if (list.some((item) => item.buybackRef === sale.ref)) return { save: false, value: made };
+    const cat = catalog();
+    const now = new Date().toISOString();
+    sale.items.forEach((line, index) => {
+      if (line.manual || line.recycle || !line.offerDkk) return;
+      const grade = expectedGrade(line.answers);
+      if (!grade) return;
+      const input = { modelId: line.modelId, variant: line.variant || "", storage: line.storage || "", conn: line.conn || "", grade, batteryPct: 100 };
+      const price = suggestPrice(input);
+      if (!price || price <= line.offerDkk) return;
+      const count = Math.min(AUTO_MAX_PER_LINE, Math.max(1, Number(line.qty) || 1));
+      for (let unit = 0; unit < count; unit += 1) {
+        const listing = { ref: makeRef("VA", list, 5), createdAt: now, status: "aktiv", photos: [], color: "", title: "", description: "", imei: "", buybackRef: "" };
+        const problem = applyFields(listing, { ...input, status: "aktiv", priceDkk: price, costDkk: line.offerDkk, batteryPct: null }, { cleanLine: (v) => String(v || ""), cleanText: (v) => String(v || "") }, cat);
+        if (problem) return;
+        Object.assign(listing, { buybackRef: sale.ref, buybackLine: index, imei: unit === 0 ? line.imei || "" : "", incoming: true, auto: true });
+        list.push(listing);
+        made.push(listing);
+      }
+    });
+    return { save: made.length > 0, value: made };
+  });
+  if (created.length) console.log(`Butik: ${created.length} enheder lagt op fra ${sale.ref}`);
+  return created;
+}
+
+/** Keeps the shop in step with the buyback: in stock when approved, hidden while regraded, gone when it can't be bought. */
+async function buybackChanged(sale, status, config) {
+  if (!sale) return;
+  if (["sendt", "modtaget"].includes(status)) {
+    await listFromBuyback(sale);
+    return;
+  }
+  const affected = (await listings.all()).filter((item) => item.buybackRef === sale.ref && item.auto);
+  if (!affected.length) return;
+  if (["godkendt", "udbetalt"].includes(status)) {
+    await listings.withList((list) => {
+      for (const listing of list) {
+        if (listing.buybackRef !== sale.ref || !listing.auto) continue;
+        listing.incoming = false;
+        if (listing.status === "skjult" && listing.hiddenForRegrade) {
+          const line = sale.items[listing.buybackLine] || {};
+          const lower = listing.grade === "som-ny" ? "meget-god" : "god";
+          const price = suggestPrice({ modelId: line.modelId, variant: line.variant, storage: line.storage, conn: line.conn, grade: lower, batteryPct: 100 });
+          listing.grade = lower;
+          if (price) listing.priceDkk = price;
+          listing.status = "aktiv";
+          listing.hiddenForRegrade = false;
+        }
+        listing.updatedAt = new Date().toISOString();
+      }
+      return { save: true };
+    });
+    return;
+  }
+  const sold = affected.filter((item) => item.status === "solgt" || item.status === "reserveret");
+  if (status === "nyt_tilbud") {
+    await listings.withList((list) => {
+      for (const listing of list) {
+        if (listing.buybackRef !== sale.ref || !listing.auto || listing.status !== "aktiv") continue;
+        listing.status = "skjult";
+        listing.hiddenForRegrade = true;
+        listing.updatedAt = new Date().toISOString();
+      }
+      return { save: true };
+    });
+    if (sold.length) {
+      void notify.send({
+        title: `Tjek ordre · ${sale.ref} er omvurderet`,
+        message: `En enhed fra ${sale.ref} er allerede solgt (${sold.map((item) => item.orderRef || item.ref).join(", ")}), men standen passede ikke helt. Passer den stadig til ordren? Ellers annullér ordren under Butik.`,
+        tags: ["warning"],
+        priority: 4
+      });
+    }
+    return;
+  }
+  if (!["retur", "afvist", "annulleret"].includes(status)) return;
+  await listings.withList((list) => {
+    for (const listing of list) {
+      if (listing.buybackRef !== sale.ref || !listing.auto || listing.status === "solgt") continue;
+      listing.status = "skjult";
+      listing.updatedAt = new Date().toISOString();
+    }
+    return { save: true };
+  });
+  for (const listing of sold.filter((item) => item.orderRef)) {
+    const order = (await orders.all()).find((entry) => entry.ref === listing.orderRef);
+    if (!order || !["betalt"].includes(order.status)) continue;
+    const problem = await releasePayment(order);
+    await orders.withList((list) => {
+      const found = list.find((entry) => entry.ref === order.ref);
+      if (!found) return { save: false };
+      found.status = problem ? "tjek" : "annulleret";
+      event(found, problem ? `Kunne ikke frigive betalingen: ${problem}` : "Annulleret, fordi enheden ikke kunne købes ind. Beløbet er ikke trukket.", !problem);
+      return { save: true };
+    });
+    await listings.withList((list) => {
+      const found = list.find((item) => item.ref === listing.ref);
+      if (!found) return { save: false };
+      found.status = "skjult";
+      return { save: true };
+    });
+    if (!problem && order.customer) void cancelledMail(order, config);
+    void notify.send({
+      title: problem ? `OBS: ordre ${order.ref} skal refunderes` : `Ordre ${order.ref} annulleret automatisk`,
+      message: problem
+        ? `Enheden fra ${sale.ref} kunne ikke købes, men betalingen kunne ikke frigives: ${problem}. Refundér i Stripe.`
+        : `Enheden fra ${sale.ref} kunne ikke købes. Kunden har fået besked, og beløbet er ikke trukket.`,
+      tags: [problem ? "warning" : "x"],
+      priority: problem ? 5 : 3
+    });
+  }
+}
+
+/** Reserved card payments run out after 7 days: warn after 5, release after 6½ and put the device back in the shop. */
+async function sweepReservations(config) {
+  const now = Date.now();
+  const open = (await orders.all()).filter((order) => order.status === "betalt" && order.paymentIntent && !order.captured && order.paidAt);
+  for (const order of open) {
+    const age = now - Date.parse(order.paidAt);
+    if (age >= RESERVE_RELEASE_MS) {
+      const problem = await releasePayment(order);
+      await orders.withList((list) => {
+        const found = list.find((entry) => entry.ref === order.ref);
+        if (!found || found.status !== "betalt") return { save: false };
+        found.status = problem ? "tjek" : "annulleret";
+        event(found, problem ? `Reservationen kunne ikke frigives: ${problem}` : "Annulleret, fordi den ikke blev sendt inden for 6 dage. Beløbet er ikke trukket.", !problem);
+        return { save: true };
+      });
+      if (!problem) {
+        await listings.withList((list) => {
+          const listing = list.find((item) => item.ref === order.listingRef);
+          if (!listing || listing.orderRef !== order.ref) return { save: false };
+          listing.status = "aktiv";
+          listing.orderRef = "";
+          listing.updatedAt = new Date().toISOString();
+          return { save: true };
+        });
+        if (order.customer) void cancelledMail(order, config);
+      }
+      void notify.send({
+        title: `Ordre ${order.ref} er annulleret`,
+        message: problem
+          ? `${order.title} blev ikke sendt i tide, og reservationen kunne ikke frigives: ${problem}. Tjek Stripe.`
+          : `${order.title} blev ikke sendt inden for 6 dage, så reservationen er frigivet, og kunden har fået besked. Enheden er sat til salg igen.`,
+        tags: ["warning"],
+        priority: 4
+      });
+    } else if (age >= RESERVE_WARN_MS && !order.warned) {
+      await orders.withList((list) => {
+        const found = list.find((entry) => entry.ref === order.ref);
+        if (!found) return { save: false };
+        found.warned = true;
+        return { save: true };
+      });
+      void notify.send({
+        title: `Send ordre ${order.ref} i dag`,
+        message: `${order.title} til ${order.customer ? order.customer.name : "kunden"}. Betalingen udløber om 2 dage. Bliver den ikke sendt inden for 1½ døgn, annullerer siden ordren af sig selv.`,
+        tags: ["hourglass"],
+        priority: 4
+      });
+    }
+  }
+}
+
+async function listedBuybacks() {
+  return new Set((await listings.all()).map((item) => item.buybackRef).filter(Boolean));
+}
+
+function startJobs(config) {
+  const run = () => void sweepReservations(config).catch((error) => console.error(`Butik reservationer: ${error.message}`));
+  setTimeout(run, 60 * 1000).unref();
+  setInterval(run, 60 * 60 * 1000).unref();
 }
 
 // ---------- Admin ----------
@@ -466,9 +750,8 @@ function intOr(value, fallback, min, max) {
 }
 
 /** Applies admin fields to a listing. Returns an error text or "". */
-function applyFields(listing, body, clean) {
+function applyFields(listing, body, clean, cat = catalog()) {
   const { cleanLine, cleanText } = clean;
-  const cat = catalog();
   const modelId = body.modelId !== undefined ? String(body.modelId) : listing.modelId;
   const next = {
     modelId,
@@ -526,7 +809,7 @@ function adminModels() {
 }
 
 function strings() {
-  const out = [...Object.values(TEXT), ...Object.values(STATUS), ...CATEGORIES.map((c) => c[1]), ...SORTS.map((s) => s[1]), "Kategorier", "Sortér"];
+  const out = [...Object.values(TEXT), ...Object.values(STATUS), ...CATEGORIES.map((c) => c[1]), ...SORTS.map((s) => s[1]), "Alle mærker", "Kategorier", "Mærker", "Sortér"];
   for (const grade of Object.values(GRADES)) out.push(grade.label, grade.text);
   return out;
 }
@@ -550,9 +833,14 @@ function register(app, ctx) {
       try {
         const session = await stripe.getCheckout(sessionId);
         if (normRef("KB", session.metadata && session.metadata.ref, 5) === ref) {
-          const order = session.payment_status === "paid" ? await markPaid(session, config) : null;
+          const order = await markPaid(session, config);
           html = order
-            ? fill(tr(TEXT.thanksPaid), { ref: esc(order.ref), email: esc(order.customer.email), title: esc(order.title) })
+            ? fill(tr(TEXT.thanksPaid), {
+                ref: esc(order.ref),
+                email: esc(order.customer.email),
+                title: esc(order.title),
+                days: esc(tr(order.incoming ? TEXT.incomingDays : TEXT.oneDay))
+              })
             : tr(TEXT.thanksPending);
         }
       } catch (error) {
@@ -600,6 +888,13 @@ function register(app, ctx) {
       .send(
         `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel><title>TeknikFix</title><link>${esc(origin)}/koeb</link><description>Brugte og istandsatte telefoner, tablets og computere</description>\n${xml}\n</channel></rss>\n`
       );
+  });
+
+  app.get("/eksempel/:file", (req, res, next) => {
+    const match = /^([a-z0-9-]{1,60})-(telefon|tablet|computer)\.svg$/.exec(String(req.params.file || ""));
+    if (!match) return next();
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    return res.type("image/svg+xml").send(stockimg.svg(match[1], match[2]));
   });
 
   app.get("/foto/:file", (req, res, next) => {
@@ -651,6 +946,7 @@ function register(app, ctx) {
         status: "afventer",
         lang,
         listingRef: listing.ref,
+        incoming: Boolean(listing.incoming),
         title: titleOf(listing),
         priceDkk: listing.priceDkk,
         costDkk: listing.costDkk ?? null,
@@ -673,7 +969,7 @@ function register(app, ctx) {
         origin: origin + i18n.prefix(lang),
         cancelPath: `/koeb/${listing.ref}`,
         expiresAt: Math.floor(now / 1000) + CHECKOUT_S,
-        note: i18n.t(lang, TEXT.shipping),
+        note: `${i18n.t(lang, listing.incoming ? TEXT.shippingIncoming : TEXT.shipping)} ${i18n.t(lang, TEXT.charged)}`,
         lang
       });
       return res.redirect(303, session.url);
@@ -780,6 +1076,29 @@ function register(app, ctx) {
   app.patch("/api/admin/butik/ordrer/:ref", requireAdmin, async (req, res) => {
     const ref = normRef("KB", req.params.ref, 5);
     const body = req.body || {};
+    const before = (await orders.all()).find((entry) => entry.ref === ref);
+    if (!before) return res.status(404).json({ error: "ikke_fundet" });
+    const shipping = (typeof body.tracking === "string" && body.tracking.trim()) || body.status === "afsendt" || body.status === "leveret";
+    if (shipping && before.paymentIntent && !before.captured) {
+      try {
+        await stripe.capturePayment(before.paymentIntent);
+        await orders.withList((list) => {
+          const order = list.find((entry) => entry.ref === ref);
+          if (!order) return { save: false };
+          order.captured = true;
+          event(order, `${order.paidDkk} kr er trukket.`, false);
+          return { save: true };
+        });
+      } catch (error) {
+        console.error(`Butik træk ${ref}: ${error.message}`);
+        return res.status(409).json({ error: "betaling", message: `Pengene kunne ikke trækkes (${error.message}). Send ikke pakken. Tjek betalingen i Stripe.` });
+      }
+    }
+    const stopping = ["refunderet", "annulleret"].includes(body.status) && before.paymentIntent && !before.captured;
+    if (stopping) {
+      const problem = await releasePayment(before);
+      if (problem) return res.status(409).json({ error: "betaling", message: `Reservationen kunne ikke frigives (${problem}). Tjek betalingen i Stripe.` });
+    }
     let shipped = false;
     const updated = await orders.withList((list) => {
       const order = list.find((entry) => entry.ref === ref);
@@ -808,7 +1127,8 @@ function register(app, ctx) {
     if (!updated) return res.status(404).json({ error: "ikke_fundet" });
     if (updated.bad) return res.status(400).json({ error: "oplysninger", message: updated.bad });
     if (shipped && updated.customer) void shippedMail(updated, config);
-    if (updated.status === "returneret" || updated.status === "refunderet") {
+    if (stopping && updated.status === "annulleret" && updated.customer) void cancelledMail(updated, config);
+    if (["returneret", "refunderet", "annulleret"].includes(updated.status)) {
       await listings.withList((list) => {
         const listing = list.find((item) => item.ref === updated.listingRef);
         if (!listing || listing.orderRef !== updated.ref || listing.status !== "solgt") return { save: false };
@@ -825,4 +1145,15 @@ async function sitemapPaths() {
   return (await listings.all()).filter((item) => item.status === "aktiv" || item.status === "reserveret").map((item) => `/koeb/${item.ref}`);
 }
 
-module.exports = { register, handleStripeSession, strings, sitemapPaths, suggestPrice, NOINDEX: ["koeb-tak.html"] };
+module.exports = {
+  register,
+  handleStripeSession,
+  strings,
+  sitemapPaths,
+  suggestPrice,
+  listFromBuyback,
+  listedBuybacks,
+  buybackChanged,
+  startJobs,
+  NOINDEX: ["koeb-tak.html"]
+};

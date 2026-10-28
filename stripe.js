@@ -65,6 +65,7 @@ async function createPartsCheckout({ ref, lines, shippingDkk, shippingTitle = "F
     "metadata[country]": country,
     "payment_intent_data[metadata][ref]": ref,
     "payment_intent_data[description]": `TeknikFix reservedele ${ref}`,
+    "payment_intent_data[capture_method]": "manual",
     "shipping_address_collection[allowed_countries][0]": country,
     "phone_number_collection[enabled]": "true",
     success_url: `${origin}/reservedele/tak?ordre=${encodeURIComponent(ref)}&session_id={CHECKOUT_SESSION_ID}`,
@@ -92,6 +93,7 @@ async function createShopCheckout({ ref, title, priceDkk, image, origin, cancelP
     "metadata[kind]": "butik",
     "payment_intent_data[metadata][ref]": ref,
     "payment_intent_data[description]": `TeknikFix butik ${ref}`,
+    "payment_intent_data[capture_method]": "manual",
     "shipping_address_collection[allowed_countries][0]": "DK",
     "phone_number_collection[enabled]": "true",
     "line_items[0][quantity]": "1",
@@ -134,6 +136,31 @@ async function getCheckout(sessionId) {
   return call("GET", `/checkout/sessions/${encodeURIComponent(sessionId)}`);
 }
 
+/**
+ * Goods are only charged when they ship, so their checkouts reserve the amount (capture_method manual).
+ * Stripe then reports the session as "unpaid" while the PaymentIntent waits in requires_capture.
+ * Returns { intent, captured } when the money is paid or reserved, otherwise null.
+ */
+async function authorized(session) {
+  if (!session || session.status !== "complete") return null;
+  const raw = session.payment_intent;
+  const id = typeof raw === "string" ? raw : raw && raw.id;
+  if (session.payment_status === "paid") return { intent: id || "", captured: true };
+  if (!id) return null;
+  const intent = typeof raw === "object" && raw.status ? raw : await call("GET", `/payment_intents/${encodeURIComponent(id)}`);
+  if (intent.status === "succeeded") return { intent: id, captured: true };
+  if (intent.status === "requires_capture") return { intent: id, captured: false };
+  return null;
+}
+
+async function capturePayment(intentId) {
+  return call("POST", `/payment_intents/${encodeURIComponent(intentId)}/capture`, {});
+}
+
+async function cancelPayment(intentId) {
+  return call("POST", `/payment_intents/${encodeURIComponent(intentId)}/cancel`, {});
+}
+
 function verifyWebhook(rawBody, header, secret) {
   if (!secret || !header) return false;
   const parts = Object.fromEntries(
@@ -156,4 +183,17 @@ function verifyWebhook(rawBody, header, secret) {
   });
 }
 
-module.exports = { enabled, paypalEnabled, watchMethods, refreshMethods, createCheckout, createPartsCheckout, createShopCheckout, getCheckout, verifyWebhook };
+module.exports = {
+  enabled,
+  paypalEnabled,
+  watchMethods,
+  refreshMethods,
+  createCheckout,
+  createPartsCheckout,
+  createShopCheckout,
+  getCheckout,
+  authorized,
+  capturePayment,
+  cancelPayment,
+  verifyWebhook
+};

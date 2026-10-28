@@ -171,7 +171,7 @@
       ? "MobilePay: " + esc(item.payout.mobilepay)
       : item.payout.iban ? "IBAN: " + esc(item.payout.iban.replace(/(.{4})/g, "$1 ").trim()) : "Bank: reg. " + esc(item.payout.reg) + " konto " + esc(item.payout.konto);
     const land = item.seller.country || "DK";
-    const canShop = ["modtaget", "godkendt", "udbetalt"].indexOf(item.status) !== -1;
+    const canShop = ["modtaget", "godkendt", "udbetalt"].indexOf(item.status) !== -1 && !item.inShop;
     const lines = item.items
       .map(function (line, index) {
         const spec = [line.variantLabel, line.storageLabel].filter(Boolean).join(", ");

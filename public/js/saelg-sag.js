@@ -35,6 +35,12 @@
         "<p>Siger du nej, sender vi den gratis retur.</p><div class=\"quick-actions\"><button class=\"btn btn-copper\" type=\"button\" data-answer=\"1\">Ja tak, udbetal</button><button class=\"btn btn-ghost\" type=\"button\" data-answer=\"0\">Nej, send den retur</button></div>" +
         "<p id=\"answer-error\" class=\"form-error\" hidden></p></div>"
       : "";
+    const shipped = sale.canReportShipped
+      ? "<form class=\"estimate\" id=\"shipped-form\"><p class=\"offer-kicker\">Har du sendt den?</p>" +
+        "<label class=\"field\"><span>Sporingsnummer</span><input name=\"tracking\" autocomplete=\"off\" required minlength=\"6\" maxlength=\"40\" placeholder=\"Står på kvitteringen fra pakkeshoppen\"></label>" +
+        "<button class=\"btn btn-copper\" type=\"submit\">Jeg har sendt den</button>" +
+        "<p id=\"shipped-error\" class=\"form-error\" hidden></p></form>"
+      : "";
     const events = sale.events
       .slice()
       .reverse()
@@ -43,6 +49,7 @@
     view.innerHTML =
       "<p class=\"chip\">" + esc(sale.ref) + "</p><h2>" + esc(sale.statusLabel) + "</h2>" +
       answer +
+      shipped +
       "<div class=\"review\"><ul>" + lines + "</ul>" +
       "<div class=\"review-price\"><span>" + (final !== null ? "Endelig pris" : "Tilbud") + "</span><strong>" + money(final !== null ? final : sale.offerDkk) + "</strong></div></div>" +
       "<p class=\"muted\">Udbetaling med " + (sale.payoutMethod === "bank" ? "bankoverførsel" : "MobilePay") + ". " + (sale.delivery === "post" ? "Du sender med posten." : "Du afleverer i Aalborg.") +
@@ -80,6 +87,24 @@
       const box = document.querySelector("#answer-error");
       box.hidden = false;
       box.textContent = body.message || "Svaret blev ikke gemt. Prøv igen.";
+      return;
+    }
+    paint(body);
+  });
+
+  view.addEventListener("submit", async function (event) {
+    if (event.target.id !== "shipped-form") return;
+    event.preventDefault();
+    const box = document.querySelector("#shipped-error");
+    const response = await fetch("/api/saelg/sendt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ref: current.ref, email: current.email, tracking: event.target.elements.tracking.value.trim() })
+    });
+    const body = await response.json().catch(function () { return {}; });
+    if (!response.ok) {
+      box.hidden = false;
+      box.textContent = body.message || "Det blev ikke gemt. Prøv igen.";
       return;
     }
     paint(body);

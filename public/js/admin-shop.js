@@ -119,9 +119,12 @@
   function paint() {
     const rows = data.listings
       .map(function (item) {
-        const thumb = item.photos && item.photos[0] ? "<img src=\"/foto/" + esc(item.photos[0]) + "\" alt=\"\" class=\"shop-admin-thumb\">" : "<span class=\"shop-admin-thumb\"></span>";
+        const thumb = item.photos && item.photos[0]
+          ? "<img src=\"/foto/" + esc(item.photos[0]) + "\" alt=\"\" class=\"shop-admin-thumb\">"
+          : "<img src=\"/eksempel/" + esc(item.modelId || "telefon") + "-" + esc(item.device || "telefon") + ".svg\" alt=\"\" class=\"shop-admin-thumb\">";
         const profit = Number.isInteger(item.costDkk) ? money(item.priceDkk - item.costDkk) : "–";
-        return "<tr><td>" + thumb + "</td><th>" + esc(item.title) + "<small>" + esc(item.ref) + " · " + esc(data.grades[item.grade] || item.grade) + (item.photos && item.photos.length ? "" : " · <span style=\"color:var(--bad)\">ingen billeder</span>") + "</small></th>" +
+        const origin = item.auto ? " · auto fra " + esc(item.buybackRef) + (item.incoming ? ", på vej" : "") : "";
+        return "<tr><td>" + thumb + "</td><th>" + esc(item.title) + "<small>" + esc(item.ref) + " · " + esc(data.grades[item.grade] || item.grade) + origin + (item.photos && item.photos.length ? "" : " · eksempelbillede") + "</small></th>" +
           "<td>" + money(item.priceDkk) + "<small>indkøb " + money(item.costDkk) + " · forskel " + profit + "</small></td>" +
           "<td>" + esc(data.statuses[item.status] || item.status) + "</td>" +
           "<td><button class=\"link-button\" type=\"button\" data-shop-edit=\"" + esc(item.ref) + "\">Ret</button></td></tr>";

@@ -941,6 +941,25 @@ label.find-way:hover { background: #dcefe3; }
 
 /* Shop (/koeb) */
 .shop-trust { margin-top: 18px; }
+.shop-hero { padding: 40px 0 26px; background: linear-gradient(180deg, var(--card) 0%, var(--paper) 100%); border-bottom: 1px solid var(--line); }
+.shop-kicker { margin: 0 0 6px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; color: var(--copper); }
+.shop-hero h1 { margin: 0 0 10px; }
+.shop-quick { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 4px; }
+.shop-quick a { padding: 10px 16px; border-radius: 12px; background: var(--forest); color: #fff; font-weight: 600; text-decoration: none; }
+.shop-quick a:hover { background: var(--ink); color: #fff; }
+.shop-brands a { padding: 6px 12px; font-size: 0.9rem; }
+.shop-example { position: absolute; bottom: 8px; left: 8px; background: rgba(255, 255, 255, 0.92); border: 1px solid var(--line); color: var(--muted); font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+.shop-stock { font-size: 0.85rem; font-weight: 600; color: var(--forest); }
+.shop-stock::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor; margin-right: 6px; vertical-align: 1px; }
+.shop-stock.is-incoming { color: var(--copper); }
+.shop-gallery-example { position: relative; margin: 0; display: block; }
+.shop-gallery-example img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
+.shop-gallery-example .shop-example { top: 12px; bottom: auto; left: 12px; font-size: 0.85rem; }
+.shop-gallery-example figcaption { margin-top: 8px; }
+.shop-incoming { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: var(--paper-2); font-weight: 500; }
+.steps-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 860px) { .steps-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .steps-4 { grid-template-columns: 1fr; } }
 .shop-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; align-items: center; margin-bottom: 14px; }
 .shop-filters, .shop-sort { display: flex; flex-wrap: wrap; gap: 8px; }
 .shop-filters a, .shop-sort a { padding: 8px 14px; border: 1px solid var(--line); border-radius: 99px; background: var(--card); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; }

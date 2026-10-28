@@ -10,6 +10,7 @@ const cj = require("./cj");
 const stripe = require("./stripe");
 const notify = require("./notify");
 const customer = require("./customer");
+const shop = require("./shop");
 const i18n = require("./i18n");
 const { createStore, makeRef, normRef } = require("./store");
 
@@ -115,6 +116,7 @@ function partsPageTokens(lang, origin, modelId) {
 const BUY_STATUS = {
   ny: "Tilbud modtaget",
   label_sendt: "Fragtlabel sendt",
+  sendt: "Sendt med posten",
   modtaget: "Enheden er modtaget",
   nyt_tilbud: "Nyt tilbud efter tjek",
   godkendt: "Tilbud godkendt",
@@ -189,6 +191,8 @@ function buyPublic(item) {
     finalDkk: item.finalDkk,
     shippingDeductDkk: item.shippingDeductDkk || 0,
     canAnswer: item.status === "nyt_tilbud",
+    canReportShipped: item.delivery === "post" && ["ny", "label_sendt"].includes(item.status),
+    tracking: item.tracking || "",
     items: item.items.map((line) => ({
       modelName: line.modelName,
       storageLabel: line.storageLabel,
@@ -265,9 +269,10 @@ async function forwardToCj(ref) {
 
 /** Stripe webhook and thank-you page both land here. Safe to call twice. */
 async function markPartsPaid(session, config) {
-  if (!session || session.payment_status !== "paid") return null;
-  const ref = normRef("RD", session.metadata && session.metadata.ref, 6);
+  const ref = normRef("RD", session && session.metadata && session.metadata.ref, 6);
   if (!ref) return null;
+  const auth = await stripe.authorized(session);
+  if (!auth) return null;
   let fresh = false;
   const order = await partOrders.withList((list) => {
     const found = list.find((item) => item.ref === ref);
@@ -277,10 +282,11 @@ async function markPartsPaid(session, config) {
     found.status = "betalt";
     found.paidAt = new Date().toISOString();
     found.sessionId = session.id;
-    found.paymentIntent = typeof session.payment_intent === "string" ? session.payment_intent : "";
+    found.paymentIntent = auth.intent;
+    found.captured = auth.captured;
     found.paidDkk = Math.round(Number(session.amount_total) / 100);
     found.customer = shippingFrom(session);
-    event(found, `Betalt ${found.paidDkk} kr. Tak for din ordre.`);
+    event(found, auth.captured ? `Betalt ${found.paidDkk} kr. Tak for din ordre.` : `${found.paidDkk} kr er reserveret. Beløbet trækkes, når delene er sendt. Tak for din ordre.`);
     return { save: true, value: found };
   });
   if (order && fresh) {
@@ -290,6 +296,47 @@ async function markPartsPaid(session, config) {
     void notify.partsOrder(order, result);
   }
   return order;
+}
+
+/** Takes the reserved amount for a parts order. Returns "" or the error text. */
+async function captureParts(ref, why) {
+  const order = (await partOrders.all()).find((item) => item.ref === ref);
+  if (!order || !order.paymentIntent || order.captured) return "";
+  try {
+    await stripe.capturePayment(order.paymentIntent);
+  } catch (error) {
+    console.error(`Dele træk ${ref}: ${error.message}`);
+    return error.message;
+  }
+  await partOrders.withList((list) => {
+    const target = list.find((item) => item.ref === ref);
+    if (!target) return { save: false };
+    target.captured = true;
+    event(target, `${target.paidDkk} kr er trukket (${why}).`, false);
+    return { save: true };
+  });
+  return "";
+}
+
+/**
+ * Card reservations run out after 7 days. The parts are already bought from the supplier by then,
+ * so an order that still has no tracking number after 6 days is charged anyway, and you get a note.
+ */
+async function sweepPartsReservations() {
+  const now = Date.now();
+  const open = (await partOrders.all()).filter((order) => order.paymentIntent && !order.captured && order.paidAt && ["betalt", "bestilt", "fejl"].includes(order.status));
+  for (const order of open) {
+    if (now - Date.parse(order.paidAt) < 6 * 86400000) continue;
+    const problem = await captureParts(order.ref, "6 dage uden sporing");
+    void notify.send({
+      title: problem ? `OBS: reservedele ${order.ref} kunne ikke trækkes` : `Reservedele ${order.ref} er trukket uden sporing`,
+      message: problem
+        ? `Betalingen udløber snart, og den kunne ikke trækkes: ${problem}. Tjek Stripe og leverandøren.`
+        : "Der er gået 6 dage uden sporingsnummer, så beløbet er trukket, før reservationen udløb. Tjek hos leverandøren, at delene er på vej.",
+      tags: ["warning"],
+      priority: problem ? 5 : 3
+    });
+  }
 }
 
 async function syncTracking(config) {
@@ -307,7 +354,10 @@ async function syncTracking(config) {
         event(target, `Pakken er sendt. Sporingsnummer ${detail.trackNumber}.`);
         return { save: true, value: target };
       });
-      if (updated) void customer.partsShipped(updated, config);
+      if (updated) {
+        await captureParts(updated.ref, "sendt");
+        void customer.partsShipped(updated, config);
+      }
     } catch (error) {
       console.error(`Sporing ${order.ref}: ${error.message}`);
     }
@@ -373,7 +423,11 @@ function register(app, ctx) {
   const { config, limited, clientIp, cleanLine, cleanText, sameEmail, requireAdmin, originOf, send } = ctx;
 
   setInterval(() => void syncTracking(config), 6 * 60 * 60 * 1000).unref();
+  const sweepParts = () => void sweepPartsReservations().catch((error) => console.error(`Dele reservationer: ${error.message}`));
+  setTimeout(sweepParts, 60 * 1000).unref();
+  setInterval(sweepParts, 60 * 60 * 1000).unref();
   partsSync.schedule();
+  shop.startJobs(config);
 
   // ---------- Sell ----------
   app.post("/api/saelg/tilbud", (req, res) => {
@@ -508,13 +562,50 @@ function register(app, ctx) {
     });
     if (result.missing) return res.status(404).json({ error: "ikke_fundet", message: "Vi kan ikke finde det salg." });
     if (result.bad) return res.status(409).json({ error: "status", message: result.bad });
-    if (changed) void notify.buybackAnswer(changed, accept);
+    if (changed) {
+      void notify.buybackAnswer(changed, accept);
+      void shop.buybackChanged(changed, changed.status, config).catch((error) => console.error(`Butik ${ref}: ${error.message}`));
+    }
+    return res.json(result);
+  });
+
+  app.post("/api/saelg/sendt", async (req, res) => {
+    if (limited(`sendt:${clientIp(req)}`, 20, 60 * 60 * 1000)) return res.status(429).json({ error: "mange" });
+    const ref = normRef("SL", req.body && req.body.ref);
+    const email = cleanLine(req.body && req.body.email, 120);
+    const tracking = cleanLine(req.body && req.body.tracking, 60).replace(/\s/g, "").toUpperCase();
+    if (!/^[A-Z0-9-]{6,40}$/.test(tracking)) return res.status(400).json({ error: "sporing", message: "Skriv sporingsnummeret fra kvitteringen eller labelen." });
+    let changed = null;
+    const result = await buybacks.withList((list) => {
+      const item = list.find((entry) => entry.ref === ref);
+      if (!item || !sameEmail(item.seller.email, email)) return { save: false, value: { missing: true } };
+      if (item.delivery !== "post" || !["ny", "label_sendt"].includes(item.status)) return { save: false, value: { bad: "Salget er allerede registreret som sendt." } };
+      item.status = "sendt";
+      item.tracking = tracking;
+      event(item, `Du har sendt den. Sporingsnummer ${tracking}. Vi giver besked, når den er fremme.`);
+      changed = item;
+      return { save: true, value: buyPublic(item) };
+    });
+    if (result.missing) return res.status(404).json({ error: "ikke_fundet", message: "Vi kan ikke finde det salg." });
+    if (result.bad) return res.status(409).json({ error: "status", message: result.bad });
+    void notify.send({
+      title: `Opkøb ${changed.ref} er sendt`,
+      message: `${changed.seller.name} har sendt ${changed.items.map((line) => line.modelName).join(", ")}. Sporing ${tracking}.`,
+      tags: ["package"],
+      priority: 3
+    });
+    void shop.buybackChanged(changed, "sendt", config);
     return res.json(result);
   });
 
   app.get("/api/admin/opkoeb", requireAdmin, async (req, res) => {
     const list = await buybacks.all();
-    res.json({ items: [...list].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)), statuses: BUY_STATUS, questions: buyback.publicData().questions });
+    const listed = await shop.listedBuybacks();
+    res.json({
+      items: [...list].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).map((item) => ({ ...item, inShop: listed.has(item.ref) })),
+      statuses: BUY_STATUS,
+      questions: buyback.publicData().questions
+    });
   });
 
   app.patch("/api/admin/opkoeb/:ref", requireAdmin, async (req, res) => {
@@ -549,6 +640,7 @@ function register(app, ctx) {
     if (!updated) return res.status(404).json({ error: "ikke_fundet" });
     if (updated.bad) return res.status(400).json({ error: "oplysninger", message: updated.bad });
     if (body.notifyCustomer !== false) void customer.buybackUpdated(updated, { status: newStatus, message }, config);
+    if (newStatus) void shop.buybackChanged(updated, newStatus, config).catch((error) => console.error(`Butik ${ref}: ${error.message}`));
     return res.json(updated);
   });
 
@@ -630,9 +722,8 @@ function register(app, ctx) {
     try {
       const session = await stripe.getCheckout(sessionId);
       if (normRef("RD", session.metadata && session.metadata.ref, 6) !== ref) return res.status(404).json({ error: "ikke_fundet", message: "Ordren kunne ikke findes." });
-      if (session.payment_status !== "paid") return res.status(202).json({ pending: true, message: "Betalingen er ikke gennemført endnu." });
       const order = await markPartsPaid(session, config);
-      if (!order) return res.status(404).json({ error: "ikke_fundet", message: "Ordren kunne ikke findes." });
+      if (!order) return res.status(202).json({ pending: true, message: "Betalingen er ikke gennemført endnu." });
       return res.json(partPublic(order));
     } catch (error) {
       console.error(`Dele bekræft ${ref}: ${error.message}`);
@@ -652,6 +743,19 @@ function register(app, ctx) {
   app.patch("/api/admin/dele/:ref", requireAdmin, async (req, res) => {
     const ref = normRef("RD", req.params.ref, 6);
     const body = req.body || {};
+    const before = (await partOrders.all()).find((entry) => entry.ref === ref);
+    if (!before) return res.status(404).json({ error: "ikke_fundet" });
+    if ((typeof body.tracking === "string" && body.tracking.trim()) || ["afsendt", "leveret"].includes(body.status)) {
+      const problem = await captureParts(ref, "sendt");
+      if (problem) return res.status(409).json({ error: "betaling", message: `Pengene kunne ikke trækkes (${problem}). Tjek betalingen i Stripe.` });
+    }
+    if (["refunderet", "annulleret"].includes(body.status) && before.paymentIntent && !before.captured) {
+      try {
+        await stripe.cancelPayment(before.paymentIntent);
+      } catch (error) {
+        return res.status(409).json({ error: "betaling", message: `Reservationen kunne ikke frigives (${error.message}). Tjek betalingen i Stripe.` });
+      }
+    }
     let shipped = false;
     const updated = await partOrders.withList((list) => {
       const order = list.find((entry) => entry.ref === ref);
