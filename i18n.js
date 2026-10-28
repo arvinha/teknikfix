@@ -30,12 +30,12 @@ const FOREIGN = CODES.filter((code) => code !== "da");
 
 const EU = ["AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK"];
 
-const ROOTS = "book|sag|saelg|koeb|reservedele|priser|partner|kontakt|ydelser|om|betaling|[a-z0-9-]+-aalborg";
+const ROOTS = "book|sag|saelg|koeb|reservedele|priser|partner|kontakt|ydelser|om|betaling|handelsbetingelser|privatlivspolitik|[a-z0-9-]+-aalborg";
 const PAGE_RE = new RegExp(`^/(?:${ROOTS})(?=[/?#]|$)`);
 const LINK_RE = new RegExp(`(["'])/(${ROOTS})(?=[/?#"'&]|$)`, "g");
 
 const SCRIPTS = ["site.js", "book.js", "finder.js", "labels.js", "reservedele.js", "saelg.js", "saelg-sag.js", "sag.js"];
-const FIRST_PAGES = ["index", "saelg", "reservedele", "book", "priser", "partner", "kontakt", "ydelser", "om", "betaling", "sag", "saelg-tak", "saelg-sag", "reservedele-tak", "book-tak", "404"];
+const FIRST_PAGES = ["index", "saelg", "reservedele", "book", "priser", "partner", "kontakt", "ydelser", "om", "betaling", "handelsbetingelser", "privatlivspolitik", "sag", "saelg-tak", "saelg-sag", "reservedele-tak", "book-tak", "404"];
 
 function env(name) {
   return (process.env[name] || "").trim();

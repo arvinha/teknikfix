@@ -67,8 +67,8 @@
           <div data-step>
             <h2>Hvor og hvornår?</h2>
             <div class="choice-grid">
-              <label class="choice"><input type="radio" name="visit" value="vaerksted" required><strong>Jeg afleverer den</strong><small>Aalborg Øst, efter aftale</small></label>
-              <label class="choice"><input type="radio" name="visit" value="hjemme"><strong>I kommer til mig</strong><small>Gratis kørsel i Aalborg</small></label>
+              <label class="choice"><input type="radio" name="visit" value="vaerksted" required><strong>Jeg afleverer den</strong><small>{{STREET}}, {{POSTAL}} {{CITY}}, efter aftale</small></label>
+              <label class="choice"><input type="radio" name="visit" value="hjemme"><strong>I henter den hos mig</strong><small>Gratis afhentning og levering i Aalborg</small></label>
               <label class="choice"><input type="radio" name="visit" value="post"><strong>Jeg sender den</strong><small>Med posten fra hele EU</small></label>
             </div>
             <div id="address-wrap">
@@ -85,7 +85,7 @@
               <label class="field"><span>Tid</span><select name="timeSlot" id="time-slot"><option value="formiddag">Formiddag 9–12</option><option value="eftermiddag" selected>Eftermiddag 12–17</option><option value="aften">Aften 17–22</option></select></label>
             </div>
             <div id="time-pick" class="time-pick" hidden>
-              <div class="day-chips" id="day-chips" role="radiogroup" aria-label="Dag"></div>
+              <div class="day-chips" id="day-chips"></div>
               <div class="slot-chips" id="slot-chips" role="radiogroup" aria-label="Tid"></div>
             </div>
             <p class="form-hint">Vi bekræfter tiden på sms eller e-mail. Kom først, når du har fået den.</p>
@@ -103,11 +103,12 @@
               <p class="field-title">Hvornår vil du betale?</p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="payWhen" value="efter" checked><strong>Når den virker</strong><small>{{PAY_LIST_CAP}}</small></label>
-                <label class="choice"><input type="radio" name="payWhen" value="nu"><strong>Betal nu</strong><small>Kort, MobilePay eller Klarna. Pengene tilbage, hvis den ikke kan repareres</small></label>
+                <label class="choice"><input type="radio" name="payWhen" value="nu"><strong>Betal nu</strong><small>{{PAY_LIST_CAP}}. Pengene tilbage, hvis den ikke kan repareres</small></label>
               </div>
+              <p class="form-hint">Betalingen sker sikkert hos Stripe. Vi ser aldrig dine kortoplysninger og gemmer dem ikke.</p>
             </div>
             <input type="hidden" name="consent" value="ja">
-            <p class="form-hint">Vi bruger kun dine oplysninger til sagen og betalingen.</p>
+            <p class="form-hint">Når du sender bookingen, accepterer du vores <a href="/handelsbetingelser" target="_blank">handelsbetingelser</a>. Vi bruger kun dine oplysninger til sagen og betalingen. Læs mere i vores <a href="/privatlivspolitik" target="_blank">privatlivspolitik</a>.</p>
             <a class="pay-logos book-pay-logos" href="/betaling" aria-label="Betalingsmåder: {{PAY_ACCEPTED}}">
               {{PAY_LOGOS}}
             </a>
@@ -128,7 +129,7 @@
   </main>
   {{FOOTER}}
   <script type="application/json" id="price-data">{{PRICE_JSON}}</script>
-  <div id="book-config" hidden data-card="{{CARD_ENABLED}}"></div>
+  <div id="book-config" hidden data-card="{{CARD_ENABLED}}" data-address="{{STREET}}, {{POSTAL}} {{CITY}}" data-maps="{{MAPS_URL_HTML}}"></div>
   <script src="/js/site.js"></script>
   <script src="/js/book.js"></script>
 </body>

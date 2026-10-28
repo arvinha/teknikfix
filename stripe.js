@@ -106,6 +106,30 @@ async function createShopCheckout({ ref, title, priceDkk, image, origin, cancelP
   return call("POST", "/checkout/sessions", params);
 }
 
+/** PayPal only shows in Checkout once it is switched on in the Stripe dashboard, so the site asks Stripe instead of guessing. */
+let paypalOn = false;
+
+async function refreshMethods() {
+  if (!enabled()) return;
+  try {
+    const list = await call("GET", "/payment_method_configurations?limit=10");
+    const config = (list.data || []).find((item) => item.is_default && item.active) || (list.data || [])[0];
+    const paypal = config && config.paypal;
+    paypalOn = Boolean(paypal && paypal.available && paypal.display_preference && paypal.display_preference.value === "on");
+  } catch (error) {
+    console.error(`Stripe: kunne ikke læse betalingsmåder: ${error.message}`);
+  }
+}
+
+function paypalEnabled() {
+  return enabled() && paypalOn;
+}
+
+function watchMethods() {
+  void refreshMethods();
+  setInterval(() => void refreshMethods(), 60 * 60 * 1000).unref();
+}
+
 async function getCheckout(sessionId) {
   return call("GET", `/checkout/sessions/${encodeURIComponent(sessionId)}`);
 }
@@ -132,4 +156,4 @@ function verifyWebhook(rawBody, header, secret) {
   });
 }
 
-module.exports = { enabled, createCheckout, createPartsCheckout, createShopCheckout, getCheckout, verifyWebhook };
+module.exports = { enabled, paypalEnabled, watchMethods, refreshMethods, createCheckout, createPartsCheckout, createShopCheckout, getCheckout, verifyWebhook };

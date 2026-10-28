@@ -419,10 +419,13 @@
     const s = buyPrices.strategy;
     const groups = {};
     buyPrices.values.forEach(function (row) { (groups[row.group] = groups[row.group] || []).push(row); });
-    const head = "<tr><th></th><td class=\"muted\">Salgsværdi</td><td class=\"muted\">Refurbed byder</td><td class=\"muted\">Vi byder</td><td class=\"muted\">Du tjener</td></tr>";
+    const head = "<tr><th></th><td class=\"muted\">Refurbed sælger for</td><td class=\"muted\">Vores salgspris</td><td class=\"muted\">Refurbed byder</td><td class=\"muted\">Vi byder</td><td class=\"muted\">Du tjener</td></tr>";
     function priceRow(name, attr, key, row) {
+      const auto = row.refSale && row.effectiveValue !== row.value;
       return "<tr><th>" + esc(name) + "</th>" +
-        "<td><input class=\"price-input\" " + attr + "=\"" + esc(key) + "\" inputmode=\"numeric\" value=\"" + row.value + "\"></td>" +
+        "<td><input class=\"price-input\" data-refsale=\"" + esc(key) + "\" inputmode=\"numeric\" placeholder=\"–\" value=\"" + (row.refSale || "") + "\"></td>" +
+        "<td><input class=\"price-input\" " + attr + "=\"" + esc(key) + "\" inputmode=\"numeric\" value=\"" + row.value + "\"" + (row.refSale ? " disabled title=\"Sættes automatisk ud fra Refurbeds pris\"" : "") + ">" +
+        (auto ? "<small>Bruger " + money(row.effectiveValue) + "</small>" : "") + "</td>" +
         "<td><input class=\"price-input\" data-ref=\"" + esc(key) + "\" inputmode=\"numeric\" placeholder=\"–\" value=\"" + (row.ref || "") + "\"></td>" +
         "<td>" + (row.offerDkk === null ? "–" : money(row.offerDkk)) + (row.capped && row.ref ? " <span class=\"muted\" title=\"Kan ikke slå Refurbed uden at gå under mindste fortjeneste\">(loft)</span>" : "") + "</td>" +
         "<td>" + (row.profitDkk === null ? "–" : money(row.profitDkk)) + "</td></tr>";
@@ -444,13 +447,14 @@
     buyBox.innerHTML =
       "<summary>Opkøbspriser og avance</summary>" +
       "<p>" + esc(buyPrices.note) + " Sidst ændret " + esc(buyPrices.updated) + ".</p>" +
-      "<p class=\"muted\">Tilbud = <em>bud i %</em> af salgsværdien (efter brugsspor og reparationer). Har du skrevet hvad Refurbed byder (perfekt stand, 128 GB, kun Wi-Fi), byder vi <em>slå Refurbed med %</em> mere, mindst 50 kr. " +
-      "Men aldrig mere end at du tjener mindst <em>mindste fortjeneste</em>: <em>fortjeneste i %</em> af salgsværdien, dog mindst <em>bundgrænse</em> og højst <em>mindste fortjeneste (kr)</em>. " +
-      "Det er efter brugtmoms, salgsgebyr, Google-annoncer, garanti, håndtering (fragt, sletning, rengøring) og reparation. Ødelagte dele koster <em>andel af reparationspris</em> × din egen reparationspris. " +
-      "Står der (loft), kan vi ikke slå Refurbed uden at gå under mindste fortjeneste.</p>" +
+      "<p class=\"muted\">Skriv hvad Refurbed sælger den billigste udgave for i perfekt stand. Så bliver vores salgspris automatisk <em>sælg under Refurbed med %</em> lavere, rundet ned til 49 eller 99. Den pris bruges både i butikken og til at regne opkøbsprisen.</p>" +
+      "<p class=\"muted\">Tilbud = <em>bud i %</em> af salgsværdien (efter brugsspor og reparationer), men aldrig mere end at du tjener mindst <em>mindste fortjeneste</em>: <em>fortjeneste i %</em> af salgsværdien, dog mindst <em>bundgrænse</em> og højst <em>mindste fortjeneste (kr)</em>. " +
+      "Har du skrevet hvad Refurbed byder (perfekt stand, billigste udgave, kun Wi-Fi), byder vi <em>slå Refurbed med %</em> mere, mindst 50 kr., så længe du stadig tjener mindst <em>bundgrænsen</em>. Ellers giver vi det normale tilbud, og der står (loft). " +
+      "Det er efter brugtmoms, salgsgebyr, Google-annoncer, garanti, håndtering (fragt, sletning, rengøring) og reparation. Ødelagte dele koster <em>andel af reparationspris</em> × din egen reparationspris.</p>" +
       "<form id=\"buy-strategy\" class=\"actions\" style=\"align-items:end\">" +
       field("offerPct", "Bud i % af salgsværdi", s.offerPct) +
       field("beatPct", "Slå Refurbed med %", s.beatPct || 0) +
+      field("shopBeatPct", "Sælg under Refurbed med %", s.shopBeatPct || 0) +
       field("minProfitPct", "Fortjeneste i % af salgsværdi", s.minProfitPct || 0) +
       field("minProfitFloorDkk", "Bundgrænse fortjeneste (kr)", s.minProfitFloorDkk || 0) +
       field("minProfitDkk", "Mindste fortjeneste (kr)", s.minProfitDkk) +
@@ -467,7 +471,7 @@
       "<button class=\"btn\" type=\"submit\">Gem</button></form>" +
       (message ? "<p class=\"form-ok\">" + esc(message) + "</p>" : "") +
       "<p class=\"form-error\" id=\"buy-error\" hidden></p>" +
-      "<p class=\"muted\">Salgsværdi = hvad du kan sælge enheden for i din egen butik i perfekt stand (128 GB, computer 256 GB). Sæt den lidt under refurbed.dk's laveste pris.</p>" +
+      "<p class=\"muted\">Vores salgspris = hvad du kan sælge enheden for i din egen butik i perfekt stand (128 GB, computer 256 GB). Står der hvad Refurbed sælger for, sættes den automatisk ud fra deres billigste udgave og kan ikke ændres her.</p>" +
       tables +
       "<h3>iPad, MacBook og iMac efter generation</h3><div class=\"table-wrap\"><table class=\"price-table price-admin\"><tbody>" + head + variants + "</tbody></table></div>" +
       "<p><button class=\"btn\" type=\"button\" id=\"save-buy-values\">Gem værdier</button></p>";
@@ -501,15 +505,24 @@
 
   buyBox.addEventListener("click", function (event) {
     if (event.target.id !== "save-buy-values") return;
-    const payload = { values: {}, variants: {}, refs: {} };
-    buyBox.querySelectorAll("[data-ref]").forEach(function (input) {
-      const key = input.getAttribute("data-ref");
+    const payload = { values: {}, variants: {}, refs: {}, refSales: {} };
+    function rowOf(key) {
       const parts = key.split(":");
-      const row = parts[1]
+      return parts[1]
         ? buyPrices.variants[parts[0]].find(function (entry) { return entry.id === parts[1]; })
         : buyPrices.values.find(function (entry) { return entry.id === key; });
+    }
+    buyBox.querySelectorAll("[data-ref]").forEach(function (input) {
+      const key = input.getAttribute("data-ref");
+      const row = rowOf(key);
       const value = input.value.trim() ? parseKr(input.value) : 0;
       if (row && value !== (row.ref || 0)) payload.refs[key] = value;
+    });
+    buyBox.querySelectorAll("[data-refsale]").forEach(function (input) {
+      const key = input.getAttribute("data-refsale");
+      const row = rowOf(key);
+      const value = input.value.trim() ? parseKr(input.value) : 0;
+      if (row && value !== (row.refSale || 0)) payload.refSales[key] = value;
     });
     buyBox.querySelectorAll("[data-value]").forEach(function (input) {
       const id = input.getAttribute("data-value");

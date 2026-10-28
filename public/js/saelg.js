@@ -141,8 +141,16 @@
     return models.get(cur.modelId);
   }
 
-  function storageOptions(m) {
-    return (m && data.storage[m.device]) || [];
+  function storageOptions(m, variantId) {
+    const all = (m && data.storage[m.device]) || [];
+    if (!m) return all;
+    const chosen = variantId === undefined ? cur.variant : variantId;
+    const variant = (m.variants || []).find(function (item) { return item.id === chosen; });
+    const ids = (variant && variant.storage && variant.storage.length ? variant.storage : m.storage) || [];
+    if (!ids.length || ids.length === all.length) return all;
+    return all
+      .filter(function (option) { return ids.indexOf(option.id) !== -1; })
+      .map(function (option) { return { id: option.id, label: option.label.replace(" eller mindre", ""), factor: option.factor }; });
   }
 
   function has(m, questionId) {
@@ -598,8 +606,8 @@
     });
   }
 
-  function storageId(gb, device) {
-    const options = data.storage[device] || [];
+  function storageId(gb, m, variantId) {
+    const options = storageOptions(m, variantId || "");
     const n = Number(gb);
     if (!n) return "";
     let best = "";
@@ -621,7 +629,7 @@
       if (result.modelId && models.has(result.modelId)) {
         const m = models.get(result.modelId);
         status("");
-        chooseModel(result.modelId, { storage: storageId(result.storage, m.device), variant: result.chip || "", imei: result.imei || result.serial || "" });
+        chooseModel(result.modelId, { storage: storageId(result.storage, m, result.chip), variant: result.chip || "", imei: result.imei || result.serial || "" });
       } else if (result.imeiOnly) {
         cur.imei = result.imei;
         searchInput.value = result.imei;
@@ -683,7 +691,11 @@
     const storage = event.target.closest("[data-storage]");
     const conn = event.target.closest("[data-conn]");
     if (!variant && !storage && !conn) return;
-    if (variant) cur.variant = variant.getAttribute("data-variant");
+    if (variant) {
+      cur.variant = variant.getAttribute("data-variant");
+      const sizes = storageOptions(model());
+      if (cur.storage && cur.storage !== UNKNOWN && !sizes.some(function (item) { return item.id === cur.storage; })) cur.storage = "";
+    }
     if (storage) cur.storage = storage.getAttribute("data-storage");
     if (conn) cur.conn = conn.getAttribute("data-conn");
     paintSpec();
@@ -911,7 +923,7 @@
     offerBox.innerHTML =
       "<p class=\"offer-kicker\">Vi giver dig</p><p class=\"estimate-price\">" + money(quote.offerDkk) + (quote.qty > 1 ? " <small class=\"offer-each\">pr. stk.</small>" : "") + "</p>" +
       each + notes +
-      "<small>Prisen gælder i " + data.validDays + " dage. Vi tjekker enheden, når vi får den. Passer den ikke, får du et nyt tilbud eller den gratis retur.</small>";
+      "<small>Prisen gælder i " + data.validDays + " dage. Vi kontrollerer standen, når vi modtager enheden. Passer den ikke med din beskrivelse, giver vi dig et nyt tilbud. Siger du nej, sender vi den gratis retur.</small>";
   }
 
   function refreshButton() {
@@ -988,7 +1000,8 @@
       "</ul>" +
       (shipping ? "<p class=\"cart-sum\"><span>Fragt fra udlandet</span><span>−" + money(shipping) + "</span></p>" : "") +
       "<div class=\"review-price\"><span>Du får" + (manual ? " mindst" : "") + "</span><strong>" + money(total) + "</strong></div>" +
-      (manual ? "<span class=\"review-note\">Enheder uden pris får du et fast tilbud på inden for 1 hverdag.</span>" : "");
+      (manual ? "<span class=\"review-note\">Enheder uden pris får du et fast tilbud på inden for 1 hverdag.</span>" : "") +
+      "<span class=\"review-note\">Vi kontrollerer standen, når vi modtager enheden. Passer den ikke med din beskrivelse, giver vi dig et nyt tilbud. Siger du nej, sender vi den gratis retur.</span>";
   }
 
   function showSeller() {

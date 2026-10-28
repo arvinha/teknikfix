@@ -1,8 +1,9 @@
 // Instant buyback offers for used and broken devices.
-// Sale = our own shop price × storage × Wi-Fi/Cellular × cosmetic condition. Repairs cost a share of our own repair price.
-// Offer = offerPct of (sale − repairs), or a little above the competitor's offer when we know it (refs),
-// but never so high that the profit after used-goods VAT (brugtmoms), sales and ad costs, warranty, handling
-// and repairs drops below the minimum profit (a share of the sale, between a floor and minProfitDkk). Rounded down to 50 kr.
+// Sale = our own shop price (or a little under Refurbed's sale price, refSales) × storage × Wi-Fi/Cellular × cosmetic condition.
+// Repairs cost a share of our own repair price.
+// Offer = offerPct of (sale − repairs), but never so high that the profit after used-goods VAT (brugtmoms), sales and ad costs,
+// warranty, handling and repairs drops below the minimum profit (a share of the sale, between a floor and minProfitDkk).
+// When we know the competitor's offer (refs) we beat it as long as the profit stays above the floor. Rounded down to 50 kr.
 const fs = require("fs");
 const path = require("path");
 const pricing = require("./pricing");
@@ -151,6 +152,42 @@ function modelName(data, model) {
   return (data.names && data.names[model.id]) || model.name;
 }
 
+/**
+ * The storage sizes the model (or generation) actually comes in. Our own values are 128 GB prices,
+ * but a Refurbed sale price is for the cheapest version, so with fromCheapest the smallest size gets factor 1.
+ */
+function storageFor(data, modelId, variantId, device, fromCheapest) {
+  const all = data.storage[device] || [];
+  const sizes = data.modelStorage || {};
+  const ids = (variantId && sizes[`${modelId}:${variantId}`]) || sizes[modelId] || null;
+  const fromVariants = !ids && !variantId && (data.variants[modelId] || []).length
+    ? [...new Set((data.variants[modelId] || []).flatMap((variant) => sizes[`${modelId}:${variant.id}`] || []))]
+    : null;
+  const allowed = ids || (fromVariants && fromVariants.length ? fromVariants : null);
+  const list = allowed ? all.filter((option) => allowed.includes(option.id)) : all;
+  if (!list.length) return all;
+  const base = fromCheapest ? Math.min(...list.map((option) => option.factor)) : 1;
+  return list.map((option) => ({ ...option, factor: Math.round((option.factor / base) * 1000) / 1000, label: allowed ? option.label.replace(" eller mindre", "") : option.label }));
+}
+
+/** Round down to a price ending in 49 or 99. */
+function shopRound(amount) {
+  const hundreds = Math.floor(amount / 100) * 100;
+  if (amount >= hundreds + 99) return hundreds + 99;
+  if (amount >= hundreds + 49) return hundreds + 49;
+  return Math.max(0, hundreds - 1);
+}
+
+/** Our sale value for a perfect unit: a little under what Refurbed sells it for, when we know that. */
+function valueFor(data, modelId, variant) {
+  const key = variant ? `${modelId}:${variant.id}` : modelId;
+  const theirs = (data.refSales || {})[key];
+  if (Number.isInteger(theirs) && theirs > 0) {
+    return { value: shopRound(theirs * (1 - (data.strategy.shopBeatPct || 0) / 100)), fromRef: true };
+  }
+  return { value: variant ? variant.value : data.values[modelId], fromRef: false };
+}
+
 /** What the sell page needs: models, storage and variant choices, and the questions per model. */
 function publicData() {
   const data = load();
@@ -170,7 +207,13 @@ function publicData() {
             manual: data.manual.includes(model.id),
             keywords: (data.keywords && data.keywords[model.id]) || "",
             variantTitle: (data.variantTitles && data.variantTitles[model.id]) || "",
-            variants: (data.variants[model.id] || []).map((variant) => ({ id: variant.id, label: variant.label, keywords: variant.keywords || "" })),
+            variants: (data.variants[model.id] || []).map((variant) => ({
+              id: variant.id,
+              label: variant.label,
+              keywords: variant.keywords || "",
+              storage: storageFor(data, model.id, variant.id, group.device).map((option) => option.id)
+            })),
+            storage: storageFor(data, model.id, "", group.device).map((option) => option.id),
             questions: questionsFor(info).map((question) => question.id),
             faults: (questionsFor(info).find((question) => question.id === "faults") || { options: [] }).options.map((option) => option.id)
           };
@@ -236,18 +279,22 @@ function quote(input, internal = false) {
 
   const qty = Math.min(500, Math.max(1, Math.floor(Number(input.qty) || 1)));
   const guessed = [];
-  const storageList = data.storage[info.device] || [];
-  const storageUnknown = String(input.storage || "") === UNKNOWN && storageList.length > 0;
-  const storage = storageUnknown
-    ? storageList.reduce((low, option) => (option.factor < low.factor ? option : low))
-    : storageList.find((option) => option.id === String(input.storage || "")) || storageList.find((option) => option.factor === 1) || null;
-  if (storageUnknown) guessed.push("lager");
   const variants = data.variants[modelId] || [];
   const variantUnknown = String(input.variant || "") === UNKNOWN && variants.length > 0;
   const variant = variantUnknown
-    ? variants.reduce((low, option) => (option.value < low.value ? option : low))
+    ? variants.reduce((low, option) => (valueFor(data, modelId, option).value < valueFor(data, modelId, low).value ? option : low))
     : variants.find((option) => option.id === String(input.variant || "")) || null;
   if (variantUnknown) guessed.push("model");
+  const { value, fromRef } = valueFor(data, modelId, variant);
+  const storageList = storageFor(data, modelId, variant ? variant.id : "", info.device, fromRef);
+  const storageUnknown = String(input.storage || "") === UNKNOWN && storageList.length > 0;
+  const storage = storageUnknown
+    ? storageList.reduce((low, option) => (option.factor < low.factor ? option : low))
+    : storageList.find((option) => option.id === String(input.storage || "")) ||
+      storageList.find((option) => option.factor === 1) ||
+      storageList[0] ||
+      null;
+  if (storageUnknown) guessed.push("lager");
   const connList = info.device === "tablet" ? data.connectivity || [] : [];
   const connUnknown = String(input.conn || "") === UNKNOWN && connList.length > 0;
   const conn = connList.length ? connList.find((option) => !connUnknown && option.id === String(input.conn || "")) || connList[0] : null;
@@ -292,8 +339,9 @@ function quote(input, internal = false) {
 
   if (guessed.length) result.lines.push("Vi regner med den billigste udgave. Er din bedre, hæver vi prisen, når vi tjekker den.");
 
-  const value = variant ? variant.value : data.values[modelId];
   const extra = (storage ? storage.factor : 1) * (conn ? conn.factor : 1);
+  const cheapest = storageList.length ? Math.min(...storageList.map((option) => option.factor)) : 1;
+  const refExtra = extra / cheapest;
   const base = value * extra;
   const { offerPct, deadFactor, minOfferDkk } = data.strategy;
   let sale;
@@ -330,15 +378,21 @@ function quote(input, internal = false) {
   }
 
   const net = Math.max(0, sale - repairTotal);
-  let target = (offerPct / 100) * net;
+  const usual = Math.min((offerPct / 100) * net, maxOfferFor(data.strategy, sale, repairTotal, minProfit));
   const ref = refFor(data, modelId, variant);
+  let offerRaw = usual;
+  let capped = false;
   if (ref) {
-    const theirs = ref * extra * (net / base);
-    target = Math.max(theirs * (1 + (data.strategy.beatPct || 0) / 100), theirs + 50);
+    // To beat a known competitor we accept a smaller profit, down to the floor, but never less than our usual offer.
+    const theirs = ref * refExtra * (net / base);
+    const beat = Math.max(theirs * (1 + (data.strategy.beatPct || 0) / 100), theirs + 50);
+    const beatCap = maxOfferFor(data.strategy, sale, repairTotal, Math.min(minProfit, data.strategy.minProfitFloorDkk || minProfit));
+    const best = Math.min(beat, beatCap);
+    capped = floor50(best) <= theirs;
+    offerRaw = Math.max(usual, capped ? usual : best);
   }
-  const cap = maxOfferFor(data.strategy, sale, repairTotal, minProfit);
-  const offer = floor50(Math.min(target, cap));
-  if (internal) Object.assign(result, { saleDkk: Math.round(sale), repairDkk: repairTotal, refDkk: ref ? Math.round(ref * extra * (net / base)) : null, capped: target > cap });
+  const offer = floor50(offerRaw);
+  if (internal) Object.assign(result, { saleDkk: Math.round(sale), repairDkk: repairTotal, refDkk: ref ? Math.round(ref * refExtra * (net / base)) : null, capped });
   if (offer < minOfferDkk) {
     result.recycle = true;
     result.offerDkk = 0;
@@ -407,6 +461,7 @@ function adminView() {
     };
   };
   const refs = data.refs || {};
+  const refSales = data.refSales || {};
   return {
     updated: data.updated,
     note: data.note,
@@ -419,13 +474,23 @@ function adminView() {
           ...variant,
           modelName: (data.names && data.names[modelId]) || (names.get(modelId) || { name: modelId }).name,
           ref: refs[`${modelId}:${variant.id}`] || null,
+          refSale: refSales[`${modelId}:${variant.id}`] || null,
+          effectiveValue: valueFor(data, modelId, variant).value,
           ...sampleOf(modelId, variant.id)
         }))
       ])
     ),
     values: Object.entries(data.values)
       .filter(([id]) => !data.variants[id])
-      .map(([id, value]) => ({ id, value, ref: refs[id] || null, ...sampleOf(id, ""), ...(names.get(id) || { name: id, group: "" }) }))
+      .map(([id, value]) => ({
+        id,
+        value,
+        ref: refs[id] || null,
+        refSale: refSales[id] || null,
+        effectiveValue: valueFor(data, id, null).value,
+        ...sampleOf(id, ""),
+        ...(names.get(id) || { name: id, group: "" })
+      }))
   };
 }
 
@@ -440,6 +505,7 @@ function updateFromAdmin(input) {
       adsPct: [0, 40],
       warrantyPct: [0, 20],
       beatPct: [0, 50],
+      shopBeatPct: [0, 50],
       salesFeePct: [0, 30],
       handlingDkk: [0, 2000],
       usedVatShare: [0, 0.25],
@@ -483,6 +549,19 @@ function updateFromAdmin(input) {
     if (!Number.isInteger(value) || value < 0 || value > 100000) return { error: `Konkurrentprisen for ${key} skal være et helt tal.` };
     data.refs[key] = value;
   }
+  for (const [key, raw] of Object.entries(input.refSales || {})) {
+    const [modelId, variantId] = key.split(":");
+    const known = variantId ? (data.variants[modelId] || []).some((item) => item.id === variantId) : Number.isInteger(data.values[modelId]);
+    if (!known) return { error: `Ukendt model: ${key}` };
+    data.refSales = data.refSales || {};
+    if (raw === null || raw === "" || Number(raw) === 0) {
+      delete data.refSales[key];
+      continue;
+    }
+    const value = Number(raw);
+    if (!Number.isInteger(value) || value < 0 || value > 200000) return { error: `Refurbeds salgspris for ${key} skal være et helt tal.` };
+    data.refSales[key] = value;
+  }
   data.updated = new Date().toISOString().slice(0, 10);
   save(data);
   return { ok: true };
@@ -494,9 +573,9 @@ function shopValue({ modelId, variant, storage, conn }) {
   const info = modelInfo(modelId);
   if (!info) return null;
   const chosen = (data.variants[modelId] || []).find((item) => item.id === variant);
-  const value = chosen ? chosen.value : data.values[modelId];
+  const { value, fromRef } = valueFor(data, modelId, chosen);
   if (!Number.isInteger(value)) return null;
-  const storageOption = (data.storage[info.device] || []).find((item) => item.id === storage);
+  const storageOption = storageFor(data, modelId, chosen ? chosen.id : "", info.device, fromRef).find((item) => item.id === storage);
   const connOption = info.device === "tablet" ? (data.connectivity || []).find((item) => item.id === conn) : null;
   return Math.round(value * (storageOption ? storageOption.factor : 1) * (connOption ? connOption.factor : 1));
 }

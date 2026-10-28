@@ -529,7 +529,7 @@ app.post("/api/sag/betalt", async (req, res) => {
 
 app.post("/api/sag/kort", async (req, res) => {
   if (!stripe.enabled()) {
-    return res.status(503).json({ error: "kort", message: "Kortbetaling er ikke slået til endnu. Brug PayPal eller bank." });
+    return res.status(503).json({ error: "kort", message: "Betaling på nettet virker ikke lige nu. Ring til os, så finder vi en løsning." });
   }
   if (limited(`kort:${clientIp(req)}`, 20, 60 * 60 * 1000)) {
     return res.status(429).json({ error: "mange", message: "Vent lidt, og prøv igen." });
@@ -558,7 +558,7 @@ app.post("/api/sag/kort", async (req, res) => {
     return res.json({ url: session.url });
   } catch (error) {
     console.error(`Stripe ${booking.ref}: ${error.message}`);
-    return res.status(502).json({ error: "kort", message: "Betalingen kunne ikke startes. Prøv igen, eller brug PayPal." });
+    return res.status(502).json({ error: "kort", message: "Betalingen kunne ikke startes. Prøv igen om lidt." });
   }
 });
 
@@ -800,11 +800,11 @@ function countryOptions(lang) {
   return `<option value="">${i18n.t(lang, "Vælg land")}</option>` + list.map((item) => `<option value="${item.code}">${item.name}</option>`).join("");
 }
 
-function payTokens(card) {
+function payTokens(paypal) {
   return {
-    PAY_LIST: card ? "kort, MobilePay, Klarna, PayPal eller bank" : "PayPal eller bank",
-    PAY_LIST_CAP: card ? "Kort, MobilePay, Klarna, PayPal eller bank" : "PayPal eller bank",
-    PAY_ACCEPTED: card ? "Kort, MobilePay, Klarna, PayPal, Bankoverførsel" : "PayPal, Bankoverførsel"
+    PAY_LIST: paypal ? "kort, MobilePay, Klarna, Apple Pay eller PayPal" : "kort, MobilePay, Klarna eller Apple Pay",
+    PAY_LIST_CAP: paypal ? "Kort, MobilePay, Klarna, Apple Pay eller PayPal" : "Kort, MobilePay, Klarna eller Apple Pay",
+    PAY_ACCEPTED: paypal ? "Kort, MobilePay, Klarna, Apple Pay, Google Pay, PayPal" : "Kort, MobilePay, Klarna, Apple Pay, Google Pay"
   };
 }
 
@@ -813,7 +813,7 @@ function translationStrings() {
   const out = ["Fragt", "Vælg land", parts.publicData().deliveryText, platform.DELIVERY_NOTE, ...Object.values(platform.PARTS_TEXT), ...Object.values(BOOK_ERRORS), ...shop.strings()];
   out.push("Dit sagsnummer er <strong>{{REF}}</strong>. Gem det sammen med den e-mail, du skrev.");
   out.push("Hvis du netop har sendt en sag, så gem sagsnummeret fra kvitteringen.");
-  for (const card of [true, false]) out.push(...Object.values(payTokens(card)));
+  for (const paypal of [true, false]) out.push(...Object.values(payTokens(paypal)));
   out.push(...i18n.collect(buyback.publicData()), ...i18n.collect(parts.publicData()), ...i18n.collect(pricing.catalog()));
   pricing.priceTablesHtml((text) => {
     out.push(text);
@@ -852,17 +852,20 @@ function render(file, req, extra = {}) {
     return `${attr}="${url}?v=${assetVersion(url)}"`;
   });
   const card = stripe.enabled();
+  const paypal = stripe.paypalEnabled();
   html = html
     .replace(/<!--IF_CARD-->([\s\S]*?)<!--END_IF_CARD-->/g, card ? "$1" : "")
-    .replace(/<!--IF_NOCARD-->([\s\S]*?)<!--END_IF_NOCARD-->/g, card ? "" : "$1");
+    .replace(/<!--IF_NOCARD-->([\s\S]*?)<!--END_IF_NOCARD-->/g, card ? "" : "$1")
+    .replace(/<!--IF_PAYPAL-->([\s\S]*?)<!--END_IF_PAYPAL-->/g, paypal ? "$1" : "");
   const origin = originOf(req);
   const tokens = {
     ORIGIN: origin,
     YEAR: String(new Date().getFullYear()),
     BOOK_ERROR: "",
     REF_HTML: "",
-    CARD_ENABLED: stripe.enabled() ? "1" : "",
-    ...payTokens(stripe.enabled()),
+    CARD_ENABLED: card ? "1" : "",
+    PAYPAL_ENABLED: paypal ? "1" : "",
+    ...payTokens(paypal),
     ...TOKENS,
     ...pricing.rangeTokens()
   };
@@ -943,6 +946,8 @@ app.get("/ydelser", (req, res) => send(req, res, "ydelser.html", "ydelser"));
 app.get("/priser", (req, res) => send(req, res, "priser.html", "priser"));
 app.get("/betaling", (req, res) => send(req, res, "betaling.html", "betaling"));
 app.get("/om", (req, res) => send(req, res, "om.html", "om"));
+app.get("/handelsbetingelser", (req, res) => send(req, res, "handelsbetingelser.html", ""));
+app.get("/privatlivspolitik", (req, res) => send(req, res, "privatlivspolitik.html", ""));
 app.get("/kontakt", (req, res) => send(req, res, "kontakt.html", "kontakt"));
 app.get("/sag", (req, res) => send(req, res, "sag.html", "sag"));
 app.get("/admin", (req, res) => send(req, res, "admin.html", ""));
@@ -1022,6 +1027,8 @@ app.get("/sitemap.xml", async (req, res) => {
     ["/kontakt", "kontakt.html", "0.8"],
     ["/betaling", "betaling.html", "0.6"],
     ["/om", "om.html", "0.6"],
+    ["/handelsbetingelser", "handelsbetingelser.html", "0.3"],
+    ["/privatlivspolitik", "privatlivspolitik.html", "0.3"],
     ["/sag", "sag.html", "0.3"],
     ...parts.publicData().groups.flatMap((group) => group.models.map((model) => [`/reservedele/${model.id}`, "reservedele.html", "0.7"]))
   ];
@@ -1083,6 +1090,7 @@ const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Sager: http://localhost:${PORT}/admin`);
   for (const url of lanUrls()) console.log(`Samme netværk: ${url}`);
   console.log("Luk ikke dette vindue, mens siden skal være i gang.");
+  stripe.watchMethods();
   if (i18n.enabled() && process.env.TRANSLATE !== "0") {
     setTimeout(() => {
       i18n

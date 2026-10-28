@@ -32,6 +32,8 @@
   const problemLabel = document.querySelector("#problem-label");
   const config = document.querySelector("#book-config");
   const cardEnabled = Boolean(config && config.dataset.card);
+  const shopAddress = (config && config.dataset.address) || "Saltumvej 195, 9220 Aalborg Øst";
+  const shopMaps = (config && config.dataset.maps) || "";
   let catalog = { groups: [], stockNote: "" };
   try {
     catalog = JSON.parse(document.querySelector("#price-data").textContent);
@@ -219,23 +221,53 @@
     return timeDate.value === isoDay(0) && new Date().getHours() >= slot.ends - 1;
   }
 
-  function buildDays() {
-    const first = new Date().getHours() >= 21 ? 1 : 0;
-    let html = "";
-    for (let offset = first; offset < first + 14; offset += 1) {
-      const iso = isoDay(offset);
-      const parts = dayLabel(iso).split(" ");
-      const big = offset < 2 ? dayLabel(iso) : parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
-      const small = offset < 2 ? iso.slice(8).replace(/^0/, "") + "/" + iso.slice(5, 7).replace(/^0/, "") : parts[1];
-      html += "<button type=\"button\" class=\"chip-btn\" role=\"radio\" data-day=\"" + iso + "\"><strong>" + esc(big) + "</strong><small>" + esc(small) + "</small></button>";
+  const pageLocale = document.documentElement.lang || "da";
+  let calYear = 0;
+  let calMonth = 0;
+
+  function isoOf(year, month, date) {
+    return year + "-" + String(month + 1).padStart(2, "0") + "-" + String(date).padStart(2, "0");
+  }
+
+  function showMonthOf(iso) {
+    const parts = iso.split("-").map(Number);
+    calYear = parts[0];
+    calMonth = parts[1] - 1;
+  }
+
+  function buildCalendar() {
+    const first = new Date(calYear, calMonth, 1);
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const lead = (first.getDay() + 6) % 7;
+    const title = first.toLocaleDateString(pageLocale, { month: "long", year: "numeric" });
+    const minMonth = timeDate.min.slice(0, 7);
+    const maxMonth = timeDate.max.slice(0, 7);
+    const thisMonth = isoOf(calYear, calMonth, 1).slice(0, 7);
+    const lastOpen = new Date().getHours() >= 21 ? isoDay(1) : isoDay(0);
+    let html =
+      "<div class=\"cal-head\">" +
+      "<button type=\"button\" class=\"cal-nav\" data-month=\"-1\" aria-label=\"Forrige måned\"" + (thisMonth <= minMonth ? " disabled" : "") + ">‹</button>" +
+      "<strong>" + esc(title.charAt(0).toUpperCase() + title.slice(1)) + "</strong>" +
+      "<button type=\"button\" class=\"cal-nav\" data-month=\"1\" aria-label=\"Næste måned\"" + (thisMonth >= maxMonth ? " disabled" : "") + ">›</button>" +
+      "</div><div class=\"cal-grid\" role=\"radiogroup\" aria-label=\"Dag\">";
+    for (let weekday = 0; weekday < 7; weekday += 1) {
+      const name = new Date(2024, 0, 1 + weekday).toLocaleDateString(pageLocale, { weekday: "short" }).replace(".", "");
+      html += "<span class=\"cal-wd\" aria-hidden=\"true\">" + esc(name.slice(0, 2)) + "</span>";
     }
-    dayChips.innerHTML = html;
+    for (let blank = 0; blank < lead; blank += 1) html += "<span></span>";
+    for (let date = 1; date <= daysInMonth; date += 1) {
+      const iso = isoOf(calYear, calMonth, date);
+      const closed = iso < lastOpen || iso > timeDate.max;
+      const label = new Date(calYear, calMonth, date).toLocaleDateString(pageLocale, { weekday: "long", day: "numeric", month: "long" });
+      html +=
+        "<button type=\"button\" class=\"cal-day" + (iso === isoDay(0) ? " is-today" : "") + "\" role=\"radio\" data-day=\"" + iso + "\" aria-label=\"" + esc(label) + "\" aria-checked=\"" + String(iso === timeDate.value) + "\"" + (closed ? " disabled" : "") + ">" +
+        date + "</button>";
+    }
+    dayChips.innerHTML = html + "</div>";
   }
 
   function syncTimePick() {
-    Array.prototype.forEach.call(dayChips.children, function (chip) {
-      chip.setAttribute("aria-checked", String(chip.dataset.day === timeDate.value));
-    });
+    buildCalendar();
     if (SLOTS.some(function (slot) { return slot.value === timeSlot.value && slotPassed(slot); })) {
       const open = SLOTS.find(function (slot) { return !slotPassed(slot); });
       if (open) timeSlot.value = open.value;
@@ -261,9 +293,11 @@
     const modelName = found ? found.model.name : form.elements.model.value.trim();
     const what = pick ? repairList(pick) + (other ? " + andet" : "") : form.elements.problem.value.trim();
     const where = visit() === "hjemme"
-      ? "Vi kommer til " + esc(form.elements.address.value.trim())
+      ? "Vi henter den på " + esc(form.elements.address.value.trim())
       : visit() === "post" ? "Du sender den med posten"
-      : visit() === "vaerksted" ? "Du afleverer i Aalborg Øst" : "";
+      : visit() === "vaerksted"
+        ? "Du afleverer den på " + esc(shopAddress) + (shopMaps ? " · <a href=\"" + esc(shopMaps) + "\" target=\"_blank\" rel=\"noopener\">Kort</a>" : "")
+        : "";
     reviewBox.hidden = !device();
     reviewBox.innerHTML =
       "<p class=\"review-title\">Din booking</p><ul>" +
@@ -373,9 +407,9 @@
       }
       return "Skriv kort, hvad der er galt. Et par ord er nok.";
     }
-    if (step === 2 && !visit()) return "Vælg, om du afleverer den, sender den, eller vi kommer til dig.";
+    if (step === 2 && !visit()) return "Vælg, om du afleverer den, sender den, eller vi henter den.";
     if (step === 2 && visit() === "hjemme" && form.elements.address.value.trim().length < 5) {
-      return "Skriv adressen, vi skal køre til.";
+      return "Skriv adressen, hvor vi skal hente den.";
     }
     if (step === 2 && visit() === "post" && form.elements.address.value.trim().length < 5) {
       return "Skriv din adresse, så vi kan sende den retur.";
@@ -406,7 +440,7 @@
   next.hidden = false;
   back.hidden = false;
   send.hidden = true;
-  buildDays();
+  showMonthOf(timeDate.value);
 
   const params = new URLSearchParams(location.search);
   const maade = params.get("maade");
@@ -460,8 +494,16 @@
       }, 160);
       return;
     }
+    const monthStep = target.closest && target.closest("[data-month]");
+    if (monthStep && !monthStep.disabled) {
+      const moved = new Date(calYear, calMonth + Number(monthStep.dataset.month), 1);
+      calYear = moved.getFullYear();
+      calMonth = moved.getMonth();
+      buildCalendar();
+      return;
+    }
     const day = target.closest && target.closest("[data-day]");
-    if (day) {
+    if (day && !day.disabled) {
       timeDate.value = day.dataset.day;
       syncFields();
       return;

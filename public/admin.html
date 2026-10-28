@@ -123,7 +123,7 @@
             <li>Åbn filen <strong>.env</strong> i mappen website, og tilføj linjen <code>STRIPE_SECRET_KEY=sk_live_...</code>. Genstart computeren eller hjemmesiden.</li>
             <li>Under <em>Developers → Webhooks</em> tilføjer du <strong>https://teknikfix.dk/api/stripe/webhook</strong> med hændelserne <em>checkout.session.completed</em> og <em>checkout.session.async_payment_succeeded</em>. Kopiér <strong>Signing secret</strong> til .env som <code>STRIPE_WEBHOOK_SECRET=whsec_...</code>.</li>
           </ol>
-          <p>Indtil da kan kunderne betale med PayPal og bankoverførsel.</p>
+          <p>Indtil da kan kunderne ikke betale på nettet. De betaler, når de henter enheden.</p>
         </details>
 
         <details class="guide">
@@ -141,7 +141,7 @@
             <li>Bed de første kunder om en Google-anmeldelse. Det er det, der flytter dig op på kortet.</li>
           </ol>
           <p>Tekst du kan sætte ind som beskrivelse:</p>
-          <textarea id="gbp" readonly>TeknikFix reparerer telefoner, computere og tablets i Aalborg Øst. Gratis gennemgang, fast pris før vi starter, og du betaler først når reparationen virker. Book en tid døgnet rundt. Besøg kun efter aftale, eller vi kommer til dig. CVR {{CVR}}.</textarea>
+          <textarea id="gbp" readonly>TeknikFix reparerer telefoner, computere og tablets i Aalborg Øst. Gratis gennemgang, fast pris før vi starter, og du betaler først når reparationen virker. Book en tid døgnet rundt. Besøg kun efter aftale, eller vi henter den hos dig. CVR {{CVR}}.</textarea>
           <p><button class="btn btn-ghost" type="button" data-copy-target="#gbp">Kopiér beskrivelse</button></p>
           <p>Tag egne billeder af værkstedet, en færdig reparation og døren med nummer 6. Google viser dem, når profilen er bekræftet. Kortet på hjemmesiden viser allerede adressen.</p>
         </details>

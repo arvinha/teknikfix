@@ -21,7 +21,7 @@ window.FixLabels = {
   },
   visit: {
     vaerksted: "Afleverer på Saltumvej efter aftale",
-    hjemme: "Vi kører hjem til dig",
+    hjemme: "Vi henter den hos dig",
     post: "Du sender den med posten",
     "paa-stedet": "Kig med det samme",
     konsultation: "Gratis gennemgang"

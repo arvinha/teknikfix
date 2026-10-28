@@ -26,7 +26,7 @@
       <div class="wrap">
         <nav class="crumbs" aria-label="Brødkrumme"><a href="/">Forside</a><span aria-hidden="true">/</span><span>Betaling</span></nav>
         <h1>Du betaler, når den virker</h1>
-        <p class="lead">Du ser prisen, før du booker. Når du har set resultatet, betaler du med {{PAY_LIST}}.<!--IF_CARD--> Vil du hellere betale med det samme, kan du vælge det, når du booker.<!--END_IF_CARD--></p>
+        <p class="lead">Du ser prisen, før du booker. Når du har set resultatet, betaler du med {{PAY_LIST}}. Vil du hellere betale med det samme, kan du vælge det, når du booker.</p>
       </div>
     </header>
     <section class="section">
@@ -37,41 +37,20 @@
           <article class="panel"><h2>3</h2><p>Sagen står som klar til betaling, med beløbet.</p></article>
           <article class="panel"><h2>4</h2><p>Du betaler. Du får en kvittering, og sagen bliver opdateret.</p></article>
         </div>
-        <!--IF_CARD-->
         <article class="pay-card">
-          <h2>Kort, MobilePay eller Klarna</h2>
-          <p>Den hurtigste måde. Tryk «Betal» på din sag, og vælg den måde, du vil betale på. Betalingen går gennem Stripe, og vi ser aldrig dine kortoplysninger.</p>
-          <ul class="pay-methods" aria-label="Betalingsmåder"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>
+          <h2>Kort, MobilePay, Klarna<!--IF_PAYPAL--> eller PayPal<!--END_IF_PAYPAL--></h2>
+          <p>Tryk «Betal» på din sag, og vælg den måde, du vil betale på.</p>
+          <ul class="pay-methods" aria-label="Betalingsmåder"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li><!--IF_PAYPAL--><li>PayPal</li><!--END_IF_PAYPAL--></ul>
           <p>Med Klarna kan du betale senere eller dele beløbet op.</p>
           <p><a class="btn" href="/sag">Gå til din sag for at betale</a></p>
         </article>
-        <!--END_IF_CARD-->
-        <div class="pay-grid">
-          <article class="pay-card">
-            <h2>PayPal</h2>
-            <p>Beløbet står i danske kroner, og det er udfyldt på sagen, når reparationen er klar.</p>
-            <p>Betalingen går til <strong>{{PAYPAL}}</strong>. Skriv sagsnummeret, så vi kan se, at det er din sag.</p>
-            <p><a href="/sag">Gå til din sag for at betale</a></p>
-          </article>
-          <article class="pay-card" id="bank">
-            <h2>Bankoverførsel</h2>
-            <dl class="bank-dl">
-              <dt>Modtager</dt><dd>{{HOLDER}}</dd>
-              <dt>IBAN</dt><dd>{{IBAN_PRETTY}}</dd>
-              <dt>BIC</dt><dd>{{BIC}}</dd>
-              <dt>Bank</dt><dd>{{BANK}}</dd>
-              <dt>Tekst</dt><dd>Dit sagsnummer, fx AX-7K2M</dd>
-            </dl>
-            <div class="copy-row">
-              <button class="btn btn-ghost" type="button" data-copy="{{IBAN}}">Kopiér IBAN</button>
-              <button class="btn btn-ghost" type="button" data-copy="{{BIC}}">Kopiér BIC</button>
-            </div>
-            <p>Kontoen står i svenske kroner. Din bank veksler fra danske kroner, og der kan være et vekselgebyr.</p>
-          </article>
+        <div class="panel">
+          <h2>Sikker betaling</h2>
+          <p>Betalingen sker hos Stripe, som er godkendt til kortbetalinger efter den højeste sikkerhedsstandard (PCI DSS niveau 1). Vi ser aldrig dine kortoplysninger og gemmer dem ikke. Læs mere i vores <a href="/handelsbetingelser">handelsbetingelser</a>, vores <a href="/privatlivspolitik">privatlivspolitik</a> og <a href="https://stripe.com/privacy" rel="noopener" target="_blank">Stripes privatlivspolitik</a>.</p>
         </div>
         <div class="panel">
           <h2>Hvis den ikke kan repareres</h2>
-          <p>Så betaler du ikke. Dele bliver først bestilt, når du har sagt ja til prisen.<!--IF_CARD--> Har du betalt på forhånd, får du alle pengene tilbage.<!--END_IF_CARD--> Samme fejl inden for 30 dage retter vi uden ny betaling.</p>
+          <p>Så betaler du ikke. Dele bliver først bestilt, når du har sagt ja til prisen. Har du betalt på forhånd, får du alle pengene tilbage. Samme fejl inden for 30 dage retter vi uden ny betaling.</p>
         </div>
       </div>
     </section>

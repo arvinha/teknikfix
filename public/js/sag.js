@@ -42,7 +42,8 @@
       payBox =
         "<div class=\"pay-card\"><h3>Prisen er " +
         kroner(booking.priceDkk) +
-        "</h3><p>Du betaler først, når reparationen er færdig. Sig ja, hvis vi skal gå i gang.</p><button class=\"btn\" id=\"accept\" type=\"button\">Godkend prisen</button></div>";
+        "</h3><p>Du betaler først, når reparationen er færdig. Sig ja, hvis vi skal gå i gang.</p><button class=\"btn\" id=\"accept\" type=\"button\">Godkend prisen</button>" +
+        "<p class=\"form-hint\">Når du godkender, beder du os om at gå i gang med det samme. Din fortrydelsesret bortfalder, når reparationen er udført. Se <a href=\"/handelsbetingelser\" target=\"_blank\">handelsbetingelser</a>.</p></div>";
     }
     if (booking.status === "afventer_betaling" && due > 0) {
       payBox =
@@ -50,15 +51,11 @@
         kroner(due) +
         "</h3><p>Betal først, når du har set, at den virker.</p>" +
         (pay.dataset.card
-          ? "<button class=\"btn\" id=\"pay-card\" type=\"button\">Betal " + kroner(due) + " med kort, MobilePay eller Klarna</button>" +
-            "<ul class=\"pay-methods\" aria-label=\"Betalingsmåder\"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li></ul>"
-          : "") +
-        "<p style=\"margin-top: 14px\">Eller betal med PayPal eller bank, og skriv <strong>" +
-        esc(booking.ref) +
-        "</strong> på betalingen.</p>" +
-        paypalForm(booking, due) +
-        bankBlock(booking, due) +
-        "<div class=\"quick-actions\"><button class=\"btn btn-ghost\" id=\"paid-paypal\" type=\"button\">Jeg har betalt med PayPal</button><button class=\"btn btn-ghost\" id=\"paid-bank\" type=\"button\">Jeg har betalt via bank</button></div></div>";
+          ? "<button class=\"btn\" id=\"pay-card\" type=\"button\">Betal " + kroner(due) + "</button>" +
+            "<ul class=\"pay-methods\" aria-label=\"Betalingsmåder\"><li>Visa</li><li>Mastercard</li><li>Dankort</li><li>MobilePay</li><li>Klarna</li><li>Apple Pay</li><li>Google Pay</li>" + (pay.dataset.paypal ? "<li>PayPal</li>" : "") + "</ul>" +
+            "<p class=\"form-hint\">Betalingen sker sikkert hos Stripe. Vi ser aldrig dine kortoplysninger. <a href=\"/handelsbetingelser\" target=\"_blank\">Handelsbetingelser</a></p>"
+          : "<p>Betaling på nettet virker ikke lige nu. Ring til os, så finder vi en løsning.</p>") +
+        "</div>";
     }
     if (booking.status === "afventer_betaling" && booking.priceDkk > 0 && due === 0) {
       payBox = "<div class=\"form-ok\"><p>Reparationen er betalt. Du skal ikke betale mere.</p></div>";
@@ -95,10 +92,6 @@
       "</ol>";
     const accept = document.querySelector("#accept");
     if (accept) accept.addEventListener("click", function () { act("/api/sag/accept", {}); });
-    const paidPaypal = document.querySelector("#paid-paypal");
-    const paidBank = document.querySelector("#paid-bank");
-    if (paidPaypal) paidPaypal.addEventListener("click", function () { act("/api/sag/betalt", { method: "paypal" }); });
-    if (paidBank) paidBank.addEventListener("click", function () { act("/api/sag/betalt", { method: "bank" }); });
     const payCard = document.querySelector("#pay-card");
     if (payCard) payCard.addEventListener("click", function () { startCard(payCard); });
   }
@@ -115,7 +108,7 @@
       const body = await response.json().catch(function () { return {}; });
       if (!response.ok || !body.url) {
         error.hidden = false;
-        error.textContent = body.message || "Betalingen kunne ikke startes. Prøv igen, eller brug PayPal.";
+        error.textContent = body.message || "Betalingen kunne ikke startes. Prøv igen om lidt.";
         button.disabled = false;
         return;
       }
@@ -125,35 +118,6 @@
       error.textContent = "Forbindelsen fejlede. Prøv igen.";
       button.disabled = false;
     }
-  }
-
-  function paypalForm(booking, due) {
-    const amount = Number(due).toFixed(2);
-    return (
-      "<form class=\"copy-row\" action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_blank\">" +
-      "<input type=\"hidden\" name=\"cmd\" value=\"_xclick\">" +
-      "<input type=\"hidden\" name=\"business\" value=\"" + esc(pay.dataset.paypal) + "\">" +
-      "<input type=\"hidden\" name=\"item_name\" value=\"TeknikFix reparation " + esc(booking.ref) + "\">" +
-      "<input type=\"hidden\" name=\"item_number\" value=\"" + esc(booking.ref) + "\">" +
-      "<input type=\"hidden\" name=\"amount\" value=\"" + amount + "\">" +
-      "<input type=\"hidden\" name=\"currency_code\" value=\"DKK\">" +
-      "<input type=\"hidden\" name=\"no_shipping\" value=\"1\">" +
-      "<input type=\"hidden\" name=\"charset\" value=\"utf-8\">" +
-      "<button class=\"btn " + (pay.dataset.card ? "btn-ghost" : "btn-copper") + "\" type=\"submit\">Betal " + kroner(due) + " med PayPal</button></form>"
-    );
-  }
-
-  function bankBlock(booking, due) {
-    return (
-      "<div><h3>Eller bankoverførsel</h3><dl class=\"bank-dl\">" +
-      "<dt>Modtager</dt><dd>" + esc(pay.dataset.holder) + "</dd>" +
-      "<dt>IBAN</dt><dd>" + esc(pay.dataset.iban) + "</dd>" +
-      "<dt>BIC</dt><dd>" + esc(pay.dataset.bic) + "</dd>" +
-      "<dt>Bank</dt><dd>" + esc(pay.dataset.bank) + "</dd>" +
-      "<dt>Beløb</dt><dd>" + kroner(due) + "</dd>" +
-      "<dt>Tekst</dt><dd>" + esc(booking.ref) + "</dd></dl>" +
-      "<p>Kontoen står i svenske kroner. Din bank veksler fra danske kroner. PayPal er den mest direkte måde.</p></div>"
-    );
   }
 
   async function act(url, extra) {
